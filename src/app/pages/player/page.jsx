@@ -20,7 +20,7 @@ const Page = () => {
   const [coach, setCoach] = useState("");
   // Add more state variables here
 
-  const [tournaments, setTournaments] = useState([]);
+  const [leagues, setTournaments] = useState([]);
   const [achievements, setAchievements] = useState([]);
 
   const selectCountry = (val) => {
@@ -29,7 +29,7 @@ const Page = () => {
 
   const handleTournamentChange = (index, event) => {
     const { name, value } = event.target;
-    const updatedTournaments = [...tournaments];
+    const updatedTournaments = [...leagues];
     updatedTournaments[index][name] = value;
     setTournaments(updatedTournaments);
   };
@@ -43,13 +43,13 @@ const Page = () => {
 
   const addTournament = () => {
     setTournaments([
-      ...tournaments,
+      ...leagues,
       { name: "", location: "", date: "", result: "" },
     ]);
   };
 
   const removeTournament = (index) => {
-    const updatedTournaments = [...tournaments];
+    const updatedTournaments = [...leagues];
     updatedTournaments.splice(index, 1);
     setTournaments(updatedTournaments);
   };
@@ -70,7 +70,7 @@ const Page = () => {
       nationality,
       name,
       age,
-      /* Add more data properties */ tournaments,
+      /* Add more data properties */ leagues,
       achievements,
     };
     // Send the data to the backend
@@ -91,10 +91,10 @@ const Page = () => {
       {/* BASIC INFORMATION */}
 
       <div className="join join-vertical w-full">
-        <div className="collapse collapse-arrow join-item border border-base-300">
+        <div className="collapse collapse-arrow join-item border-base-300">
           <input type="radio" name="my-accordion-4" defaultChecked="checked" />
           <div className="collapse-title text-xl font-medium">
-            Add Basic Information
+            Basic Information
           </div>
           <div className="collapse-content">
             <form onSubmit={handleSubmit}>
@@ -162,10 +162,10 @@ const Page = () => {
 
         {/* ADVANCED INFORMATION */}
 
-        <div className="collapse collapse-arrow join-item border border-base-300">
+        <div className="collapse collapse-arrow join-item border-base-300">
           <input type="radio" name="my-accordion-4" />
           <div className="collapse-title text-xl font-medium">
-            Add Advanced Information
+            Advanced Information
           </div>
 
           <div className="collapse-content">
@@ -249,58 +249,36 @@ const Page = () => {
             {/* Add more form fields here */}
           </div>
         </div>
-        <div className="collapse collapse-arrow join-item border border-base-300">
+
+        {/* LEAGUE INFORMATION */}
+
+        <div className="collapse collapse-arrow join-item border-base-300">
           <input type="radio" name="my-accordion-4" />
           <div className="collapse-title text-xl font-medium">
-            Tournaments Information
+            League Information
           </div>
           <div className="collapse-content">
-            {/* Render tournaments form */}
-
             <div>
-              <h2>Tournaments</h2>
-              {tournaments.map((tournament, index) => (
+              <h2>Leagues played in: </h2>
+              {leagues.map((league, index) => (
                 <div key={index}>
-                  <label htmlFor={`tournament-name-${index}`}>Name:</label>
+                  <label htmlFor={`league-name-${index}`}>Name:</label>
                   <input
                     type="text"
-                    id={`tournament-name-${index}`}
+                    id={`league-name-${index}`}
                     name="name"
-                    value={tournament.name}
+                    value={league.name}
                     onChange={(event) => handleTournamentChange(index, event)}
                   />
 
-                  {/* Add more tournament form fields here */}
+                  {/* Add more league form fields here */}
 
                   <button onClick={() => removeTournament(index)}>
                     Remove Tournament
                   </button>
                 </div>
               ))}
-              <button onClick={addTournament}>Add Tournament</button>
-            </div>
-            {/* Render achievements form */}
-            <div>
-              <h2>Achievements</h2>
-              {achievements.map((achievement, index) => (
-                <div key={index}>
-                  <label htmlFor={`achievement-title-${index}`}>Title:</label>
-                  <input
-                    type="text"
-                    id={`achievement-title-${index}`}
-                    name="title"
-                    value={achievement.title}
-                    onChange={(event) => handleAchievementChange(index, event)}
-                  />
-
-                  {/* Add more achievement form fields here */}
-
-                  <button onClick={() => removeAchievement(index)}>
-                    Remove Achievement
-                  </button>
-                </div>
-              ))}
-              <button onClick={addAchievement}>Add Achievement</button>
+              <button onClick={addTournament}>Add League</button>
             </div>
           </div>
         </div>
