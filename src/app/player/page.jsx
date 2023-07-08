@@ -2,7 +2,8 @@
 
 import React, { useState } from "react";
 import axios from "axios";
-/* import { CountryDropdown } from "react-country-region-selector"; */
+import PlayerInformation from "@/components/PlayerInformation";
+import PlayerStats from "@/components/PlayerStats";
 
 const Page = () => {
   const [nationality, setNationality] = useState("");
@@ -18,7 +19,7 @@ const Page = () => {
   const [playingStyle, setPlayingStyle] = useState("");
   const [experienceLevel, setExperienceLevel] = useState("");
   const [coach, setCoach] = useState("");
-  // Add more state variables here
+  // Add state variables here
 
   const [leagues, setTournaments] = useState([]);
   const [achievements, setAchievements] = useState([]);
@@ -54,16 +55,6 @@ const Page = () => {
     setTournaments(updatedTournaments);
   };
 
-  const addAchievement = () => {
-    setAchievements([...achievements, { title: "", year: "" }]);
-  };
-
-  const removeAchievement = (index) => {
-    const updatedAchievements = [...achievements];
-    updatedAchievements.splice(index, 1);
-    setAchievements(updatedAchievements);
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = {
@@ -87,8 +78,13 @@ const Page = () => {
   };
 
   return (
-    <div className="bg-white text-black min-h-screen p-8">
-      {/* BASIC INFORMATION */}
+    <div className="bg-slate-200 text-black">
+      <div className="flex flex-row justify-between mx-10 my-5">
+        <PlayerInformation />
+        <PlayerStats />
+      </div>
+
+      {/* BASIC INFORMATION ACCORDION */}
 
       <div className="join join-vertical w-full">
         <div className="collapse collapse-arrow join-item border-base-300">
@@ -106,6 +102,7 @@ const Page = () => {
                   name="name"
                   value={name}
                   onChange={(event) => setName(event.target.value)}
+                  className="bg-slate-300 text-black rounded-lg"
                 />
               </div>
 
@@ -117,6 +114,7 @@ const Page = () => {
                   name="age"
                   value={age}
                   onChange={(event) => setAge(event.target.value)}
+                  className="bg-slate-300 text-black rounded-lg"
                 />
               </div>
 
@@ -128,6 +126,7 @@ const Page = () => {
                   name="gender"
                   value={gender}
                   onChange={(event) => setGender(event.target.value)}
+                  className="bg-slate-300 text-black rounded-lg"
                 />
               </div>
 
@@ -139,6 +138,7 @@ const Page = () => {
                   name="club"
                   value={club}
                   onChange={(event) => setClub(event.target.value)}
+                  className="bg-slate-300 text-black rounded-lg"
                 />
               </div>
 
@@ -150,6 +150,7 @@ const Page = () => {
                   name="handedness"
                   value={handedness}
                   onChange={(event) => setHandedness(event.target.value)}
+                  className="bg-slate-300 text-black rounded-lg"
                 />
               </div>
 
@@ -160,7 +161,7 @@ const Page = () => {
           </div>
         </div>
 
-        {/* ADVANCED INFORMATION */}
+        {/* ADVANCED INFORMATION ACCORDION */}
 
         <div className="collapse collapse-arrow join-item border-base-300">
           <input type="radio" name="my-accordion-4" />
@@ -177,6 +178,7 @@ const Page = () => {
                 name="height"
                 value={height}
                 onChange={(event) => setHeight(event.target.value)}
+                className="bg-slate-300 text-black rounded-lg"
               />
             </div>
 
@@ -188,6 +190,7 @@ const Page = () => {
                 name="weight"
                 value={weight}
                 onChange={(event) => setWeight(event.target.value)}
+                className="bg-slate-300 text-black rounded-lg"
               />
             </div>
 
@@ -199,6 +202,7 @@ const Page = () => {
                 name="dominantHand"
                 value={dominantHand}
                 onChange={(event) => setDominantHand(event.target.value)}
+                className="bg-slate-300 text-black rounded-lg"
               />
             </div>
 
@@ -210,6 +214,7 @@ const Page = () => {
                 name="backhandType"
                 value={backhandType}
                 onChange={(event) => setBackhandType(event.target.value)}
+                className="bg-slate-300 text-black rounded-lg"
               />
             </div>
 
@@ -221,6 +226,7 @@ const Page = () => {
                 name="playingStyle"
                 value={playingStyle}
                 onChange={(event) => setPlayingStyle(event.target.value)}
+                className="bg-slate-300 text-black rounded-lg"
               />
             </div>
 
@@ -232,6 +238,7 @@ const Page = () => {
                 name="experienceLevel"
                 value={experienceLevel}
                 onChange={(event) => setExperienceLevel(event.target.value)}
+                className="bg-slate-300 text-black rounded-lg"
               />
             </div>
 
@@ -243,6 +250,7 @@ const Page = () => {
                 name="coach"
                 value={coach}
                 onChange={(event) => setCoach(event.target.value)}
+                className="bg-slate-300 text-black rounded-lg"
               />
             </div>
 
@@ -250,7 +258,7 @@ const Page = () => {
           </div>
         </div>
 
-        {/* LEAGUE INFORMATION */}
+        {/* LEAGUE INFORMATION ACCORDION */}
 
         <div className="collapse collapse-arrow join-item border-base-300">
           <input type="radio" name="my-accordion-4" />
