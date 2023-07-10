@@ -1,8 +1,9 @@
 import Link from "next/link";
 
 const Navbar = () => {
+
   return (
-    <nav className="bg-gray-800">
+    <nav className={`w-full bg-gray-800 text-white fixed bottom-0 md:static md:top-0`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
@@ -10,7 +11,7 @@ const Navbar = () => {
               Logo
             </Link>
           </div>
-          <div className="hidden md:block">
+          <div>
             <div className="ml-10 flex items-baseline space-x-4">
               <Link
                 href="/game"

@@ -1,3 +1,5 @@
+"use client"
+
 import Navbar from "@/components/navbar";
 import "../app/globals.css";
 
@@ -13,7 +15,7 @@ const RootLayout = ({ children }) => {
         <link rel="stylesheet" href="../app/globals.css" />
       </head>
       <body>
-        <Navbar/>
+        <Navbar />
         {children}
       </body>
     </html>
