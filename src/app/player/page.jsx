@@ -86,14 +86,17 @@ const Page = () => {
 
       {/* Buttons */}
 
-      <div className="flex justify-between mx-3">
-        <button className="bg-red-700 w-2/5 rounded-lg py-3 my-5 mr-3 max-w-100 flex flex-col justify-center items-center"><img src={racket.src} alt="Racket Icon" className="max-h-10 my-1" />
+      <div className="flex sm:justify-between md:justify-start mx-3">
+        <button className="bg-red-700 w-2/5 md:w-40 rounded-lg py-3 md:py-0 my-5 mr-3 max-w-100 flex flex-col justify-center items-center md: grow-0">
+          <img src={racket.src} alt="Racket Icon" className="max-h-10 my-1" />
           Log Game
         </button>
-        <button className="bg-red-700 w-2/5 rounded-lg py-3 my-5 mr-3 max-w-100 flex flex-col justify-center items-center"><img src={trophy.src} alt="Trophy Icon" className="max-h-10 my-1" />
+        <button className="bg-red-700 w-2/5 md:w-40 rounded-lg py-3 my-5 mr-3 max-w-100 flex flex-col justify-center items-center md: grow-0">
+          <img src={trophy.src} alt="Trophy Icon" className="max-h-10 my-1" />
           Find a League
         </button>
-        <button className="bg-red-700 w-2/5 rounded-lg py-3 my-5 mr-3 max-w-100 flex flex-col justify-center items-center"><img src={team.src} alt="Trophy Icon" className="max-h-10 my-1" />
+        <button className="bg-red-700 w-2/5 md:w-40 rounded-lg py-3 my-5 mr-3 max-w-100 flex flex-col justify-center items-center md: grow-0">
+          <img src={team.src} alt="Trophy Icon" className="max-h-10 my-1" />
           Find a Team
         </button>
       </div>
@@ -102,7 +105,7 @@ const Page = () => {
 
       <div className="flex flex-col justify-center items-center mx-3 my-5">
         <img
-          className="h-auto max-w-fit rounded-full"
+          className="h-32 max-w-fit rounded-full"
           src="https://t3.ftcdn.net/jpg/05/16/27/58/240_F_516275801_f3Fsp17x6HQK0xQgDQEELoTuERO4SsWV.jpg"
           alt="PlaceHolder"
         />
@@ -111,7 +114,7 @@ const Page = () => {
 
       {/* Basic Stat Logs */}
 
-      <div className="flex justify-around mx-3">
+      <div className="flex sm:justify-around items-center mx-3 my-5 md:max-w-sm">
         <div className="w-2/5 py-3 text-center">
           <p>0</p>
           <p>Logged Games</p>
@@ -128,11 +131,11 @@ const Page = () => {
 
       {/* Graphed Output */}
 
-      <h1 className="ml-3 font-bold text-2xl mt-16 mb-5">Statistical Breakdown</h1>
+      <h1 className="ml-3 font-bold text-2xl mt-16 mb-5">
+        Statistical Breakdown
+      </h1>
 
-      <div>
-
-      </div>
+      <div></div>
 
       {/* Edit Information */}
 
