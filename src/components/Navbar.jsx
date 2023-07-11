@@ -26,10 +26,10 @@ const Navbar = () => {
                 Player
               </Link>
               <Link
-                href="/unused"
+                href="/settings"
                 className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               >
-                Unused
+                Settings
               </Link>
             </div>
           </div>
