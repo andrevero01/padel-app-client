@@ -18,7 +18,7 @@ const Page = () => {
         {/* Title */}
 
         <div className="flex justify-between">
-          <h1 className="ml-3 font-bold text-2xl">My Profile</h1>
+          <h1 className="ml-3 font-bold text-1xl text-slate-500">My Profile</h1>
           <Link href="/settings">
             <img
               src={cogs.src}
@@ -31,15 +31,15 @@ const Page = () => {
         {/* Buttons */}
 
         <div className="flex justify-between md:justify-center mx-3">
-          <button className="bg-green-800 w-2/5 md:w-40 rounded-lg py-3 md:py-0 my-5 mr-3 max-w-100 flex flex-col justify-center items-center md: grow-0">
+          <button className="bg-green-600 w-2/5 md:w-40 rounded-lg py-3 md:py-0 my-5 mr-3 max-w-100 flex flex-col justify-center items-center md: grow-0">
             <img src={racket.src} alt="Racket Icon" className="max-h-10 my-1" />
             Log Game
           </button>
-          <button className="bg-green-800 w-2/5 md:w-40 rounded-lg py-3 my-5 mr-3 max-w-100 flex flex-col justify-center items-center md: grow-0">
+          <button className="bg-green-600 w-2/5 md:w-40 rounded-lg py-3 my-5 mr-3 max-w-100 flex flex-col justify-center items-center md: grow-0">
             <img src={trophy.src} alt="Trophy Icon" className="max-h-10 my-1" />
             Find a League
           </button>
-          <button className="bg-green-800 w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md: grow-0">
+          <button className="bg-green-600 w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md: grow-0">
             <img src={team.src} alt="Trophy Icon" className="max-h-10 my-1" />
             Find a Team
           </button>
@@ -59,33 +59,120 @@ const Page = () => {
         {/* Basic Stat Logs */}
 
         <div className="flex justify-center mx-3 my-5 divide-x divide-green-800">
-          <div className="w-2/5 md:max-w-xs py-3 text-center">
+          <div className="w-2/5 md:max-w-xs py-3 text-center text-slate-500">
             <p>0</p>
             <p>Logged Games</p>
           </div>
-          <div className="w-2/5 md:max-w-xs py-3 text-center">
+          <div className="w-2/5 md:max-w-xs py-3 text-center text-slate-500">
             <p>2</p>
             <p>Leagues Played</p>
           </div>
-          <div className="w-2/5 md:max-w-xs py-3 text-center">
+          <div className="w-2/5 md:max-w-xs py-3 text-center text-slate-500">
             <p>3</p>
             <p>Tracked Players</p>
           </div>
         </div>
 
-        {/* Graphed Output */}
+        {/* Statistical Breakdown */}
 
-        <h1 className="ml-3 font-bold text-2xl mt-16 mb-5">
+        <h1 className="ml-3 font-bold text-1xl mt-5 mb-5 text-slate-500">
           Statistical Breakdown
         </h1>
 
-        <div></div>
+        <div className="carousel w-full max-h-60 mx-3">
+          <div id="item1" className="carousel-item w-full">
+            <img
+              src="/images/stock/photo-1625726411847-8cbb60cc71e6.jpg"
+              className="w-full"
+            />
+          </div>
+          <div id="item2" className="carousel-item w-full">
+            <img
+              src="/images/stock/photo-1609621838510-5ad474b7d25d.jpg"
+              className="w-full"
+            />
+          </div>
+          <div id="item3" className="carousel-item w-full">
+            <img
+              src="/images/stock/photo-1414694762283-acccc27bca85.jpg"
+              className="w-full"
+            />
+          </div>
+          <div id="item4" className="carousel-item w-full">
+            <img
+              src="/images/stock/photo-1665553365602-b2fb8e5d1707.jpg"
+              className="w-full"
+            />
+          </div>
+        </div>
 
-        {/* Edit Information */}
+        {/* Leagues */}
 
-        <h1 className="ml-3 font-bold text-2xl mt-16 mb-5">Edit Information</h1>
+        <h1 className="ml-3 font-bold text-1xl mt-5 mb-5 text-slate-500">
+          Leagues
+        </h1>
 
-        {/* BASIC INFORMATION ACCORDION */}
+        <div className="carousel w-full max-h-60 mx-3">
+          <div id="item1" className="carousel-item w-full">
+            <img
+              src="/images/stock/photo-1625726411847-8cbb60cc71e6.jpg"
+              className="w-full"
+            />
+          </div>
+          <div id="item2" className="carousel-item w-full">
+            <img
+              src="/images/stock/photo-1609621838510-5ad474b7d25d.jpg"
+              className="w-full"
+            />
+          </div>
+          <div id="item3" className="carousel-item w-full">
+            <img
+              src="/images/stock/photo-1414694762283-acccc27bca85.jpg"
+              className="w-full"
+            />
+          </div>
+          <div id="item4" className="carousel-item w-full">
+            <img
+              src="/images/stock/photo-1665553365602-b2fb8e5d1707.jpg"
+              className="w-full"
+            />
+          </div>
+        </div>
+
+        {/* Teams */}
+
+        <h1 className="ml-3 font-bold text-1xl mt-5 mb-5 text-slate-500">
+
+          Teams
+
+        </h1>
+
+        <div className="carousel w-full max-h-60 mx-3">
+          <div id="item1" className="carousel-item w-full">
+            <img
+              src="/images/stock/photo-1625726411847-8cbb60cc71e6.jpg"
+              className="w-full"
+            />
+          </div>
+          <div id="item2" className="carousel-item w-full">
+            <img
+              src="/images/stock/photo-1609621838510-5ad474b7d25d.jpg"
+              className="w-full"
+            />
+          </div>
+          <div id="item3" className="carousel-item w-full">
+            <img
+              src="/images/stock/photo-1414694762283-acccc27bca85.jpg"
+              className="w-full"
+            />
+          </div>
+          <div id="item4" className="carousel-item w-full">
+            <img
+              src="/images/stock/photo-1665553365602-b2fb8e5d1707.jpg"
+              className="w-full"
+            />
+          </div>
+        </div>
       </div>
       <Sidebar />
     </div>
