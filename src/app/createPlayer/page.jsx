@@ -29,11 +29,12 @@ const CreatePlayer = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post("/api/players", formData);
+      const res = await axios.post("http://localhost:5005/api/players", formData);
       console.log(res.data); // Handle the response as needed
       // Reset the form
       setFormData({
-        name: "",
+        firstName: "",
+        lastName: "",
         age: "",
         gender: "",
         nationality: "",
@@ -52,7 +53,7 @@ const CreatePlayer = () => {
   };
 
   return (
-    <div className="py-4 flex flex-col bg-white">
+    <div className="py-4 flex flex-col bg-white mb-14">
       <h1 className="text-2xl font-bold mb-4 mx-3">Create Player</h1>
       <form onSubmit={handleSubmit}>
         {/* Name */}
@@ -134,6 +135,7 @@ const CreatePlayer = () => {
               value="Male"
               onChange={handleChange}
               className="radio radio-success"
+              checked={formData.gender === "Male"}
             />
             <label className="font-bold mr-8 ml-2 align-super">Male</label>
             <input
@@ -142,6 +144,7 @@ const CreatePlayer = () => {
               value="Female"
               onChange={handleChange}
               className="radio radio-success"
+              checked={formData.gender === "Female"}
             />
             <label className="font-bold mr-8 ml-2 align-super">Female</label>
             <input
@@ -150,6 +153,7 @@ const CreatePlayer = () => {
               value="Prefer not to say"
               onChange={handleChange}
               className="radio radio-success"
+              checked={formData.gender === "Prefer not to say"}
             />
             <label className="font-bold mr-8 ml-2 align-super">
               Non-specific
@@ -163,7 +167,7 @@ const CreatePlayer = () => {
           <label className="font-bold">Nationality</label>
           <div className="flex justify-start mt-3">
             <input
-              type="string"
+              type="text"
               name="nationality"
               value={formData.nationality}
               onChange={handleChange}
@@ -190,6 +194,7 @@ const CreatePlayer = () => {
                     value="Right"
                     onChange={handleChange}
                     className="radio radio-success"
+                    checked={formData.dominantHand === "Right"}
                   />
                   <label className="font-bold mr-8 ml-2 align-super">
                     Right
@@ -200,6 +205,7 @@ const CreatePlayer = () => {
                     value="Left"
                     onChange={handleChange}
                     className="radio radio-success"
+                    checked={formData.dominantHand === "Left"}
                   />
                   <label className="font-bold mr-8 ml-2 align-super">
                     Left
@@ -210,6 +216,7 @@ const CreatePlayer = () => {
                     value="Ambidextrous"
                     onChange={handleChange}
                     className="radio radio-success"
+                    checked={formData.dominantHand === "Ambidextrous"}
                   />
                   <label className="font-bold mr-8 ml-2 align-super">
                     Ambidextreous
@@ -228,6 +235,7 @@ const CreatePlayer = () => {
                     value="One-handed backhand"
                     onChange={handleChange}
                     className="radio radio-success"
+                    checked={formData.backhandType === "One-handed backhand"}
                   />
                   <label className="font-bold mr-8 ml-2 align-super">
                     One-handed
@@ -238,6 +246,7 @@ const CreatePlayer = () => {
                     value="Two-handed backhand"
                     onChange={handleChange}
                     className="radio radio-success"
+                    checked={formData.backhandType === "Two-handed backhand"}
                   />
                   <label className="font-bold mr-8 ml-2 align-super">
                     Two-handed
@@ -256,6 +265,7 @@ const CreatePlayer = () => {
                     value="Offensive"
                     onChange={handleChange}
                     className="radio radio-success"
+                    checked={formData.playingStyle === "Offensive"}
                   />
                   <label className="font-bold mr-8 ml-2 align-super">
                     Offensive
@@ -266,6 +276,7 @@ const CreatePlayer = () => {
                     value="Control"
                     onChange={handleChange}
                     className="radio radio-success"
+                    checked={formData.playingStyle === "Control"}
                   />
                   <label className="font-bold mr-8 ml-2 align-super">
                     Control
@@ -299,6 +310,7 @@ const CreatePlayer = () => {
                     value="1"
                     onChange={handleChange}
                     className="bg-green-500 mask mask-star-2 mask-half-1"
+                    checked={formData.experienceLevel === "1"}
                   />
                   <input
                     type="radio"
@@ -306,6 +318,7 @@ const CreatePlayer = () => {
                     value="2"
                     onChange={handleChange}
                     className="bg-green-500 mask mask-star-2 mask-half-2"
+                    checked={formData.experienceLevel === "2"}
                   />
                   <input
                     type="radio"
@@ -313,6 +326,7 @@ const CreatePlayer = () => {
                     value="3"
                     onChange={handleChange}
                     className="bg-green-500 mask mask-star-2 mask-half-1"
+                    checked={formData.experienceLevel === "3"}
                   />
                   <input
                     type="radio"
@@ -320,6 +334,7 @@ const CreatePlayer = () => {
                     value="4"
                     onChange={handleChange}
                     className="bg-green-500 mask mask-star-2 mask-half-2"
+                    checked={formData.experienceLevel === "4"}
                   />
                   <input
                     type="radio"
@@ -327,6 +342,7 @@ const CreatePlayer = () => {
                     value="5"
                     onChange={handleChange}
                     className="bg-green-500 mask mask-star-2 mask-half-1"
+                    checked={formData.experienceLevel === "5"}
                   />
                   <input
                     type="radio"
@@ -334,6 +350,7 @@ const CreatePlayer = () => {
                     value="6"
                     onChange={handleChange}
                     className="bg-green-500 mask mask-star-2 mask-half-2"
+                    checked={formData.experienceLevel === "6"}
                   />
                   <input
                     type="radio"
@@ -341,6 +358,7 @@ const CreatePlayer = () => {
                     value="7"
                     onChange={handleChange}
                     className="bg-green-500 mask mask-star-2 mask-half-1"
+                    checked={formData.experienceLevel === "7"}
                   />
                   <input
                     type="radio"
@@ -348,6 +366,7 @@ const CreatePlayer = () => {
                     value="8"
                     onChange={handleChange}
                     className="bg-green-500 mask mask-star-2 mask-half-2"
+                    checked={formData.experienceLevel === "8"}
                   />
                   <input
                     type="radio"
@@ -355,6 +374,7 @@ const CreatePlayer = () => {
                     value="9"
                     onChange={handleChange}
                     className="bg-green-500 mask mask-star-2 mask-half-1"
+                    checked={formData.experienceLevel === "9"}
                   />
                   <input
                     type="radio"
@@ -362,6 +382,7 @@ const CreatePlayer = () => {
                     value="10"
                     onChange={handleChange}
                     className="bg-green-500 mask mask-star-2 mask-half-2"
+                    checked={formData.experienceLevel === "10"}
                   />
                 </div>
               </div>
