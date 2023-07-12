@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import axios from "axios";
 import racket from "../../../public/racket.png";
 import trophy from "../../../public/trophy.png";
 import team from "../../../public/team.png";

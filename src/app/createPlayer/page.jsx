@@ -52,7 +52,7 @@ const CreatePlayer = () => {
   };
 
   return (
-    <div className="container py-4 flex flex-col bg-white">
+    <div className="py-4 flex flex-col bg-white">
       <h1 className="text-2xl font-bold mb-4 mx-3">Create Player</h1>
       <form onSubmit={handleSubmit}>
         {/* Name */}
@@ -172,202 +172,212 @@ const CreatePlayer = () => {
           </div>
         </div>
 
-        <div className="collapse bg-base-200 mt-6 grow">
-          <input type="checkbox" />
-          <div className="collapse-title text-xl font-medium">Advanced</div>
-          <div className="collapse-content">
-            {/* Handedness */}
+        {/* Accordion */}
 
-            <div className="mt-6 mx-3">
-              <label className="font-bold">Handedness</label>
-              <div className="flex justify-start mt-3">
-                <input
-                  type="radio"
-                  name="dominantHand"
-                  value="Right"
-                  onChange={handleChange}
-                  className="radio radio-success"
-                />
-                <label className="font-bold mr-8 ml-2 align-super">Right</label>
-                <input
-                  type="radio"
-                  name="dominantHand"
-                  value="Left"
-                  onChange={handleChange}
-                  className="radio radio-success"
-                />
-                <label className="font-bold mr-8 ml-2 align-super">Left</label>
-                <input
-                  type="radio"
-                  name="dominantHand"
-                  value="Ambidextrous"
-                  onChange={handleChange}
-                  className="radio radio-success"
-                />
-                <label className="font-bold mr-8 ml-2 align-super">
-                  Ambidextreous
-                </label>
+        <div className=" mx-3 mt-6">
+          <div className="collapse bg-base-100 rounded-lg">
+            <input type="checkbox" />
+            <div className="collapse-title text-xl font-medium">Advanced</div>
+            <div className="collapse-content">
+              {/* Handedness */}
+
+              <div className="mt-6 mx-3">
+                <label className="font-bold">Handedness</label>
+                <div className="flex justify-start mt-3">
+                  <input
+                    type="radio"
+                    name="dominantHand"
+                    value="Right"
+                    onChange={handleChange}
+                    className="radio radio-success"
+                  />
+                  <label className="font-bold mr-8 ml-2 align-super">
+                    Right
+                  </label>
+                  <input
+                    type="radio"
+                    name="dominantHand"
+                    value="Left"
+                    onChange={handleChange}
+                    className="radio radio-success"
+                  />
+                  <label className="font-bold mr-8 ml-2 align-super">
+                    Left
+                  </label>
+                  <input
+                    type="radio"
+                    name="dominantHand"
+                    value="Ambidextrous"
+                    onChange={handleChange}
+                    className="radio radio-success"
+                  />
+                  <label className="font-bold mr-8 ml-2 align-super">
+                    Ambidextreous
+                  </label>
+                </div>
               </div>
-            </div>
 
-            {/* Backhand */}
+              {/* Backhand */}
 
-            <div className="mt-6 mx-3">
-              <label className="font-bold">Backhand Style</label>
-              <div className="flex justify-start mt-3">
-                <input
-                  type="radio"
-                  name="backhandType"
-                  value="One-handed backhand"
-                  onChange={handleChange}
-                  className="radio radio-success"
-                />
-                <label className="font-bold mr-8 ml-2 align-super">
-                  One-handed backhand
-                </label>
-                <input
-                  type="radio"
-                  name="backhandType"
-                  value="Two-handed backhand"
-                  onChange={handleChange}
-                  className="radio radio-success"
-                />
-                <label className="font-bold mr-8 ml-2 align-super">
-                  Two-handed backhand
-                </label>
+              <div className="mt-6 mx-3">
+                <label className="font-bold">Backhand Style</label>
+                <div className="flex justify-start mt-3">
+                  <input
+                    type="radio"
+                    name="backhandType"
+                    value="One-handed backhand"
+                    onChange={handleChange}
+                    className="radio radio-success"
+                  />
+                  <label className="font-bold mr-8 ml-2 align-super">
+                    One-handed
+                  </label>
+                  <input
+                    type="radio"
+                    name="backhandType"
+                    value="Two-handed backhand"
+                    onChange={handleChange}
+                    className="radio radio-success"
+                  />
+                  <label className="font-bold mr-8 ml-2 align-super">
+                    Two-handed
+                  </label>
+                </div>
               </div>
-            </div>
 
-            {/* Playing Style */}
+              {/* Playing Style */}
 
-            <div className="mt-7 mx-3">
-              <label className="font-bold">Player Style</label>
-              <div className="flex justify-start mt-3">
-                <input
-                  type="radio"
-                  name="playingStyle"
-                  value="Offensive"
-                  onChange={handleChange}
-                  className="radio radio-success"
-                />
-                <label className="font-bold mr-8 ml-2 align-super">
-                  Offensive
-                </label>
-                <input
-                  type="radio"
-                  name="playingStyle"
-                  value="Control"
-                  onChange={handleChange}
-                  className="radio radio-success"
-                />
-                <label className="font-bold mr-8 ml-2 align-super">
-                  Control
-                </label>
+              <div className="mt-7 mx-3">
+                <label className="font-bold">Play Style</label>
+                <div className="flex justify-start mt-3">
+                  <input
+                    type="radio"
+                    name="playingStyle"
+                    value="Offensive"
+                    onChange={handleChange}
+                    className="radio radio-success"
+                  />
+                  <label className="font-bold mr-8 ml-2 align-super">
+                    Offensive
+                  </label>
+                  <input
+                    type="radio"
+                    name="playingStyle"
+                    value="Control"
+                    onChange={handleChange}
+                    className="radio radio-success"
+                  />
+                  <label className="font-bold mr-8 ml-2 align-super">
+                    Control
+                  </label>
+                </div>
               </div>
-            </div>
 
-            {/* Coach */}
+              {/* Coach */}
 
-            <div className="flex flex-col justify-start mt-3 mx-3">
-              <label className="font-bold align-super">Coach</label>
-              <input
-                type="string"
-                name="coach"
-                value={formData.coach}
-                onChange={handleChange}
-                className="input input-bordered w-full max-w-xs"
-              />
-            </div>
-
-            {/* Experience Level */}
-
-            <div className="flex flex-col justify-center items-center mt-6 mx-3">
-              <label className="text-lg font-bold align-super">
-                Experience Level
-              </label>
-              <div className="rating rating-lg rating-half mt-3">
+              <div className="flex flex-col justify-start mt-6 mx-3">
+                <label className="font-bold align-super">Coach</label>
                 <input
-                  type="radio"
-                  name="experienceLevel"
-                  value="1"
+                  type="string"
+                  name="coach"
+                  value={formData.coach}
                   onChange={handleChange}
-                  className="bg-green-500 mask mask-star-2 mask-half-1"
-                />
-                <input
-                  type="radio"
-                  name="experienceLevel"
-                  value="2"
-                  onChange={handleChange}
-                  className="bg-green-500 mask mask-star-2 mask-half-2"
-                />
-                <input
-                  type="radio"
-                  name="experienceLevel"
-                  value="3"
-                  onChange={handleChange}
-                  className="bg-green-500 mask mask-star-2 mask-half-1"
-                />
-                <input
-                  type="radio"
-                  name="experienceLevel"
-                  value="4"
-                  onChange={handleChange}
-                  className="bg-green-500 mask mask-star-2 mask-half-2"
-                />
-                <input
-                  type="radio"
-                  name="experienceLevel"
-                  value="5"
-                  onChange={handleChange}
-                  className="bg-green-500 mask mask-star-2 mask-half-1"
-                />
-                <input
-                  type="radio"
-                  name="experienceLevel"
-                  value="6"
-                  onChange={handleChange}
-                  className="bg-green-500 mask mask-star-2 mask-half-2"
-                />
-                <input
-                  type="radio"
-                  name="experienceLevel"
-                  value="7"
-                  onChange={handleChange}
-                  className="bg-green-500 mask mask-star-2 mask-half-1"
-                />
-                <input
-                  type="radio"
-                  name="experienceLevel"
-                  value="8"
-                  onChange={handleChange}
-                  className="bg-green-500 mask mask-star-2 mask-half-2"
-                />
-                <input
-                  type="radio"
-                  name="experienceLevel"
-                  value="9"
-                  onChange={handleChange}
-                  className="bg-green-500 mask mask-star-2 mask-half-1"
-                />
-                <input
-                  type="radio"
-                  name="experienceLevel"
-                  value="10"
-                  onChange={handleChange}
-                  className="bg-green-500 mask mask-star-2 mask-half-2"
+                  className="input input-bordered w-full"
                 />
               </div>
-              <p>hello</p>
+
+              {/* Experience Level */}
+
+              <div className="flex flex-col justify-center items-center mt-6 mx-3">
+                <label className="text-lg font-bold align-super">
+                  Experience
+                </label>
+                <div className="rating rating-lg rating-half mt-3 mb-3">
+                  <input
+                    type="radio"
+                    name="experienceLevel"
+                    value="1"
+                    onChange={handleChange}
+                    className="bg-green-500 mask mask-star-2 mask-half-1"
+                  />
+                  <input
+                    type="radio"
+                    name="experienceLevel"
+                    value="2"
+                    onChange={handleChange}
+                    className="bg-green-500 mask mask-star-2 mask-half-2"
+                  />
+                  <input
+                    type="radio"
+                    name="experienceLevel"
+                    value="3"
+                    onChange={handleChange}
+                    className="bg-green-500 mask mask-star-2 mask-half-1"
+                  />
+                  <input
+                    type="radio"
+                    name="experienceLevel"
+                    value="4"
+                    onChange={handleChange}
+                    className="bg-green-500 mask mask-star-2 mask-half-2"
+                  />
+                  <input
+                    type="radio"
+                    name="experienceLevel"
+                    value="5"
+                    onChange={handleChange}
+                    className="bg-green-500 mask mask-star-2 mask-half-1"
+                  />
+                  <input
+                    type="radio"
+                    name="experienceLevel"
+                    value="6"
+                    onChange={handleChange}
+                    className="bg-green-500 mask mask-star-2 mask-half-2"
+                  />
+                  <input
+                    type="radio"
+                    name="experienceLevel"
+                    value="7"
+                    onChange={handleChange}
+                    className="bg-green-500 mask mask-star-2 mask-half-1"
+                  />
+                  <input
+                    type="radio"
+                    name="experienceLevel"
+                    value="8"
+                    onChange={handleChange}
+                    className="bg-green-500 mask mask-star-2 mask-half-2"
+                  />
+                  <input
+                    type="radio"
+                    name="experienceLevel"
+                    value="9"
+                    onChange={handleChange}
+                    className="bg-green-500 mask mask-star-2 mask-half-1"
+                  />
+                  <input
+                    type="radio"
+                    name="experienceLevel"
+                    value="10"
+                    onChange={handleChange}
+                    className="bg-green-500 mask mask-star-2 mask-half-2"
+                  />
+                </div>
+              </div>
             </div>
           </div>
+
           {/* Submit Button */}
 
-          <button
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded mt-4"
-          >
-            Submit
-          </button>
+          <div className="flex justify-center items-center">
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded mt-4"
+            >
+              Submit
+            </button>
+          </div>
         </div>
       </form>
     </div>
