@@ -6,7 +6,7 @@ import racket from "../../../public/racket.png";
 import trophy from "../../../public/trophy.png";
 import team from "../../../public/team.png";
 import cogs from "../../../public/cogs.png";
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/app/components/Sidebar";
 
 const Page = () => {
   return (
@@ -141,9 +141,7 @@ const Page = () => {
         {/* Teams */}
 
         <h1 className="ml-3 font-bold text-1xl mt-5 mb-5 text-slate-500">
-
           Teams
-
         </h1>
 
         <div className="carousel w-full max-h-60 mx-3">

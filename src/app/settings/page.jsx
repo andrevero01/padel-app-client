@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import React from "react";
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/app/components/Sidebar";
 
 function page() {
   const [nationality, setNationality] = useState("");
