@@ -7,9 +7,8 @@ const CreateTeam = () => {
   const [formData, setFormData] = useState({
     name: "",
     players: [],
-    selectedPlayer: null,
     captain: null,
-    homeCourt: "",
+    homeCourt: null,
     leagues: [],
   });
 
@@ -33,23 +32,14 @@ const CreateTeam = () => {
         leagues: formData.leagues,
       });
 
-      // Invite selected player
-      if (formData.selectedPlayer) {
-        await axios.post(
-          `http://localhost:5005/api/players/invite/${formData.selectedPlayer._id}`,
-          { teamId: teamRes.data._id }
-        );
-      }
-
       console.log("Players invited successfully!");
 
       // Reset the form
       setFormData({
         name: "",
         players: [],
-        selectedPlayer: null,
-        captain: "",
-        homeCourt: "",
+        captain: null,
+        homeCourt: null,
         leagues: "",
       });
     } catch (error) {
@@ -63,8 +53,8 @@ const CreateTeam = () => {
   const handlePlayerSelect = (player) => {
     setFormData({
       ...formData,
-      players: player.firstName + " " + player.lastName,
-      selectedPlayer: player,
+      players: player._id,
+      playerName: `${player.firstName} ${player.lastName}`,
     });
   };
 
@@ -121,7 +111,7 @@ const CreateTeam = () => {
               type="text"
               placeholder="Jane"
               name="players"
-              value={formData.players}
+              value={formData.playerName}
               onChange={handleChange}
               className="input border mr-3 grow"
               required
