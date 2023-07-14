@@ -7,6 +7,7 @@ import { Select, Option } from "@material-tailwind/react";
 
 const CreatePlayer = () => {
   const { countries } = useCountries();
+
   const [formData, setFormData] = useState({
     name: "",
     age: "",
