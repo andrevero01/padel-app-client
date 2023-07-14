@@ -36,6 +36,10 @@ const CreatePlayer = () => {
     }));
   };
 
+  const sortedCountries = countries.sort((a, b) =>
+    a.name.localeCompare(b.name)
+  );
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -191,7 +195,7 @@ const CreatePlayer = () => {
                 })
               }
             >
-              {countries.map(({ name, flags }) => (
+              {sortedCountries.map(({ name, flags }) => (
                 <Option
                   key={name}
                   value={name}
