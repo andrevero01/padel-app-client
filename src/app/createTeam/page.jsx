@@ -123,12 +123,12 @@ const CreateTeam = () => {
               required
             />
             {formData.players && (
-              <div className="mt-2">
+              <div className="flex flex-col mr-3 rounded-xl bg-base-100">
                 {filterExistingPlayers().map((player) => (
                   <button
                     key={player._id}
                     type="button"
-                    className="text-blue-500 hover:underline"
+                    className="text-white-500 text-start ml-5 py-2 hover:underline"
                     onClick={() => handlePlayerSelect(player)}
                   >
                     {player.firstName} {player.lastName}

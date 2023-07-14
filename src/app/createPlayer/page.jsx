@@ -29,6 +29,13 @@ const CreatePlayer = () => {
     }));
   };
 
+  const handleNationalityChange = (value) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      nationality: value,
+    }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -175,6 +182,8 @@ const CreatePlayer = () => {
               className="bg-base-200"
               size="lg"
               label="Select Country"
+              value={formData.nationality}
+              onChange={handleNationalityChange}
               selected={(element) =>
                 element &&
                 React.cloneElement(element, {
