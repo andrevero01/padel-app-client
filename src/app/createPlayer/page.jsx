@@ -1,9 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import { useCountries } from "use-react-countries";
+import { Select, Option } from "@material-tailwind/react";
 
 const CreatePlayer = () => {
+  const { countries } = useCountries();
   const [formData, setFormData] = useState({
     name: "",
     age: "",
@@ -29,7 +32,10 @@ const CreatePlayer = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:5005/api/players", formData);
+      const res = await axios.post(
+        "http://localhost:5005/api/players",
+        formData
+      );
       console.log(res.data); // Handle the response as needed
       // Reset the form
       setFormData({
@@ -162,17 +168,34 @@ const CreatePlayer = () => {
         </div>
 
         {/* Nationality */}
-
-        <div className="mt-6 mx-3">
-          <label className="font-bold">Nationality</label>
-          <div className="flex justify-start mt-3">
-            <input
-              type="text"
-              name="nationality"
-              value={formData.nationality}
-              onChange={handleChange}
-              className="input input-bordered w-full"
-            />
+        <div className="mx-3 mt-6">
+          <div className="w-full">
+            <Select
+              className="bg-base-200"
+              size="lg"
+              label="Select Country"
+              selected={(element) =>
+                element &&
+                React.cloneElement(element, {
+                  className: "flex items-center px-0 gap-2 pointer-events-none",
+                })
+              }
+            >
+              {countries.map(({ name, flags }) => (
+                <Option
+                  key={name}
+                  value={name}
+                  className="flex items-center gap-2"
+                >
+                  <img
+                    src={flags.svg}
+                    alt={name}
+                    className="h-5 w-5 rounded-full object-cover"
+                  />
+                  {name}
+                </Option>
+              ))}
+            </Select>
           </div>
         </div>
 
