@@ -6,41 +6,18 @@ import axios from "axios";
 const CreateTeam = () => {
   const [formData, setFormData] = useState({
     name: "",
-    players: "",
+    players: [],
     selectedPlayer: null,
-    captain: "",
+    captain: null,
     homeCourt: "",
-    leagues: "",
+    leagues: [],
   });
-  const [existingPlayers, setExistingPlayers] = useState([]);
-
-  useEffect(() => {
-    fetchExistingPlayers();
-  }, []);
-
-  const fetchExistingPlayers = async () => {
-    try {
-      const res = await axios.get("http://localhost:5005/api/players");
-      setExistingPlayers(res.data);
-    } catch (error) {
-      console.error(error);
-      // Handle the error as needed
-    }
-  };
 
   const handleChange = (e) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       [e.target.name]: e.target.value,
     }));
-  };
-
-  const handlePlayerSelect = (player) => {
-    setFormData({
-      ...formData,
-      players: player.firstName + " " + player.lastName,
-      selectedPlayer: player,
-    });
   };
 
   const handleSubmit = async (e) => {
@@ -50,7 +27,10 @@ const CreateTeam = () => {
       // Create the team
       const teamRes = await axios.post("http://localhost:5005/api/teams", {
         name: formData.name,
+        players: formData.players,
+        captain: formData.captain,
         homeCourt: formData.homeCourt,
+        leagues: formData.leagues,
       });
 
       // Invite selected player
@@ -66,7 +46,7 @@ const CreateTeam = () => {
       // Reset the form
       setFormData({
         name: "",
-        players: "",
+        players: [],
         selectedPlayer: null,
         captain: "",
         homeCourt: "",
@@ -78,12 +58,36 @@ const CreateTeam = () => {
     }
   };
 
-  const filterExistingPlayers = () => {
-    const searchTerm = formData.players.toLowerCase();
+  const [existingPlayers, setExistingPlayers] = useState([]);
+
+  const handlePlayerSelect = (player) => {
+    setFormData({
+      ...formData,
+      players: player.firstName + " " + player.lastName,
+      selectedPlayer: player,
+    });
+  };
+
+  useEffect(() => {
+    fetchExistingPlayers();
+  }, []);
+
+  const fetchExistingPlayers = async () => {
+    try {
+      const res = await axios.get("http://localhost:5005/api/players");
+      setExistingPlayers(res.data);
+    } catch (error) {
+      console.error(error);
+      // Handle the error as needed
+    }
+  };
+
+  const filterExistingPlayers = (searchTerm) => {
+    const lowercaseSearchTerm = searchTerm.toLowerCase();
     return existingPlayers.filter(
       (player) =>
-        player.firstName.toLowerCase().includes(searchTerm) ||
-        player.lastName.toLowerCase().includes(searchTerm)
+        player.firstName.toLowerCase().includes(lowercaseSearchTerm) ||
+        player.lastName.toLowerCase().includes(lowercaseSearchTerm)
     );
   };
 
@@ -122,9 +126,9 @@ const CreateTeam = () => {
               className="input border mr-3 grow"
               required
             />
-            {formData.players && (
+            {formData.players.length > 0 && (
               <div className="flex flex-col mr-3 rounded-xl bg-base-100">
-                {filterExistingPlayers().map((player) => (
+                {filterExistingPlayers(formData.players).map((player) => (
                   <button
                     key={player._id}
                     type="button"
@@ -150,7 +154,6 @@ const CreateTeam = () => {
               value={formData.leagues}
               onChange={handleChange}
               className="input border mr-3 grow"
-              required
             />
           </div>
         </div>
@@ -167,7 +170,6 @@ const CreateTeam = () => {
               value={formData.homeCourt}
               onChange={handleChange}
               className="input border mr-3 grow"
-              required
             />
           </div>
         </div>
