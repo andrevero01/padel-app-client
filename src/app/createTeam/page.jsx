@@ -23,7 +23,6 @@ const CreateTeam = () => {
     e.preventDefault();
 
     try {
-      // Create the team
       const teamRes = await axios.post("http://localhost:5005/api/teams", {
         name: formData.name,
         players: formData.players,
@@ -34,7 +33,6 @@ const CreateTeam = () => {
 
       console.log("Players invited successfully!");
 
-      // Reset the form
       setFormData({
         name: "",
         players: [],
@@ -44,7 +42,6 @@ const CreateTeam = () => {
       });
     } catch (error) {
       console.error(error);
-      // Handle the error as needed
     }
   };
 
@@ -85,6 +82,7 @@ const CreateTeam = () => {
     <div className="py-4 flex flex-col bg-white mb-14">
       <h1 className="text-2xl font-bold mb-4 mx-3">Create Player</h1>
       <form onSubmit={handleSubmit}>
+      
         {/* Name */}
 
         <div className="flex justify-start mx-3">

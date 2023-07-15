@@ -5,6 +5,7 @@ import React from "react";
 import Sidebar from "@/components/Sidebar";
 
 function page() {
+  
   const [nationality, setNationality] = useState("");
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
@@ -18,6 +19,7 @@ function page() {
   const [playingStyle, setPlayingStyle] = useState("");
   const [experienceLevel, setExperienceLevel] = useState("");
   const [coach, setCoach] = useState("");
+
   // Add state variables here
 
   const [leagues, setTournaments] = useState([]);
