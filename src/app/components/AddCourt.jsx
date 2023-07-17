@@ -12,7 +12,6 @@ function AddCourt ({filterExistingCourts, handleCourtSelect, handleChange, formD
         value={formData.court}
         onChange={handleChange}
         className="input border mr-3 grow"
-        required
       />
       {formData.homeCourt > 0 && (
         <div className="flex flex-col mr-3 rounded-xl bg-base-100">
