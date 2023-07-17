@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AddCourt from "../components/AddCourt";
+import AddPlayers from "../components/AddPlayers";
 
 const CreateTeam = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,12 @@ const CreateTeam = () => {
     homeCourt: null,
     leagues: [],
   });
+
+  const [filteredPlayers, setFilteredPlayers] = useState([]);
+  const [existingPlayers, setExistingPlayers] = useState([]);
+  const [existingCourts, setExistingCourts] = useState([]);
+  const [selectedPlayers, setSelectedPlayers] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
 
   const handleChange = (e) => {
     setFormData((prevFormData) => ({
@@ -47,15 +54,16 @@ const CreateTeam = () => {
     }
   };
 
-  const [filteredPlayers, setFilteredPlayers] = useState([]);
-  const [existingPlayers, setExistingPlayers] = useState([]);
-  const [existingCourts, setExistingCourts] = useState([]);
-  const [selectedPlayers, setSelectedPlayers] = useState([]);
-
   const handlePlayerSearch = (searchTerm) => {
-    const filteredPlayers = filterExistingPlayers(searchTerm);
+    if (searchTerm.trim().length > 0) {
+      setIsSearching(true);
+    } else {
+      setIsSearching(false);
+      setFilteredPlayers([]);
+    }
 
-    // Exclude the already selected players from the filtered players list
+    const filteredPlayers = filterExistingPlayers(searchTerm);
+    // Removed selected players from the list
     const availablePlayers = filteredPlayers.filter(
       (player) =>
         !selectedPlayers.find((selected) => selected._id === player._id)
@@ -78,6 +86,11 @@ const CreateTeam = () => {
     setFilteredPlayers((prevFilteredPlayers) =>
       prevFilteredPlayers.filter((filtered) => filtered._id !== player._id)
     );
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      playerName: "",
+    }));
   };
 
   const handlePlayerRemove = (player) => {
@@ -150,7 +163,7 @@ const CreateTeam = () => {
 
   return (
     <div className="py-4 flex flex-col bg-white mb-14">
-      <h1 className="text-2xl font-bold mb-4 mx-3">Create Player</h1>
+      <h1 className="text-2xl font-bold mb-4 mx-3">Create Team</h1>
       <form onSubmit={handleSubmit}>
         {/* Name */}
 
@@ -169,50 +182,27 @@ const CreateTeam = () => {
           </div>
         </div>
 
-        {/* Invite Players */}
-        <div className="flex justify-start mx-3 mt-6">
-          <div className="flex flex-col w-full">
-            <label className="font-bold mb-3">Invite Players</label>
-            <input
-              type="text"
-              placeholder="Search players"
-              onChange={(e) => handlePlayerSearch(e.target.value)}
-              className="input border mr-3 grow"
-            />
-            <div className="mt-2">
-              {filteredPlayers.map((player) => (
-                <div
-                  key={player._id}
-                  onClick={() => handlePlayerSelect(player)}
-                  className="cursor-pointer hover:bg-gray-200 px-2 py-1"
-                >
-                  {`${player.firstName} ${player.lastName}`}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        {/* Home Court */}
 
-        {/* Selected Players */}
-        <div className="flex justify-start mx-3 mt-6">
-          <div className="flex flex-col w-full">
-            <label className="font-bold mb-3">Selected Players</label>
-            <div>
-              {selectedPlayers.map((player) => (
-                <div key={player._id} className="px-2 py-1 flex items-center">
-                  <div>{`${player.firstName} ${player.lastName}`}</div>
-                  <button
-                    type="button"
-                    onClick={() => handlePlayerRemove(player)}
-                    className="ml-2 text-red-500"
-                  >
-                    Remove
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        <AddCourt
+          filterExistingCourts={filterExistingCourts}
+          handleCourtSelect={handleCourtSelect}
+          handleChange={handleChange}
+          formData={formData}
+        />
+
+        {/* Invite Players */}
+
+        <AddPlayers
+          isSearching={isSearching}
+          setIsSearching={setIsSearching}
+          handlePlayerSearch={handlePlayerSearch}
+          filteredPlayers={filteredPlayers}
+          handlePlayerSelect={handlePlayerSelect}
+          setFormData={setFormData}
+          selectedPlayers={selectedPlayers}
+          handlePlayerRemove={handlePlayerRemove}
+        />
 
         {/* Leagues */}
 
@@ -232,15 +222,6 @@ const CreateTeam = () => {
         </div>
 
         */}
-
-        {/* Home Court */}
-
-        <AddCourt
-          filterExistingCourts={filterExistingCourts}
-          handleCourtSelect={handleCourtSelect}
-          handleChange={handleChange}
-          formData={formData}
-        />
 
         {/* Submit Button */}
 
