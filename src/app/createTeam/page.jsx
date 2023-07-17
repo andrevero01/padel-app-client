@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import PlayerInvitation from "../components/PlayerInvitation";
+import AddCourt from "../components/AddCourt";
 
 const CreateTeam = () => {
   const [formData, setFormData] = useState({
@@ -46,18 +46,37 @@ const CreateTeam = () => {
     }
   };
 
+  const [filteredPlayers, setFilteredPlayers] = useState([]);
   const [existingPlayers, setExistingPlayers] = useState([]);
+  const [existingCourts, setExistingCourts] = useState([]);
+
+  const handlePlayerSearch = (searchTerm) => {
+    const filteredPlayers = filterExistingPlayers(searchTerm);
+    setFilteredPlayers(filteredPlayers);
+  };
 
   const handlePlayerSelect = (player) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      players: [...prevFormData.players, player._id],
+    }));
+    console.log(formData)
+  };
+
+  const handleCourtSelect = (court) => {
     setFormData({
       ...formData,
-      players: player._id,
-      playerName: `${player.firstName} ${player.lastName}`,
+      court: court._id,
+      homeCourt: `${court.name}`,
     });
   };
 
   useEffect(() => {
     fetchExistingPlayers();
+  }, []);
+
+  useEffect(() => {
+    fetchExistingCourts();
   }, []);
 
   const fetchExistingPlayers = async () => {
@@ -66,7 +85,15 @@ const CreateTeam = () => {
       setExistingPlayers(res.data);
     } catch (error) {
       console.error(error);
-      // Handle the error as needed
+    }
+  };
+
+  const fetchExistingCourts = async () => {
+    try {
+      const res = await axios.get("http://localhost:5005/api/courts");
+      setExistingCourts(res.data);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -74,6 +101,15 @@ const CreateTeam = () => {
     const lowercaseSearchTerm = searchTerm.toLowerCase();
     return existingPlayers.filter(
       (player) =>
+        player.firstName.toLowerCase().includes(lowercaseSearchTerm) ||
+        player.lastName.toLowerCase().includes(lowercaseSearchTerm)
+    );
+  };
+
+  const filterExistingCourts = (searchTerm) => {
+    const lowercaseSearchTerm = searchTerm.toLowerCase();
+    return existingCourts.filter(
+      (court) =>
         player.firstName.toLowerCase().includes(lowercaseSearchTerm) ||
         player.lastName.toLowerCase().includes(lowercaseSearchTerm)
     );
@@ -102,15 +138,32 @@ const CreateTeam = () => {
 
         {/* Invite Players */}
 
-        <PlayerInvitation
-          filterExistingPlayers={filterExistingPlayers}
-          handlePlayerSelect={handlePlayerSelect}
-          handleChange={handleChange}
-          formData={formData}
-        />
-        <button className="font-bold mt-1 ml-3 py-2 px-4 bg-base-200 rounded-lg ">Add Another Player</button>
+        <div className="flex justify-start mx-3 mt-6">
+          <div className="flex flex-col w-full">
+            <label className="font-bold mb-3">Invite Players</label>
+            <input
+              type="text"
+              placeholder="Search players"
+              onChange={(e) => handlePlayerSearch(e.target.value)}
+              className="input border mr-3 grow"
+            />
+            <div className="mt-2">
+              {filteredPlayers.map((player) => (
+                <div
+                  key={player._id}
+                  onClick={() => handlePlayerSelect(player)}
+                  className="cursor-pointer hover:bg-gray-200 px-2 py-1"
+                >
+                  {`${player.firstName} ${player.lastName}`}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
 
         {/* Leagues */}
+
+        {/*
 
         <div className="flex justify-start mx-3 mt-6">
           <div className="flex flex-col w-full">
@@ -125,21 +178,16 @@ const CreateTeam = () => {
           </div>
         </div>
 
+        */}
+
         {/* Home Court */}
 
-        <div className="flex justify-start mx-3 mt-6">
-          <div className="flex flex-col w-full">
-            <label className="font-bold mb-3">Home Court</label>
-            <input
-              type="text"
-              placeholder="Court"
-              name="homeCourt"
-              value={formData.homeCourt}
-              onChange={handleChange}
-              className="input border mr-3 grow"
-            />
-          </div>
-        </div>
+        <AddCourt
+          filterExistingCourts={filterExistingCourts}
+          handleCourtSelect={handleCourtSelect}
+          handleChange={handleChange}
+          formData={formData}
+        />
 
         {/* Submit Button */}
 
