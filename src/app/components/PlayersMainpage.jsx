@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from 'react';
 import axios from 'axios';
-import async from 'hbs/lib/async';
 import shuffle from 'lodash/shuffle';
 
 const PlayersMainpage = () =>{
