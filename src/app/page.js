@@ -3,7 +3,6 @@ import Carousel from "./components/Carousel.jsx";
 import PlayersMainpage from "./components/PlayersMainpage.jsx";
 //import CreatePlayer from "./createPlayer/page.jsx";
 import TeamsMainPage from "./components/TeamsMainPage.jsx";
-import Link from "next/link.js";
 
 export default function Home() {
   const carouselImages = [
@@ -17,7 +16,6 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between">
       <div className="px-24 py-10">
         <h1 className="text-center mb-4">Welcome to our homepage</h1>
-        <Link href="/login">Login</Link>
         <p>
           The standard Lorem Ipsum passage, used since the 1500s "Lorem ipsum
           dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor

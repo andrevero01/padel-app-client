@@ -8,9 +8,6 @@ module.exports = withMT({
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    fontFamily: {
-      body: ["League Spartan", "roboto"],
-    },
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -19,7 +16,6 @@ module.exports = withMT({
       },
     },
   },
-
   plugins: [require("daisyui"), require("@tailwindcss/forms")],
   daisyui: {
     // themes: [
@@ -49,4 +45,4 @@ module.exports = withMT({
     // ],
     themes: ["cupcake", "cmyk", "forest", "lemonade"],
   },
-};
+});

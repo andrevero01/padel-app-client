@@ -9,8 +9,6 @@ const CreatePlayer = () => {
   const { countries } = useCountries();
 
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
     name: "",
     age: "",
     gender: "",
@@ -46,15 +44,10 @@ const CreatePlayer = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(
-        "http://localhost:5005/api/players",
-        formData
-      );
+      const res = await axios.post("http://localhost:5005/api/players", formData);
       console.log(res.data); // Handle the response as needed
       // Reset the form
       setFormData({
-        email: "",
-        password: "",
         firstName: "",
         lastName: "",
         age: "",
@@ -81,30 +74,6 @@ const CreatePlayer = () => {
         {/* Name */}
 
         <div className="flex justify-start mx-3">
-          <div className="flex flex-col w-3/6">
-            <label className="font-bold mb-3">Email</label>
-            <input
-              type="text"
-              placeholder="Your email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className="input border border-red-500 mr-3 grow"
-              required
-            />
-          </div>
-          <div className="flex flex-col w-3/6">
-            <label className="font-bold mb-3">Password</label>
-            <input
-              type="text"
-              placeholder="New password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              className="input border border-red-500 mr-3 grow"
-              required
-            />
-          </div>
           <div className="flex flex-col w-3/6">
             <label className="font-bold mb-3">First Name</label>
             <input
