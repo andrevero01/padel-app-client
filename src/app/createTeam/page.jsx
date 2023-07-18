@@ -14,7 +14,6 @@ const CreateTeam = () => {
     leagues: [],
   });
 
-  const [filteredPlayers, setFilteredPlayers] = useState([]);
   const [existingPlayers, setExistingPlayers] = useState([]);
   const [existingCourts, setExistingCourts] = useState([]);
 
