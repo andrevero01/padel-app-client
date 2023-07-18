@@ -10,7 +10,7 @@ const CreateTeam = () => {
     name: "",
     players: [],
     captain: null,
-    homeCourt: null,
+    courts: [],
     leagues: [],
   });
 
@@ -33,7 +33,7 @@ const CreateTeam = () => {
         name: formData.name,
         players: formData.players,
         captain: formData.captain,
-        homeCourt: formData.homeCourt,
+        courts: formData.courts,
         leagues: formData.leagues,
       });
 
@@ -49,14 +49,6 @@ const CreateTeam = () => {
     } catch (error) {
       console.error(error);
     }
-  };
-
-  const handleCourtSelect = (court) => {
-    setFormData({
-      ...formData,
-      court: court._id,
-      homeCourt: `${court.name}`,
-    });
   };
 
   useEffect(() => {
@@ -81,14 +73,6 @@ const CreateTeam = () => {
     }
   };
 
-  const filterExistingCourts = (searchTerm) => {
-    const lowercaseSearchTerm = searchTerm.toLowerCase();
-    return existingCourts.filter(
-      (court) =>
-        player.firstName.toLowerCase().includes(lowercaseSearchTerm) ||
-        player.lastName.toLowerCase().includes(lowercaseSearchTerm)
-    );
-  };
   return (
     <div className="py-4 flex flex-col bg-white mb-14">
       <h1 className="text-2xl font-bold mb-4 mx-3">Create Team</h1>
@@ -113,10 +97,9 @@ const CreateTeam = () => {
         {/* Home Court */}
 
         <AddCourt
-          filterExistingCourts={filterExistingCourts}
-          handleCourtSelect={handleCourtSelect}
-          handleChange={handleChange}
-          formData={formData}
+          setFormData={setFormData}
+          fetchExistingCourts={fetchExistingCourts}
+          existingCourts={existingCourts}
         />
 
         {/* Invite Players */}
