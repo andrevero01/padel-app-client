@@ -14,6 +14,7 @@ const Page = () => {
       <Sidebar />
 
       <div className="bg-slate-200 md:mb-10 text-black h-full grow">
+      
         {/* Title */}
 
         <div className="flex justify-between">
