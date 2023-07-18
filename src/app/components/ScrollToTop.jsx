@@ -7,7 +7,7 @@ const ScrollToTopButton = () => {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.scrollY > 50) {
+      if (window.scrollY > 200) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
@@ -31,11 +31,10 @@ const ScrollToTopButton = () => {
   return (
     <div className="mt-10 flex justify-end">
       <button
-        className="btn rounded-full"
+        className="btn rounded-full text-neutral"
         onClick={scrollToTop}
         style={{ display: isVisible ? "inline-block" : "none" }}
       >
-        <div>⬆️</div>
         <div>Back to top</div>
       </button>
     </div>
