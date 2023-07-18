@@ -1,15 +1,78 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-function AddPlayers({
-  isSearching,
-  setIsSearching,
-  handlePlayerSearch,
-  filteredPlayers,
-  handlePlayerSelect,
-  setFormData,
-  selectedPlayers,
-  handlePlayerRemove,
-}) {
+function AddPlayers({ setFormData, fetchExistingPlayers, existingPlayers }) {
+  const [filteredPlayers, setFilteredPlayers] = useState([]);
+  const [selectedPlayers, setSelectedPlayers] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
+
+  const handlePlayerSearch = (searchTerm) => {
+    if (searchTerm.trim().length > 0) {
+      setIsSearching(true);
+    } else {
+      setIsSearching(false);
+      setFilteredPlayers([]);
+    }
+
+    const filteredPlayers = filterExistingPlayers(searchTerm);
+    // Removed selected players from the list
+    const availablePlayers = filteredPlayers.filter(
+      (player) =>
+        !selectedPlayers.find((selected) => selected._id === player._id)
+    );
+
+    setFilteredPlayers(availablePlayers);
+  };
+
+  const handlePlayerSelect = (player) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      players: [...prevFormData.players, player._id],
+    }));
+
+    setSelectedPlayers((prevSelectedPlayers) => [
+      ...prevSelectedPlayers,
+      player,
+    ]);
+
+    setFilteredPlayers((prevFilteredPlayers) =>
+      prevFilteredPlayers.filter((filtered) => filtered._id !== player._id)
+    );
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      playerName: "",
+    }));
+  };
+
+  const handlePlayerRemove = (player) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      players: prevFormData.players.filter((id) => id !== player._id),
+    }));
+
+    setSelectedPlayers((prevSelectedPlayers) =>
+      prevSelectedPlayers.filter((selected) => selected._id !== player._id)
+    );
+
+    setFilteredPlayers((prevFilteredPlayers) => [
+      ...prevFilteredPlayers,
+      player,
+    ]);
+  };
+
+  const filterExistingPlayers = (searchTerm) => {
+    const lowercaseSearchTerm = searchTerm.toLowerCase();
+    return existingPlayers.filter(
+      (player) =>
+        player.firstName.toLowerCase().includes(lowercaseSearchTerm) ||
+        player.lastName.toLowerCase().includes(lowercaseSearchTerm)
+    );
+  };
+
+  useEffect(() => {
+    fetchExistingPlayers();
+  }, []);
+
   return (
     <div className="flex flex-col justify-start mx-3 mt-6">
       <div className="flex flex-col w-full">
