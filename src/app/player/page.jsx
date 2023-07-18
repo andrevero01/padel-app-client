@@ -31,7 +31,7 @@ const Page = () => {
         {/* Buttons */}
 
         <div className="flex justify-between md:justify-center mx-3">
-          <button className="bg-green-600 w-2/5 md:w-40 rounded-lg py-3 md:py-0 my-5 mr-3 max-w-100 flex flex-col justify-center items-center md:grow-0">
+          <button className="bg-primary w-2/5 md:w-40 rounded-lg py-3 md:py-0 my-5 mr-3 max-w-100 flex flex-col justify-center items-center md:grow-0">
             <img src={racket.src} alt="Racket Icon" className="max-h-10 my-1" />
             Log Game
           </button>
