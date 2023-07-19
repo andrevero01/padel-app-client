@@ -1,15 +1,14 @@
-"use client";
-import React, { useState } from "react";
-import axios from "axios";
-import async from "hbs/lib/async";
-import shuffle from "lodash/shuffle";
+'use client'
+import React, { useState } from 'react';
+import axios from 'axios';
+import shuffle from 'lodash/shuffle';
 
-const PlayersMainpage = () => {
+const PlayersMainpage = () =>{
   const [players, setPlayers] = useState([]);
   const [showShuffleButton, setShowShuffleButton] = useState(false);
 
   const getPlayers = async () => {
-    const response = await axios.get("http://localhost:5005/api/players", {
+    const response = await axios.get('http://localhost:5005/api/players', {
       params: {
         limit: 5,
       },
@@ -29,37 +28,26 @@ const PlayersMainpage = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <button
-        onClick={handleGetPlayers}
-        className="my-4 py-2 px-4 bg-primary text-white rounded"
-      >
-        Get Players
-      </button>
-
-      {showShuffleButton && (
-        <button
-          onClick={handleShufflePlayers}
-          className="my-4 py-2 px-4 bg-red-500 text-white rounded"
-        >
-          Shuffle
-        </button>
+    <button onClick={handleGetPlayers} className="my-4 py-2 px-4 bg-blue-500 text-white rounded">
+      Get Players
+    </button>
+    
+    {showShuffleButton && (
+        <button onClick={handleShufflePlayers} className="my-4 py-2 px-4 bg-red-500 text-white rounded">Shuffle</button>
       )}
 
-      <div className="flex flex-wrap justify-center">
-        {players.map((player) => (
-          <div
-            key={player.id}
-            className="max-w-xs p-4 mx-2 my-2 bg-white rounded shadow"
-          >
-            <div className="font-bold">
-              Name: {player.firstName} {player.lastName} <br></br>
-              Team: {player.team}
-            </div>
+    <div className="flex flex-wrap justify-center">
+      {players.map((player) => (
+        <div key={player.id} className="max-w-xs p-4 mx-2 my-2 bg-white rounded shadow">
+          <div className="font-bold">
+            Name: {player.firstName} {player.lastName} <br></br>
+            Team: {player.team}
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
+  </div>
   );
-};
+}
 
 export default PlayersMainpage;

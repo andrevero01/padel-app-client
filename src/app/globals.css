@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
 body {
   margin: 0;
-  padding: 0;
-}
-
-div {
-  display: inline-block;
 }
