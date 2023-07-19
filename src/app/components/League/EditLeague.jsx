@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 
+// edit league
 const EditLeague = ({ leagueId }) => {
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
