@@ -1,17 +1,7 @@
-<<<<<<< HEAD
-
-"use client";
-import React, { useState } from "react";
-import axios from "axios";
-import async from "hbs/lib/async";
-import shuffle from "lodash/shuffle";
-=======
 'use client'
 import React, { useState } from 'react';
 import axios from 'axios';
-import async from 'hbs/lib/async';
 import shuffle from 'lodash/shuffle';
->>>>>>> parent of e4cab6a (Merge pull request #9 from andrevero01/leagues)
 
 const PlayersMainpage = () =>{
   const [players, setPlayers] = useState([]);
