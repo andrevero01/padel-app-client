@@ -37,7 +37,7 @@ export default function Home() {
           <h1>Click here if you want to see some players:</h1>
           <PlayersMainpage />
         </div>
-        <div className="relative">
+        <div className="">
           <ScrollToTopButton />
         </div>
       </div>
