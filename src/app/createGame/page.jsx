@@ -191,12 +191,12 @@ const CreateGame = () => {
                 handlePlayerScoreChange(0, "sets", parseInt(e.target.value))
               }
             >
-              <option value="1">0</option>
+              <option value="0">0</option>
               <option value="1">1</option>
-              <option value="1">2</option>
-              <option value="2">3</option>
-              <option value="2">4</option>
-              <option value="3">5</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
             </select>
 
             {/* Games */}
@@ -211,7 +211,7 @@ const CreateGame = () => {
                 handlePlayerScoreChange(0, "games", parseInt(e.target.value))
               }
             >
-              <option value="1">0</option>
+              <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -266,12 +266,12 @@ const CreateGame = () => {
                 handlePlayerScoreChange(1, "sets", parseInt(e.target.value))
               }
             >
-              <option value="1">0</option>
+              <option value="0">0</option>
               <option value="1">1</option>
-              <option value="1">2</option>
-              <option value="2">3</option>
-              <option value="2">4</option>
-              <option value="3">5</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
             </select>
 
             {/* Games */}
@@ -286,7 +286,7 @@ const CreateGame = () => {
               }
             >
               {" "}
-              <option value="1">0</option>
+              <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
