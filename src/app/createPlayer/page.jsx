@@ -44,8 +44,12 @@ const CreatePlayer = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:5005/api/players", formData);
-      console.log(res.data); // Handle the response as needed
+      const res = await axios.post(
+        "http://localhost:5005/api/players",
+        formData
+      );
+      console.log(res.data);
+
       // Reset the form
       setFormData({
         firstName: "",

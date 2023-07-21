@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-function AddPlayers({ setFormData, fetchExistingPlayers, existingPlayers }) {
+function AddPlayersToTeam({ teamIndex, formData, setFormData, fetchExistingPlayers, existingPlayers }) {
   const [filteredPlayers, setFilteredPlayers] = useState([]);
   const [selectedPlayers, setSelectedPlayers] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
@@ -14,7 +14,7 @@ function AddPlayers({ setFormData, fetchExistingPlayers, existingPlayers }) {
     }
 
     const filteredPlayers = filterExistingPlayers(searchTerm);
-    // Removed selected players from the list
+    // Remove selected players from the list
     const availablePlayers = filteredPlayers.filter(
       (player) =>
         !selectedPlayers.find((selected) => selected._id === player._id)
@@ -24,9 +24,12 @@ function AddPlayers({ setFormData, fetchExistingPlayers, existingPlayers }) {
   };
 
   const handlePlayerSelect = (player) => {
+    const updatedTeams = [...formData.teams];
+    updatedTeams[teamIndex].players.push(player._id);
+
     setFormData((prevFormData) => ({
       ...prevFormData,
-      players: [...prevFormData.players, player._id],
+      teams: updatedTeams,
     }));
 
     setSelectedPlayers((prevSelectedPlayers) => [
@@ -37,17 +40,18 @@ function AddPlayers({ setFormData, fetchExistingPlayers, existingPlayers }) {
     setFilteredPlayers((prevFilteredPlayers) =>
       prevFilteredPlayers.filter((filtered) => filtered._id !== player._id)
     );
-
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      playerName: "",
-    }));
   };
 
   const handlePlayerRemove = (player) => {
+    const updatedTeams = [...formData.teams];
+    updatedTeams[teamIndex].players = updatedTeams[teamIndex].players.filter(
+      (id) => id !== player._id
+    );
+
     setFormData((prevFormData) => ({
       ...prevFormData,
-      players: prevFormData.players.filter((id) => id !== player._id),
+      teams: updatedTeams,
+      playerName: "",
     }));
 
     setSelectedPlayers((prevSelectedPlayers) =>
@@ -96,7 +100,7 @@ function AddPlayers({ setFormData, fetchExistingPlayers, existingPlayers }) {
                 }}
                 className="cursor-pointer hover:bg-gray-200 px-2 py-1"
               >
-                {`${player.firstName} ${player.lastName}`}
+                {`${player.firstName}`}
               </div>
             ))}
           </div>
@@ -105,11 +109,10 @@ function AddPlayers({ setFormData, fetchExistingPlayers, existingPlayers }) {
       {/* Selected Players */}
       <div className="flex justify-start mt-6">
         <div className="flex flex-col w-full">
-          <label className="font-bold mb-3">Selected Players</label>
           <div>
             {selectedPlayers.map((player) => (
               <div key={player._id} className="px-2 py-1 flex items-center">
-                <div>{`${player.firstName} ${player.lastName}`}</div>
+                <div>{`${player.firstName}`}</div>
                 <button
                   type="button"
                   onClick={() => handlePlayerRemove(player)}
@@ -126,4 +129,4 @@ function AddPlayers({ setFormData, fetchExistingPlayers, existingPlayers }) {
   );
 }
 
-export default AddPlayers;
+export default AddPlayersToTeam;
