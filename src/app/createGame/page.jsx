@@ -52,6 +52,7 @@ const CreateGame = () => {
         date: formData.date,
         courts: formData.courts,
         score: formData.score,
+        winner: formData.winner,
         teams: formData.teams,
       });
 
@@ -64,10 +65,12 @@ const CreateGame = () => {
           {
             name: "Team 1",
             players: [],
+            winner: false,
           },
           {
             name: "Team 2",
             players: [],
+            winner: false,
           },
         ],
         courts: [],
@@ -102,10 +105,8 @@ const CreateGame = () => {
 
   const handlePlayerScoreChange = (teamIndex, category, value) => {
     setFormData((prevFormData) => {
-      // Create a copy of the previous state
       const updatedFormData = { ...prevFormData };
 
-      // Ensure that the score object exists for the specified team
       if (!updatedFormData.teams[teamIndex].score) {
         updatedFormData.teams[teamIndex].score = {
           sets: 0,
@@ -114,7 +115,6 @@ const CreateGame = () => {
         };
       }
 
-      // Update the score for the specified team and category
       updatedFormData.teams[teamIndex].score[category] = value;
 
       return updatedFormData;
@@ -296,7 +296,7 @@ const CreateGame = () => {
             </select>
 
             {/* Points */}
-        
+
             <select
               className="select select-bordered"
               name="teams[1].score.points"
