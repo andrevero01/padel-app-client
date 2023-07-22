@@ -26,7 +26,9 @@ const DeleteLeague = ({ leagueId }) => {
         Delete league
       </button>
       {message && (
-        <p className="text-orange-600 font-semibold text-center">{message}</p>
+        <p className="text-orange-600 font-semibold text-center mr-2">
+          {message}
+        </p>
       )}
     </>
   );

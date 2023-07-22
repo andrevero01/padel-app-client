@@ -8,6 +8,7 @@ export const LeaguesContext = React.createContext({});
 
 export default function LeaguesProviderWrapper({ children }) {
   const [leagues, setLeagues] = useState([]);
+  // const [selectedLeague, setSelectedLeague] = useState(null);
 
   useEffect(() => {
     axios.get("http://localhost:5005/api/leagues").then((response) => {
@@ -20,6 +21,8 @@ export default function LeaguesProviderWrapper({ children }) {
     <LeaguesContext.Provider
       value={{
         leagues,
+        // getLeagueDetails,
+        // selectedLeague,
       }}
     >
       {children}

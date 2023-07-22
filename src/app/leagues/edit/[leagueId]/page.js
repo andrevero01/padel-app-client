@@ -1,10 +1,17 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/router";
 import { useContext } from "react";
 import { LeaguesContext } from "@/app/context/leagues.context";
+import { useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { Link } from "react-router-dom";
 
-const EditLeague = () => {
+export default function leagueDetailsPage() {
+  const [leagueDetails, setLeagueDetails] = useState("");
+  const { leagueId } = useParams();
+  const router = useRouter();
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [schedule, setSchedule] = useState("");
@@ -13,6 +20,24 @@ const EditLeague = () => {
   const [registrationFee, setRegistrationfee] = useState("");
   const [leagueLogo, setLeagueLogo] = useState("");
   const [message, setMessage] = useState("");
+
+  const leagueLogoUrl =
+    leagueLogo ||
+    "https://www.usaclicosenza.it/wp-content/uploads/2021/04/Padel-League-Logo.jpeg";
+
+  useEffect(() => {
+    if (leagueId) {
+      axios
+        .get(`http://localhost:5005/api/leagues/${leagueId}`)
+        .then((response) => {
+          setLeagueDetails(response.data);
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.error("Failed to retrieve league:", error.message);
+        });
+    }
+  }, [leagueId]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,18 +48,29 @@ const EditLeague = () => {
       registrationOpen,
       registrationDeadline,
       registrationFee,
-      leagueLogo,
+      leagueLogo: leagueLogoUrl,
     };
 
     axios
       .put(`http://localhost:5005/api/leagues/${leagueId}`, requestBody)
       .then((response) => {
         console.log(response);
+        setName("");
+        setLocation("");
+        setSchedule("");
+        setRegistrationOpen("");
+        setRegistrationDeadline("");
+        setRegistrationfee("");
+        setLeagueLogo("");
+        setMessage("You've successfully edited this league!");
+        setTimeout(() => {
+          router.push("/leagues");
+        }, 1000);
       });
   };
 
   return (
-    <div className="flex flex-col items-center  bg-gray-100">
+    <div className="flex flex-col items-center  bg-gray-100 h-screen">
       <form onSubmit={handleSubmit}>
         {/* Name and location container */}
         <div className="flex justify-between mb-4 gap-5">
@@ -44,9 +80,10 @@ const EditLeague = () => {
             </label>
             <input
               className="input input-bordered input-primary w-full shadow-md rounded-md mb-2"
-              placeholder={name}
+              placeholder={leagueDetails.name}
               type="text"
               name="name"
+              required
               onChange={(e) => setName(e.target.value)}
               value={name}
             />
@@ -57,9 +94,10 @@ const EditLeague = () => {
             </label>
             <input
               className="input input-bordered input-primary w-full shadow-md rounded-md mb-2"
-              placeholder={location}
+              placeholder={leagueDetails.location}
               type="text"
               name="location"
+              required
               onChange={(e) => setLocation(e.target.value)}
               value={location}
             />
@@ -74,8 +112,9 @@ const EditLeague = () => {
             <input
               className="input input-bordered input-primary w-full shadow-md rounded-md mb-2"
               type="text"
-              placeholder="Tuesdays and Thursdays"
+              placeholder={leagueDetails.schedule}
               name="schedule"
+              required
               onChange={(e) => setSchedule(e.target.value)}
               value={schedule}
             />
@@ -87,7 +126,7 @@ const EditLeague = () => {
             <input
               className="input input-bordered input-primary w-full shadow-md rounded-md mb-2 "
               type="string"
-              placeholder="Add your URL here"
+              placeholder={leagueDetails.leagueLogo}
               name="leagueLogo"
               onChange={(e) => setLeagueLogo(e.target.value)}
               value={leagueLogo}
@@ -105,6 +144,7 @@ const EditLeague = () => {
               className="input input-bordered input-primary w-full shadow-md rounded-md mb-2"
               id="registrationOpen"
               name="registrationOpen"
+              required
               value={registrationOpen}
               onChange={(e) => setRegistrationOpen(e.target.value)}
             >
@@ -122,6 +162,7 @@ const EditLeague = () => {
               className="input input-bordered input-primary w-full  shadow-md rounded-md mb-2"
               type="date"
               name="registrationDeadline"
+              required
               onChange={(e) => setRegistrationDeadline(e.target.value)}
               value={registrationDeadline}
             />
@@ -133,8 +174,9 @@ const EditLeague = () => {
             <input
               className="input input-bordered input-primary w-full shadow-md rounded-md mb-2 "
               type="number"
-              placeholder="15"
+              placeholder={leagueDetails.registrationFee}
               name="registrationFee"
+              required
               onChange={(e) => setRegistrationfee(e.target.value)}
               value={registrationFee}
             />
@@ -147,12 +189,10 @@ const EditLeague = () => {
           >
             Edit League
           </button>
-          {message && <p className="text-orange-600">{message}</p>}
         </div>
       </form>
-      <button>Back to leagues</button>
+      {message && <p className="text-orange-600">{message}</p>}
+      <div>{/* <button>Back to leagues</button> */}</div>
     </div>
   );
-};
-
-export default EditLeague;
+}
