@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { useContext } from "react";
+import { LeaguesContext } from "@/app/context/leagues.context";
 
-const EditLeague = ({ leagueId }) => {
+const EditLeague = () => {
+  // const { leagues, getLeagueDetails, leagueDetails } =
+  //   useContext(LeaguesContext);
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [schedule, setSchedule] = useState("");
@@ -12,7 +16,7 @@ const EditLeague = ({ leagueId }) => {
   const [leagueLogo, setLeagueLogo] = useState("");
   const [message, setMessage] = useState("");
 
-  useEffect(() => {
+  const showLeagueData = () => {
     axios
       .get(`http://localhost:5005/api/leagues/${leagueId}`)
       .then((response) => {
@@ -27,7 +31,24 @@ const EditLeague = ({ leagueId }) => {
         setMessage("You've successfully edited this league!");
       })
       .catch((error) => console.log(error.message));
-  }, [leagueId]);
+  };
+
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://localhost:5005/api/leagues/${leagueId}`)
+  //     .then((response) => {
+  //       const leagueDetails = response.data;
+  //       setName(leagueDetails.name);
+  //       setLocation(leagueDetails.location);
+  //       setSchedule(leagueDetails.schedule);
+  //       setRegistrationOpen(leagueDetails.registrationOpen);
+  //       setRegistrationDeadline(leagueDetails.registrationDeadline);
+  //       setRegistrationfee(leagueDetails.registrationFee);
+  //       setLeagueLogo(leagueDetails.leagueLogo);
+  //       setMessage("You've successfully edited this league!");
+  //     })
+  //     .catch((error) => console.log(error.message));
+  // }, [leagueId]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -49,8 +70,7 @@ const EditLeague = ({ leagueId }) => {
   };
 
   return (
-    <>
-      {/* Create new league form */}
+    <div className="flex flex-col items-center  bg-gray-100">
       <form onSubmit={handleSubmit}>
         {/* Name and location container */}
         <div className="flex justify-between mb-4 gap-5">
@@ -166,7 +186,7 @@ const EditLeague = ({ leagueId }) => {
           {message && <p className="text-orange-600">{message}</p>}
         </div>
       </form>
-    </>
+    </div>
   );
 };
 

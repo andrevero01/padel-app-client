@@ -1,17 +1,15 @@
-"use client";
-import React, { useState } from "react";
-import axios from "axios";
-import async from "hbs/lib/async";
-import shuffle from "lodash/shuffle";
-import PlayerModal from "../modals/PlayerModal";
+'use client'
+import React, { useState } from 'react';
+import axios from 'axios';
+import shuffle from 'lodash/shuffle';
 
-const PlayersMainpage = () => {
+const PlayersMainpage = () =>{
   const [players, setPlayers] = useState([]);
   const [showShuffleButton, setShowShuffleButton] = useState(false);
   const [selectedPlayer, setSelectedPlayer] = useState(null); // Add this line
 
   const getPlayers = async () => {
-    const response = await axios.get("http://localhost:5005/api/players", {
+    const response = await axios.get('http://localhost:5005/api/players', {
       params: {
         limit: 5,
       },
@@ -61,7 +59,8 @@ const PlayersMainpage = () => {
         )}
       </div>
     </div>
+  // </div>
   );
-};
+}
 
 export default PlayersMainpage;

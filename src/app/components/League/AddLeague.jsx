@@ -11,13 +11,17 @@ const AddLeague = () => {
   const [leagueLogo, setLeagueLogo] = useState("");
   const [message, setMessage] = useState("");
 
+  const leagueLogoUrl =
+    leagueLogo ||
+    "https://www.usaclicosenza.it/wp-content/uploads/2021/04/Padel-League-Logo.jpeg";
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const body = {
       name,
       location,
       schedule,
-      leagueLogo,
+      leagueLogo: leagueLogoUrl,
       registrationOpen,
       registrationDeadline,
       registrationFee,

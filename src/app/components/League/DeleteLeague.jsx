@@ -8,7 +8,7 @@ const DeleteLeague = ({ leagueId }) => {
       .delete(`http://localhost:5005/api/leagues/${leagueId}`)
       .then(() => {
         console.log("League deleted");
-        setMessage("You've successfully deleted this league!");
+        setMessage("League deleted!");
         setTimeout(() => {
           window.location.reload();
         }, 1000);
@@ -19,7 +19,10 @@ const DeleteLeague = ({ leagueId }) => {
   };
   return (
     <>
-      <button onClick={handleDelete} className="btn bg-red-600 text-white m-2">
+      <button
+        onClick={handleDelete}
+        className="btn bg-red-600 text-white mb-4 ml-2"
+      >
         Delete league
       </button>
       {message && (

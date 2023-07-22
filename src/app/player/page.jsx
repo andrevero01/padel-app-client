@@ -7,8 +7,26 @@ import trophy from "../../../public/trophy.png";
 import team from "../../../public/team.png";
 import cogs from "../../../public/cogs.png";
 import Sidebar from "@/app/components/Sidebar";
+import { useContext } from "react";
+import { AuthContext } from "../context/auth.context";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
+  const { playerData, getPlayerData, isLoggedIn } = useContext(AuthContext);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      router.push("/login");
+    } else {
+      getPlayerData();
+    }
+  }, [isLoggedIn]);
+  if (!isLoggedIn) {
+    return null;
+  }
+
   return (
     <div className="flex justify-evenly h-full">
       <Sidebar />
@@ -17,7 +35,9 @@ const Page = () => {
         {/* Title */}
 
         <div className="flex justify-between">
-          <h1 className="ml-3 font-bold text-1xl text-slate-500">My Profile</h1>
+          <h1 className="ml-3 font-bold text-1xl text-slate-500">
+            {playerData.firstName}'s Profile
+          </h1>
           <Link href="/settings">
             <img
               src={cogs.src}
@@ -30,14 +50,20 @@ const Page = () => {
         {/* Buttons */}
 
         <div className="flex justify-between md:justify-center mx-3">
-          <button className="bg-primary w-2/5 md:w-40 rounded-lg py-3 md:py-0 my-5 mr-3 max-w-100 flex flex-col justify-center items-center md:grow-0">
+          <button className="bg-green-600 w-2/5 md:w-40 rounded-lg py-3 md:py-0 my-5 mr-3 max-w-100 flex flex-col justify-center items-center md:grow-0">
             <img src={racket.src} alt="Racket Icon" className="max-h-10 my-1" />
             Log Game
           </button>
-          <button className="bg-green-600 w-2/5 md:w-40 rounded-lg py-3 my-5 mr-3 max-w-100 flex flex-col justify-center items-center md:grow-0">
-            <img src={trophy.src} alt="Trophy Icon" className="max-h-10 my-1" />
-            Find a League
-          </button>
+          <Link href="/leagues">
+            <button className="bg-green-600 w-2/5 md:w-40 rounded-lg py-3 my-5 mr-3 max-w-100 flex flex-col justify-center items-center md:grow-0">
+              <img
+                src={trophy.src}
+                alt="Trophy Icon"
+                className="max-h-10 my-1"
+              />
+              Find a League
+            </button>
+          </Link>
           <button className="bg-green-600 w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0">
             <img src={team.src} alt="Trophy Icon" className="max-h-10 my-1" />
             Find a Team
@@ -52,7 +78,9 @@ const Page = () => {
             src="https://t3.ftcdn.net/jpg/05/16/27/58/240_F_516275801_f3Fsp17x6HQK0xQgDQEELoTuERO4SsWV.jpg"
             alt="PlaceHolder"
           />
-          <h1 className="my-5 font-semibold text-2xl">Player Name</h1>
+          <h1 className="my-5 font-semibold text-2xl">
+            {playerData.firstName}
+          </h1>
         </div>
 
         {/* Basic Stat Logs */}

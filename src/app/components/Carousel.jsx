@@ -22,9 +22,7 @@ const Carousel = ({ images }) => {
       <button
         className="carousel-arrow left absolute top-1/2 transform -translate-y-1/2 left-2 z-10"
         onClick={goToPreviousImage}
-      >
-        ⬅️
-      </button>
+      ></button>
       {/* Image items */}
       {images.map((image, index) => (
         <div
@@ -40,9 +38,7 @@ const Carousel = ({ images }) => {
       <button
         className="carousel-arrow right absolute top-1/2 transform -translate-y-1/2 right-2 z-10"
         onClick={goToNextImage}
-      >
-        ➡️
-      </button>
+      ></button>
     </div>
   );
 };

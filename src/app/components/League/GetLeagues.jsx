@@ -2,23 +2,24 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DeleteLeague from "./DeleteLeague";
 import LeagueDetails from "./LeagueDetails";
+import { useContext } from "react";
+import { LeaguesContext } from "../../context/leagues.context.js";
+import { AuthContext } from "@/app/context/auth.context";
+import Link from "next/link";
 
 const GetLeagues = () => {
-  const [leagues, setLeagues] = useState([]);
-  useEffect(() => {
-    axios.get("http://localhost:5005/api/leagues").then((leagues) => {
-      console.log("response.data", leagues.data);
-      setLeagues(leagues.data);
-    });
-  }, []);
+  const { leagues, leagueDetails, getLeagueDetails } =
+    useContext(LeaguesContext);
+  const { isLoggedIn } = useContext(AuthContext);
+
   return (
     <div className="mt-8 grid grid-cols-4 gap-20">
       {leagues.map((league) => (
         <div
           key={league._id}
-          className="card card-compact bg-base-100 shadow-xl"
+          className="card card-compact w-72 bg-base-100 shadow-xl"
         >
-          <figure>
+          <figure className="w-72 h-72 bg-white">
             <img src={league.leagueLogo} alt="League logo" />
           </figure>
           <div className="card-body">
@@ -29,13 +30,20 @@ const GetLeagues = () => {
               {league.registrationOpen === true ? "Yes" : "No"}
             </p>
           </div>
-          <LeagueDetails leagueId={league._id} />
-          <div className="card-actions flex justify-between">
-            <DeleteLeague leagueId={league._id} />
-            <button className="btn btn-primary mb-2 mx-2  text-black">
-              Join league
-            </button>
-          </div>
+          {isLoggedIn && (
+            <div className="card-actions flex justify-between">
+              <LeagueDetails leagueId={league._id} />
+
+              <Link className="btn btn-info m-2" href="/leagues/edit-league">
+                Edit
+              </Link>
+              <DeleteLeague leagueId={league._id} />
+            </div>
+          )}
+
+          <button className="btn btn-secondary mb-4 mx-2  text-black">
+            Join league
+          </button>
         </div>
       ))}
     </div>
