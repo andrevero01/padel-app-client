@@ -1,16 +1,24 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
 import DeleteLeague from "./DeleteLeague";
-import LeagueDetails from "./LeagueDetails";
+import { useState } from "react";
 import { useContext } from "react";
 import { LeaguesContext } from "../../context/leagues.context.js";
 import { AuthContext } from "@/app/context/auth.context";
 import Link from "next/link";
+import LeagueModal from "../modals/league.modal";
+import JoinLeague from "./JoinLeague";
 
 const GetLeagues = () => {
-  const { leagues, leagueDetails, getLeagueDetails } =
-    useContext(LeaguesContext);
+  const { leagues } = useContext(LeaguesContext);
   const { isLoggedIn } = useContext(AuthContext);
+  const [selectedLeague, setSelectedLeague] = useState(null);
+
+  const handleOpenModal = (league) => {
+    setSelectedLeague(league);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedLeague(null);
+  };
 
   return (
     <div className="mt-8 grid grid-cols-4 gap-20">
@@ -30,20 +38,41 @@ const GetLeagues = () => {
               {league.registrationOpen === true ? "Yes" : "No"}
             </p>
           </div>
+          <div>
+            {/* Get league details */}
+            <button
+              onClick={() => handleOpenModal(league)}
+              className="btn btn-primary m-2"
+            >
+              View Details
+            </button>
+            {selectedLeague && (
+              <LeagueModal league={selectedLeague} onClose={handleCloseModal} />
+            )}
+          </div>
           {isLoggedIn && (
-            <div className="card-actions flex justify-between">
-              <LeagueDetails leagueId={league._id} />
-
-              <Link className="btn btn-info m-2" href="/leagues/edit-league">
+            <div className="card-actions flex justify-between mt-2">
+              {/* Delete league */}
+              <DeleteLeague leagueId={league._id} />
+              {/* Edit league */}
+              <Link
+                className="btn btn-info mr-2"
+                href={`/leagues/edit/${league._id}`}
+                passHref
+              >
                 Edit
               </Link>
-              <DeleteLeague leagueId={league._id} />
             </div>
           )}
-
-          <button className="btn btn-secondary mb-4 mx-2  text-black">
-            Join league
-          </button>
+          {/* Join league */}
+          <Link
+            className="btn btn-secondary mx-2 mb-2"
+            href={`/leagues/join/${league._id}`}
+            passHref
+          >
+            Join
+          </Link>
+          {/* <JoinLeague></JoinLeague> */}
         </div>
       ))}
     </div>

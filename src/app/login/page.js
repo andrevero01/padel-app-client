@@ -23,6 +23,11 @@ export default function loginPage() {
   if (isLoggedIn) {
   }
 
+  useEffect(() => {
+    // Prefetch the dashboard page
+    router.prefetch("/player");
+  }, [router]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const body = {
