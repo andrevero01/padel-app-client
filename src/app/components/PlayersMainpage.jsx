@@ -40,12 +40,16 @@ const PlayersMainpage = () => {
   return (
     <div>
       <div>
+
         <button
           onClick={handleGetPlayers}
           className="my-4 py-2 px-4 bg-primary text-white rounded"
         >
           Get Players
         </button>
+
+        <button onClick={handleGetPlayers} className="my-4 py-2 px-4 bg-primary text-white rounded">Get Players</button>
+
         <div className="flex flex-wrap justify-center">
           {players.map((player) => (
             <div
@@ -55,12 +59,16 @@ const PlayersMainpage = () => {
               <div className="font-bold">
                 {player.firstName} {player.lastName} <br />
                 {player.team} <br />
+
                 <button
                   onClick={() => handleOpenModal(player)}
                   className="mt-4 py-2 px-4 bg-primary text-white rounded"
                 >
                   View Details
                 </button>
+
+                <button onClick={() => handleOpenModal(player)} className="mt-4 py-2 px-4 bg-primary text-white rounded">View Details</button>
+
               </div>
             </div>
           ))}
@@ -71,6 +79,9 @@ const PlayersMainpage = () => {
         )}
       </div>
     </div>
+
+  // </div>
+
   );
 };
 
