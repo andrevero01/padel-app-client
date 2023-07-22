@@ -34,10 +34,10 @@ export default function Home() {
           <Carousel images={carouselImages} />
         </div>
         <div>
-          <h1>Click here if you want to see some players:</h1>
+          <h1>Popular Players:</h1>
           <PlayersMainpage />
         </div>
-        <div className="relative">
+        <div className="">
           <ScrollToTopButton />
         </div>
       </div>

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-const AdminPlayersCreate = () => {
+const CreatePlayer = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -436,4 +436,4 @@ const AdminPlayersCreate = () => {
   );
 };
 
-export default AdminPlayersCreate;
+export default CreatePlayer;

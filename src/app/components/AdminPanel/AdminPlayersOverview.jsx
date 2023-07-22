@@ -1,32 +1,18 @@
-"use client";
 import React, { useState } from "react";
 import axios from "axios";
+import PlayerModal from "../../modals/PlayerModal";
 
-import shuffle from "lodash/shuffle";
-import PlayerModal from "../modals/PlayerModal";
-
-const PlayersMainpage = () => {
+const AdminPlayers = () => {
   const [players, setPlayers] = useState([]);
-  const [showShuffleButton, setShowShuffleButton] = useState(false);
-  const [selectedPlayer, setSelectedPlayer] = useState(null); // Add this line
+  const [selectedPlayer, setSelectedPlayer] = useState(null);
 
   const getPlayers = async () => {
-    const response = await axios.get("http://localhost:5005/api/players", {
-      params: {
-        limit: 5,
-      },
-    });
-    setPlayers(response.data.slice(0, 5));
-    setShowShuffleButton(true);
+    const response = await axios.get("http://localhost:5005/api/players");
+    setPlayers(response.data);
   };
 
   const handleGetPlayers = () => {
     getPlayers();
-  };
-
-  const handleShufflePlayers = () => {
-    const shuffledPlayers = shuffle(players);
-    setPlayers(shuffledPlayers.slice(0, 5));
   };
 
   const handleOpenModal = (player) => {
@@ -40,16 +26,14 @@ const PlayersMainpage = () => {
   return (
     <div>
       <div>
-
-        <button
-          onClick={handleGetPlayers}
-          className="my-4 py-2 px-4 bg-primary text-white rounded"
-        >
-          Get Players
-        </button>
-
-        <button onClick={handleGetPlayers} className="my-4 py-2 px-4 bg-primary text-white rounded">Get Players</button>
-
+        {players.length === 0 ? (
+          <button
+            onClick={handleGetPlayers}
+            className="my-4 py-2 px-4 bg-primary text-white rounded"
+          >
+            Get Players
+          </button>
+        ) : null}
         <div className="flex flex-wrap justify-center">
           {players.map((player) => (
             <div
@@ -59,16 +43,12 @@ const PlayersMainpage = () => {
               <div className="font-bold">
                 {player.firstName} {player.lastName} <br />
                 {player.team} <br />
-
                 <button
                   onClick={() => handleOpenModal(player)}
                   className="mt-4 py-2 px-4 bg-primary text-white rounded"
                 >
                   View Details
                 </button>
-
-                <button onClick={() => handleOpenModal(player)} className="mt-4 py-2 px-4 bg-primary text-white rounded">View Details</button>
-
               </div>
             </div>
           ))}
@@ -79,10 +59,7 @@ const PlayersMainpage = () => {
         )}
       </div>
     </div>
-
-  // </div>
-
   );
 };
 
-export default PlayersMainpage;
+export default AdminPlayers;

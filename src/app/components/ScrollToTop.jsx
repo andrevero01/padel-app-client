@@ -29,7 +29,7 @@ const ScrollToTopButton = () => {
   };
 
   return (
-    <div className="mt-10 flex justify-end">
+    <div className="mt-10 mb-5 flex justify-end">
       <button
         className="btn rounded-full"
         onClick={scrollToTop}
