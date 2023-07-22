@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 const AdminPlayersCreate = () => {
+  const [countries, setCountries] = useState([]);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -20,11 +21,27 @@ const AdminPlayersCreate = () => {
     coach: "",
   });
 
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const response = await axios.get(
+          "https://ih-countries-api.herokuapp.com/countries"
+        );
+        setCountries(response.data);
+      } catch (error) {
+        console.error("Error fetching countries:", error);
+      }
+    };
+
+    fetchCountries();
+  }, []);
+
   const handleChange = (e) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       [e.target.name]: e.target.value,
     }));
+    console.log(formData);
   };
 
   const handleSubmit = async (e) => {
@@ -197,13 +214,20 @@ const AdminPlayersCreate = () => {
         <div className="mt-6 mx-3">
           <label className="font-bold">Nationality</label>
           <div className="flex justify-start mt-3">
-            <input
+            <select
+              className="input input-bordered w-full"
               type="text"
               name="nationality"
               value={formData.nationality}
               onChange={handleChange}
-              className="input input-bordered w-full"
-            />
+            >
+              <option value="">Select a country</option>
+              {countries.map((country) => (
+                <option key={country.alpha3Code} value={country.name.common}>
+                  {country.name.common}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
 
