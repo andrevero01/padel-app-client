@@ -6,6 +6,7 @@ import axios from "axios";
 const CreateCourt = () => {
   const [formData, setFormData] = useState({
     name: "",
+    address: "",
     lighting: "Excellent",
     surface: "Excellent",
     seating: "Excellent",
@@ -49,6 +50,7 @@ const CreateCourt = () => {
 
       setFormData({
         name: "",
+        address: "",
         lighting: "",
         surface: "",
         seating: "",
@@ -74,6 +76,22 @@ const CreateCourt = () => {
               placeholder="The Super-Ultra-Awesome-Paddle COURT"
               name="name"
               value={formData.name}
+              onChange={handleChange}
+              className="input border mr-3 grow"
+              required
+            />
+          </div>
+        </div>
+
+        {/* Address */}
+        <div className="flex justify-start mx-3">
+          <div className="flex flex-col w-full">
+            <label className="font-bold mb-3">Court Name</label>
+            <input
+              type="text"
+              placeholder="Address"
+              name="address"
+              value={formData.address}
               onChange={handleChange}
               className="input border mr-3 grow"
               required

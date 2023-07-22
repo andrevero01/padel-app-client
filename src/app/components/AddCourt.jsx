@@ -69,7 +69,7 @@ function AddCourt({ setFormData, fetchExistingCourts, existingCourts }) {
   return (
     <div className="flex flex-col justify-start mx-3 mt-6">
       <div className="flex flex-col w-full">
-        <label className="font-bold mb-3">Select Home Courts</label>
+        <label className="font-bold mb-3">Select Home Court(s)</label>
         <input
           type="text"
           placeholder="Search courts"

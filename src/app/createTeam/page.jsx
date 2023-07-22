@@ -37,13 +37,13 @@ const CreateTeam = () => {
         leagues: formData.leagues,
       });
 
-      console.log("Players invited successfully!");
+      console.log(teamRes.data);
 
       setFormData({
         name: "",
         players: [],
         captain: null,
-        homeCourt: null,
+        courts: null,
         leagues: "",
       });
     } catch (error) {
