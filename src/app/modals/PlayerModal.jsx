@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from "react";
+
 const PlayerModal = ({ player, onClose }) => {
     return (
       <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50">
