@@ -1,16 +1,26 @@
 import DeleteLeague from "./DeleteLeague";
 import { useState } from "react";
 import { useContext } from "react";
+import { AuthContext } from "../../context/auth.context";
 import { LeaguesContext } from "../../context/leagues.context.js";
-import { AuthContext } from "@/app/context/auth.context";
 import Link from "next/link";
 import LeagueModal from "../modals/league.modal";
 import JoinLeague from "./JoinLeague";
+import { useEffect } from "react";
 
 const GetLeagues = () => {
   const { leagues } = useContext(LeaguesContext);
-  const { isLoggedIn } = useContext(AuthContext);
+  const { playerData, getPlayerData, isLoggedIn } = useContext(AuthContext);
   const [selectedLeague, setSelectedLeague] = useState(null);
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      getPlayerData();
+    }
+  }, [isLoggedIn]);
+  if (!isLoggedIn) {
+    return null;
+  }
 
   const handleOpenModal = (league) => {
     setSelectedLeague(league);
@@ -32,7 +42,9 @@ const GetLeagues = () => {
           </figure>
           <div className="card-body">
             <h2 className="card-title">{league.name}</h2>
+
             <p className="text-md font-semibold">Location: {league.location}</p>
+
             <p className="text-md font-semibold">
               Open for registration?:{" "}
               {league.registrationOpen === true ? "Yes" : "No"}
@@ -62,16 +74,25 @@ const GetLeagues = () => {
               >
                 Edit
               </Link>
+              {/* <Link
+                className="btn btn-secondary mx-2 mb-2"
+                href={`/leagues/join/${league._id}`}
+                passHref
+              >
+                Join
+              </Link> */}
+              <JoinLeague leagueId={league._id} playerId={playerData._id} />
             </div>
           )}
+
           {/* Join league */}
-          <Link
+          {/* <Link
             className="btn btn-secondary mx-2 mb-2"
             href={`/leagues/join/${league._id}`}
             passHref
           >
             Join
-          </Link>
+          </Link> */}
           {/* <JoinLeague></JoinLeague> */}
         </div>
       ))}
