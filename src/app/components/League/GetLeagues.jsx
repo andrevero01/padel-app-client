@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import { LeaguesContext } from "../../context/leagues.context.js";
 import Link from "next/link";
-import LeagueModal from "../modals/league.modal";
+import LeagueDetailsModal from "../modals/leagueDetails.modal";
 import JoinLeague from "./JoinLeague";
 import { useEffect } from "react";
 
@@ -14,13 +14,10 @@ const GetLeagues = () => {
   const [selectedLeague, setSelectedLeague] = useState(null);
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (isLoggedIn) {
       getPlayerData();
     }
   }, [isLoggedIn]);
-  if (!isLoggedIn) {
-    return null;
-  }
 
   const handleOpenModal = (league) => {
     setSelectedLeague(league);
@@ -54,12 +51,15 @@ const GetLeagues = () => {
             {/* Get league details */}
             <button
               onClick={() => handleOpenModal(league)}
-              className="btn btn-primary m-2"
+              className="btn btn-primary m-2 w-2/3"
             >
               View Details
             </button>
             {selectedLeague && (
-              <LeagueModal league={selectedLeague} onClose={handleCloseModal} />
+              <LeagueDetailsModal
+                league={selectedLeague}
+                onClose={handleCloseModal}
+              />
             )}
           </div>
           {isLoggedIn && (
@@ -68,32 +68,15 @@ const GetLeagues = () => {
               <DeleteLeague leagueId={league._id} />
               {/* Edit league */}
               <Link
-                className="btn btn-info mr-2"
+                className="btn btn-info mr-2 w-1/3"
                 href={`/leagues/edit/${league._id}`}
                 passHref
               >
                 Edit
               </Link>
-              {/* <Link
-                className="btn btn-secondary mx-2 mb-2"
-                href={`/leagues/join/${league._id}`}
-                passHref
-              >
-                Join
-              </Link> */}
-              <JoinLeague leagueId={league._id} playerId={playerData._id} />
             </div>
           )}
-
-          {/* Join league */}
-          {/* <Link
-            className="btn btn-secondary mx-2 mb-2"
-            href={`/leagues/join/${league._id}`}
-            passHref
-          >
-            Join
-          </Link> */}
-          {/* <JoinLeague></JoinLeague> */}
+          <JoinLeague leagueId={league._id} playerId={playerData._id} />
         </div>
       ))}
     </div>
