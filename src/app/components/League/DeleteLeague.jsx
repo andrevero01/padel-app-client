@@ -21,9 +21,9 @@ const DeleteLeague = ({ leagueId }) => {
     <>
       <button
         onClick={handleDelete}
-        className="btn bg-red-600 text-white mb-4 ml-2"
+        className="btn bg-red-600 text-white mb-4 ml-2 w-1/2"
       >
-        Delete league
+        Delete
       </button>
       {message && (
         <p className="text-orange-600 font-semibold text-center mr-2">

@@ -1,12 +1,18 @@
 "use client";
 import React, { useState } from "react";
-const LeagueModal = ({ league, onClose }) => {
+const LeagueDetailsModal = ({ league, onClose }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-30">
       <div className="bg-white p-8 rounded shadow">
         <h2 className="text-lg font-bold mb-4">{league.name}</h2>
         <p>Location: {league.location}</p>
         <p>Teams: {league.teams}</p>
+        <p>Players:</p>
+        <ul>
+          {league.players.map((player) => (
+            <li key={player._id}>{player.firstName}</li>
+          ))}
+        </ul>
         <p>Schedule: {league.schedule}</p>
         <p>Open for registration?: {league.registrationOpen}</p>
         <p>Registration deadline: {league.registrationDeadline}</p>
@@ -25,4 +31,4 @@ const LeagueModal = ({ league, onClose }) => {
   );
 };
 
-export default LeagueModal;
+export default LeagueDetailsModal;
