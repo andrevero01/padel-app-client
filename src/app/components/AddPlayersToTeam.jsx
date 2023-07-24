@@ -100,7 +100,7 @@ function AddPlayersToTeam({ teamIndex, formData, setFormData, fetchExistingPlaye
                 }}
                 className="cursor-pointer hover:bg-gray-200 px-2 py-1"
               >
-                {`${player.firstName}`}
+                {`${player.firstName} ${player.lastName}`}
               </div>
             ))}
           </div>
@@ -112,7 +112,7 @@ function AddPlayersToTeam({ teamIndex, formData, setFormData, fetchExistingPlaye
           <div>
             {selectedPlayers.map((player) => (
               <div key={player._id} className="px-2 py-1 flex items-center">
-                <div>{`${player.firstName}`}</div>
+                <div>{`${player.firstName} ${player.lastName}`}</div>
                 <button
                   type="button"
                   onClick={() => handlePlayerRemove(player)}

@@ -8,6 +8,7 @@ import AddCourt from "../components/AddCourt";
 const CreateGame = () => {
   const [formData, setFormData] = useState({
     date: "",
+    matchType: "",
     courts: [],
     teams: [
       {
@@ -54,6 +55,7 @@ const CreateGame = () => {
         score: formData.score,
         winner: formData.winner,
         teams: formData.teams,
+        matchType: formData.matchType,
       });
 
       console.log(gameRes.data);
@@ -138,6 +140,20 @@ const CreateGame = () => {
   return (
     <div className="py-4 flex flex-col bg-white mb-14">
       <h1 className="text-2xl font-bold mb-4 mx-3">Register Game</h1>
+      <h1 className="mx-3 font-bold mb-3">Match Type</h1>
+      <select
+        className=" mx-3 select select-bordered"
+        type="string"
+        name="matchType"
+        value={formData.matchType}
+        onChange={handleChange}
+      >
+        {" "}
+        <option value="Singles">Singles</option>
+        <option value="Doubles">Doubles</option>
+        <option value="Mixed doubles">Mixed doubles</option>
+        <option value="Practice">Practice</option>
+      </select>
 
       <form onSubmit={handleSubmit}>
         {/* Courts */}

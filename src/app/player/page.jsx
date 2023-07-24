@@ -94,18 +94,27 @@ const Page = () => {
           <div className="flex justify-center mx-3 my-5 divide-x divide-green-800">
             <div className="w-2/5 md:max-w-xs py-3 text-center text-slate-500">
               <p>{playerData.games.length || 0}</p>
-              <p>Logged Games</p>
+              <p>Played Games</p>
             </div>
             <div className="w-2/5 md:max-w-xs py-3 text-center text-slate-500">
               <p>{playerData.games.leagues || 0} </p>
               <p>Played Leagues</p>
             </div>
             <div className="w-2/5 md:max-w-xs py-3 text-center text-slate-500">
-              <p>3</p>
-              <p>Tracked Players</p>
+              <p>
+                {(
+                  (playerData.gamesWon.length / playerData.games.length) *
+                  100
+                ).toFixed(2)}
+                %
+              </p>
+              <p>Win Percentage</p>
             </div>
           </div>
         )}
+
+        {/* Last Games */}
+
 
         {/* Statistical Breakdown */}
 
