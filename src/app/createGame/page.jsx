@@ -8,7 +8,7 @@ import AddCourt from "../components/AddCourt";
 const CreateGame = () => {
   const [formData, setFormData] = useState({
     date: "",
-    matchType: "",
+    matchType: "Singles",
     courts: [],
     teams: [
       {
@@ -63,6 +63,7 @@ const CreateGame = () => {
       // Reset the form
       setFormData({
         date: "",
+        matchType: "Singles",
         teams: [
           {
             name: "Team 1",
