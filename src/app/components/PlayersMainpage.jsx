@@ -64,9 +64,6 @@ const PlayersMainpage = () => {
         )}
       </div>
     </div>
-
-  // </div>
-
   );
 };
 
