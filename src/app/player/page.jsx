@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import Link from "next/link";
 import racket from "../../../public/racket.png";
 import trophy from "../../../public/trophy.png";
@@ -9,12 +9,22 @@ import cogs from "../../../public/cogs.png";
 import Sidebar from "@/app/components/Sidebar";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+
+const Last5 = lazy(() => import("../components/Player/Last5"));
+const Doubles = lazy(() => import("../components/Player/Doubles"));
+const MixedDoubles = lazy(() => import("../components/Player/MixedDoubles"));
+const Singles = lazy(() => import("../components/Player/Singles"));
+const TeamMates = lazy(() => import("../components/Player/TeamMates"));
 
 const Page = () => {
   const { playerData, getPlayerData, isLoggedIn } = useContext(AuthContext);
   const router = useRouter();
+  const [winningStreak, setWinningStreak] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const defaultProfilePicture =
+    "https://t3.ftcdn.net/jpg/05/16/27/58/240_F_516275801_f3Fsp17x6HQK0xQgDQEELoTuERO4SsWV.jpg";
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -22,22 +32,39 @@ const Page = () => {
     } else {
       getPlayerData();
     }
-  }, [isLoggedIn]);
-  if (!isLoggedIn) {
-    return null;
-  }
+  }, []);
+
+  useEffect(() => {
+    if (playerData && playerData.games) {
+      let currentStreak = 0;
+      let longestStreak = 0;
+
+      for (const game of playerData.games) {
+        const userTeam = game.teams.find((team) =>
+          team.players.some((player) => player._id === playerData._id)
+        );
+
+        if (userTeam.winner) {
+          currentStreak += 1;
+          longestStreak = Math.max(currentStreak, longestStreak);
+        } else {
+          currentStreak = 0;
+        }
+      }
+
+      setWinningStreak(longestStreak);
+      setIsLoading(false); // Set loading to false once the data is fetched
+    }
+  }, [playerData]);
 
   return (
     <div className="flex justify-evenly h-full">
       <Sidebar />
 
-      <div className="bg-slate-200 md:mb-10 text-black h-full grow">
+      <div className="md:mb-10 h-full grow">
         {/* Title */}
 
         <div className="flex justify-between">
-          <h1 className="ml-3 font-bold text-1xl text-slate-500">
-            {playerData.firstName}'s Profile
-          </h1>
           <Link href="/settings">
             <img
               src={cogs.src}
@@ -50,8 +77,11 @@ const Page = () => {
         {/* Buttons */}
 
         <div className="flex justify-between md:justify-center mx-3">
-          <Link href="/createGame">
-            <button className="bg-green-600 w-2/5 md:w-40 rounded-lg py-3 my-5 mr-3 max-w-100 flex flex-col justify-center items-center md:grow-0">
+          <Link
+            href="/createGame"
+            className="bg-green-600 w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0 mr-3"
+          >
+            <button className="flex flex-col justify-center items-center">
               <img
                 src={racket.src}
                 alt="Racket Icon"
@@ -60,8 +90,11 @@ const Page = () => {
               Log Game
             </button>
           </Link>
-          <Link href="/leagues">
-            <button className="bg-green-600 w-2/5 md:w-40 rounded-lg py-3 my-5 mr-3 max-w-100 flex flex-col justify-center items-center md:grow-0">
+          <Link
+            href="/leagues"
+            className="bg-green-600 w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0"
+          >
+            <button className="flex flex-col justify-center items-center">
               <img
                 src={trophy.src}
                 alt="Trophy Icon"
@@ -70,22 +103,39 @@ const Page = () => {
               Find a League
             </button>
           </Link>
-          <button className="bg-green-600 w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0">
-            <img src={team.src} alt="Trophy Icon" className="max-h-10 my-1" />
-            Find a Team
-          </button>
+          <Link
+            href="/teams"
+            className="bg-green-600 w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0 ml-3"
+          >
+            <button className="flex flex-col justify-center items-center">
+              <img src={team.src} alt="Trophy Icon" className="max-h-10 my-1" />
+              Find a Team
+            </button>
+          </Link>
         </div>
 
         {/* Profile Picture */}
 
         <div className="flex flex-col justify-center items-center mx-3 my-5">
-          <img
-            className="h-32 max-w-fit rounded-full"
-            src="https://t3.ftcdn.net/jpg/05/16/27/58/240_F_516275801_f3Fsp17x6HQK0xQgDQEELoTuERO4SsWV.jpg"
-            alt="PlaceHolder"
-          />
+          <Link href={`/player/${playerData._id}`}>
+            <div>
+              {playerData.profilePicture ? (
+                <img
+                  src={playerData.profilePicture}
+                  alt={`${playerData.firstName} ${playerData.lastName}`}
+                />
+              ) : (
+                <img
+                  src={defaultProfilePicture}
+                  alt="Default Profile"
+                  className="rounded-full"
+                />
+              )}
+              <p key={playerData._id}></p>
+            </div>
+          </Link>
           <h1 className="my-5 font-semibold text-2xl">
-            {playerData.firstName}
+            {playerData.firstName} {playerData.lastName}
           </h1>
         </div>
 
@@ -113,203 +163,35 @@ const Page = () => {
           </div>
         )}
 
-        {/* Last 5 Games */}
+        <Suspense fallback={<div>Loading...</div>}>
+          <TeamMates playerData={playerData} />
+        </Suspense>
 
-        <div>
-          <h1 className="ml-3 font-bold text-center text-1xl text-slate-500 mb-6">
-            Last 5 Games
-          </h1>
-          {playerData.games && playerData.games.length > 0 ? (
-            <div className="flex flex-col justify-center items-center divide-y-8">
-              {playerData.games.slice(0, 5).map((game) => {
-                const userTeam = game.teams.find((team) =>
-                  team.players.some((player) => player._id === playerData._id)
-                );
-
-                if (!userTeam) return ndivl;
-
-                const gameResult = userTeam.winner ? "won" : "lost";
-                const bgClass =
-                  gameResult === "won" ? "bg-green-500" : "bg-red-500";
-                const textClass =
-                  gameResult === "won" ? "text-white" : "text-black";
-
-                const opposingTeam = game.teams.find(
-                  (team) => team !== userTeam
-                );
-
-                const userPlayer = userTeam.players.find(
-                  (player) => player._id === playerData._id
-                );
-                const userPartner = userTeam.players.find(
-                  (player) => player._id !== playerData._id
-                );
-
-                return (
-                  <div
-                    key={game._id}
-                    className={`${bgClass} ${textClass} w-1/2`}
-                  >
-                    {/* Top Border */}
-
-                    <div className="bg-gray-600 w-full h-8 flex items-center">
-                      <p className="ml-3 text-sm">{game.matchType}</p>
-                    </div>
-
-                    {/* Players */}
-                    <div className="flex flex-col divide-y">
-                      <div className="flex mb-1">
-                        <div className="ml-3 mr-6 mt-2 w-1/3">
-                          <p>
-                            {userPlayer.firstName}{" "}
-                            {userPlayer.lastName.charAt(0)}.
-                          </p>
-                          {userPartner ? (
-                            <p>
-                              {userPartner.firstName}{" "}
-                              {userPartner.lastName.charAt(0)}.
-                            </p>
-                          ) : null}
-                        </div>
-                        <div className="flex justify-center items-center mr-3">
-                          <p className="text-white p-3">
-                            {userTeam.score.sets}
-                          </p>
-                          <p className="text-white p-3">
-                            {userTeam.score.games}
-                          </p>
-                          <p className="text-white p-3">
-                            {userTeam.score.points}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="flex">
-                        <div className="ml-3 mt-1 mr-6 mb-2 w-1/3">
-                          {opposingTeam.players.map((player) => (
-                            <p key={player._id}>
-                              {player.firstName} {player.lastName.charAt(0)}.
-                            </p>
-                          ))}
-                        </div>
-                        <div className="flex justify-center items-center mr-3">
-                          <p className="text-white p-3">
-                            {opposingTeam.score.sets}
-                          </p>
-                          <p className="text-white p-3">
-                            {opposingTeam.score.games}
-                          </p>
-                          <p className="text-white p-3">
-                            {opposingTeam.score.points}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          ) : (
-            <p className="mx-3 mt-3">No games played yet.</p>
-          )}
-        </div>
-
-        {/* Statistical Breakdown */}
-
-        <h1 className="ml-3 font-bold text-1xl mt-5 mb-5 text-slate-500">
-          Statistical Breakdown
-        </h1>
-
-        <div className="carousel w-full max-h-60 mx-3">
-          <div id="item1" className="carousel-item w-full">
-            <img
-              src="/images/stock/photo-1625726411847-8cbb60cc71e6.jpg"
-              className="w-full"
-            />
+        {/* Winning Streak Counter */}
+        {!isLoading && winningStreak > 0 && (
+          <div className="mt-6">
+            <p className="font-bold text-center text-slate-500">
+              Current Winning Streak: {winningStreak} games
+            </p>
           </div>
-          <div id="item2" className="carousel-item w-full">
-            <img
-              src="/images/stock/photo-1609621838510-5ad474b7d25d.jpg"
-              className="w-full"
-            />
-          </div>
-          <div id="item3" className="carousel-item w-full">
-            <img
-              src="/images/stock/photo-1414694762283-acccc27bca85.jpg"
-              className="w-full"
-            />
-          </div>
-          <div id="item4" className="carousel-item w-full">
-            <img
-              src="/images/stock/photo-1665553365602-b2fb8e5d1707.jpg"
-              className="w-full"
-            />
-          </div>
-        </div>
+        )}
 
-        {/* Leagues */}
+        <div className="flex flex-col md:flex-row justify-evenly md:items-start">
+          <Suspense fallback={<div>Loading...</div>}>
+            <Last5 playerData={playerData} />
+          </Suspense>
 
-        <h1 className="ml-3 font-bold text-1xl mt-5 mb-5 text-slate-500">
-          Leagues
-        </h1>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Singles playerData={playerData} />
+          </Suspense>
 
-        <div className="carousel w-full max-h-60 mx-3">
-          <div id="item1" className="carousel-item w-full">
-            <img
-              src="/images/stock/photo-1625726411847-8cbb60cc71e6.jpg"
-              className="w-full"
-            />
-          </div>
-          <div id="item2" className="carousel-item w-full">
-            <img
-              src="/images/stock/photo-1609621838510-5ad474b7d25d.jpg"
-              className="w-full"
-            />
-          </div>
-          <div id="item3" className="carousel-item w-full">
-            <img
-              src="/images/stock/photo-1414694762283-acccc27bca85.jpg"
-              className="w-full"
-            />
-          </div>
-          <div id="item4" className="carousel-item w-full">
-            <img
-              src="/images/stock/photo-1665553365602-b2fb8e5d1707.jpg"
-              className="w-full"
-            />
-          </div>
-        </div>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Doubles playerData={playerData} />
+          </Suspense>
 
-        {/* Teams */}
-
-        <h1 className="ml-3 font-bold text-1xl mt-5 mb-5 text-slate-500">
-          Teams
-        </h1>
-
-        <div className="carousel w-full max-h-60 mx-3">
-          <div id="item1" className="carousel-item w-full">
-            <img
-              src="/images/stock/photo-1625726411847-8cbb60cc71e6.jpg"
-              className="w-full"
-            />
-          </div>
-          <div id="item2" className="carousel-item w-full">
-            <img
-              src="/images/stock/photo-1609621838510-5ad474b7d25d.jpg"
-              className="w-full"
-            />
-          </div>
-          <div id="item3" className="carousel-item w-full">
-            <img
-              src="/images/stock/photo-1414694762283-acccc27bca85.jpg"
-              className="w-full"
-            />
-          </div>
-          <div id="item4" className="carousel-item w-full">
-            <img
-              src="/images/stock/photo-1665553365602-b2fb8e5d1707.jpg"
-              className="w-full"
-            />
-          </div>
+          <Suspense fallback={<div>Loading...</div>}>
+            <MixedDoubles playerData={playerData} />
+          </Suspense>
         </div>
       </div>
       <Sidebar />
