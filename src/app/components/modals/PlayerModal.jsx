@@ -8,7 +8,6 @@ const PlayerModal = ({ player, onClose }) => {
           <h2 className="text-lg font-bold mb-4">
             {player.firstName} {player.lastName}
           </h2>
-          <p>Team: {player.team}</p>
           <p>Sex: {player.gender}</p>
           <p>Nationality: {player.nationality}</p>
           <p>Age: {player.age}</p>
