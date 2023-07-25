@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState } from "react";
 import { useEffect } from "react";
@@ -6,9 +5,9 @@ import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import TeamsMainPage from "../components/TeamsMainPage";
-import AdminPlayers from "../components/AdminPanel/AdminPlayersOverview";
+import AdminPlayers from "../components/adminPanel/AdminPlayersOverview";
 import AddLeague from "../components/League/AddLeague";
-import AdminPlayersCreate from "../components/AdminPanel/AdminPlayersCreate";
+import AdminPlayersCreate from "../components/adminPanel/AdminPlayersCreate";
 
 function AdminPage() {
   const { isLoggedIn } = useContext(AuthContext);
@@ -18,7 +17,6 @@ function AdminPage() {
   const [showTeams, setShowTeams] = useState(false);
   const [showPlayers, setShowPlayers] = useState(false);
   const [createPlayers, setCreatePlayers] = useState(false);
-
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -64,33 +62,25 @@ function AdminPage() {
           className="px-4 py-2 bg-blue-500 text-white rounded-md mr-2"
           onClick={handleLeagueToggle}
         >
-
-          {showLeagues ? 'Hide League Creation' : 'Create League'}
-
+          {showLeagues ? "Hide League Creation" : "Create League"}
         </button>
         <button
           className="px-4 py-2 bg-green-500 text-white rounded-md mr-2"
           onClick={handleTeamsToggle}
         >
-
-          {showTeams ? 'Hide Teams' : 'Show Teams'}
-
+          {showTeams ? "Hide Teams" : "Show Teams"}
         </button>
         <button
           className="px-4 py-2 bg-yellow-500 text-white rounded-md mr-2"
           onClick={handlePlayersToggle}
         >
-
-          {showPlayers ? 'Hide Players' : 'Show Players'}
-
+          {showPlayers ? "Hide Players" : "Show Players"}
         </button>
         <button
           className="px-4 py-2 bg-red-500 text-white rounded-md"
           onClick={handlePlayersCreateToggle}
         >
-
-          {createPlayers ? 'Hide Player Creation' : 'Create a Player'}
-
+          {createPlayers ? "Hide Player Creation" : "Create a Player"}
         </button>
       </div>
 
@@ -111,7 +101,4 @@ function AdminPage() {
   );
 }
 
-
-
 export default AdminPage;
-

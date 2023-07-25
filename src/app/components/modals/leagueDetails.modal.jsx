@@ -1,30 +1,60 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 const LeagueDetailsModal = ({ league, onClose }) => {
+  console.log(league);
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-30">
-      <div className="bg-white p-8 rounded shadow">
-        <h2 className="text-lg font-bold mb-4">{league.name}</h2>
-        <p>Location: {league.location}</p>
-        <p>Teams: {league.teams}</p>
-        <p>Players:</p>
-        <ul>
-          {league.players.map((player) => (
-            <li key={player._id}>{player.firstName}</li>
+      <div className="relative bg-white p-8 rounded shadow w-1/2">
+        <div className="w-20 mx-auto mb-4">
+          <img
+            src={league.leagueLogo}
+            alt="League logo"
+            className="w-full h-auto"
+          />
+        </div>
+        <h2 className="text-2xl font-bold text-neutral mb-4">{league.name}</h2>
+        <p className=" font-medium text mb-2">
+          <span>📍</span> {league.location}
+        </p>
+        <p className="font-medium mb-1">Schedule: {league.schedule}</p>
+        <p className=" font-medium  mb-1">
+          Open for registration?: {league.registrationOpen ? "Yes" : "No"}
+        </p>
+        <p className=" font-medium  mb-1">
+          Registration deadline:{" "}
+          {new Date(league.registrationDeadline).toISOString().split("T")[0]}
+        </p>
+        <p className=" font-medium mb-1 mt-2">Teams:</p>
+        <div className="flex flex-wrap mb-4">
+          {league.teams.map((team) => (
+            <span
+              key={team._id}
+              className="px-2 py-1 bg-primary rounded mx-1 mt-1"
+            >
+              {team.name}
+            </span>
           ))}
-        </ul>
-        <p>Schedule: {league.schedule}</p>
-        <p>Open for registration?: {league.registrationOpen}</p>
-        <p>Registration deadline: {league.registrationDeadline}</p>
-        <p>Registration fee: {league.registrationFee}</p>
+        </div>
+        <p className=" font-medium  mb-1">Players:</p>
+        <div className="flex flex-wrap mb-4">
+          {league.players.map((player) => (
+            <span
+              key={player._id}
+              className="px-2 py-1 bg-info rounded mx-1 mt-1"
+            >
+              {player.firstName}
+            </span>
+          ))}
+        </div>
 
-        <img src={league.leagueLogo} alt="League logo" className="w-20" />
-
+        <p className=" font-medium  mb-1">
+          Registration fee: {league.registrationFee} €
+        </p>
         <button
           onClick={onClose}
-          className="mt-4 py-2 px-4 bg-primary text-white rounded"
+          className="btn btn-sm btn-circle absolute right-2 top-2"
         >
-          Close
+          ✕
         </button>
       </div>
     </div>
