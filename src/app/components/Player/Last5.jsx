@@ -4,11 +4,11 @@ import Link from "next/link";
 function Last5({ playerData }) {
   return (
     <div>
-      <h1 className="ml-3 font-bold text-center text-1xl text-slate-500 mb-6 mt-6">
+      <h1 className="font-bold text-center text-1xl text-slate-500 mt-6 bg-gray-800 rounded-t-md text-white">
         Last 5 Games
       </h1>
       {playerData.games && playerData.games.length > 0 ? (
-        <div className="flex flex-col justify-center items-center divide-y-8">
+        <div className="flex flex-col justify-center items-center divide-y">
           {playerData.games.slice(0, 5).map((game) => {
             const userTeam = game.teams.find((team) =>
               team.players.some((player) => player._id === playerData._id)
@@ -20,7 +20,7 @@ function Last5({ playerData }) {
             const bgClass =
               gameResult === "won" ? "bg-green-500" : "bg-red-500";
             const textClass =
-              gameResult === "won" ? "text-white" : "text-black";
+              gameResult === "won" ? "text-green-900" : "text-red-900";
 
             const opposingTeam = game.teams.find((team) => team !== userTeam);
 
@@ -31,21 +31,18 @@ function Last5({ playerData }) {
               (player) => player._id !== playerData._id
             );
 
+            {
+              /*   <p className="ml-3">{game.matchType}</p> */
+            }
             return (
-              <div key={game._id} className="bg-gray-500 w-60">
+              <div key={game._id} className="bg-gray-500 w-full">
                 {/* Top Border */}
 
-                <div
-                  className={`${bgClass} ${textClass} w-full h-8 flex justify-between items-center text-xs`}
-                >
-                  <p className="ml-3">{game.matchType}</p>
-                </div>
-
                 {/* Players */}
-                <div className="flex flex-col divide-y text-xs">
+                <div className="flex flex-col divide-y divide-gray-400 text-xs">
                   <div className="flex mb-1">
-                    <div className="flex flex-col justify-center ml-3 mr-6 px-2 mb-1 mt-1 w-1/3">
-                      <p>
+                    <div className="flex flex-col justify-center ml-3 mr-6 px-2 mt-1 w-1/3">
+                      <p className={`${textClass}`}>
                         {userPlayer.firstName} {userPlayer.lastName.charAt(0)}.
                       </p>
                       {userPartner ? (

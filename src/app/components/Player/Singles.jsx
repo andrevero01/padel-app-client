@@ -7,8 +7,8 @@ function Singles({ playerData }) {
 
   return (
     <div>
-      <h1 className="ml-3 font-bold text-center text-1xl text-slate-500 mb-6 mt-6">
-        Last 5 Singles
+      <h1 className="font-bold text-center text-1xl text-slate-500 mt-6 bg-gray-800 rounded-t-md text-white">
+        Singles
       </h1>
       {singlesGames.length > 0 ? (
         <div className="flex flex-col justify-center items-center divide-y-8">
@@ -23,7 +23,7 @@ function Singles({ playerData }) {
             const bgClass =
               gameResult === "won" ? "bg-green-500" : "bg-red-500";
             const textClass =
-              gameResult === "won" ? "text-white" : "text-black";
+              gameResult === "won" ? "text-green-900" : "text-red-900";
 
             const opposingTeam = game.teams.find((team) => team !== userTeam);
 
@@ -35,23 +35,12 @@ function Singles({ playerData }) {
             );
 
             return (
-              <div key={game._id} className="bg-gray-500 w-60">
-                {/* Top Border */}
-
-                <div
-                  className={`${bgClass} ${textClass} w-full h-8 flex justify-between items-center text-xs`}
-                >
-                  <p className="ml-3">{game.matchType}</p>
-                  <p className="mr-3">
-                    {gameResult === "won" ? "Game Won" : "Game Lost"}
-                  </p>
-                </div>
-
+              <div key={game._id} className="bg-gray-500 w-full">
                 {/* Players */}
                 <div className="flex flex-col divide-y text-xs">
                   <div className="flex mb-1">
                     <div className="flex flex-col justify-center ml-3 mr-6 px-2 mb-1 mt-1 w-1/3">
-                      <p>
+                      <p className={`${textClass}`}>
                         {userPlayer.firstName} {userPlayer.lastName.charAt(0)}.
                       </p>
                       {userPartner ? (
@@ -78,7 +67,7 @@ function Singles({ playerData }) {
                       </p>
                     </div>
                   </div>
-                  <div className="flex">
+                  <div className="flex mb-1">
                     <div className="flex flex-col justify-center ml-3 mt-1 mr-6 px-2 mb-2 w-1/3">
                       {opposingTeam.players.map((player) => (
                         <Link

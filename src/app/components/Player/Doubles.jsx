@@ -7,8 +7,8 @@ function Doubles({ playerData }) {
 
   return (
     <div>
-      <h1 className="ml-3 font-bold text-center text-1xl text-slate-500 mb-6 mt-6">
-        Last 5 Doubles
+      <h1 className="font-bold text-center text-1xl text-slate-500 mt-6 bg-gray-800 rounded-t-md text-white">
+        Doubles
       </h1>
       {doublesGames.length > 0 ? (
         <div className="flex flex-col justify-center items-center divide-y-8">
@@ -23,7 +23,7 @@ function Doubles({ playerData }) {
             const bgClass =
               gameResult === "won" ? "bg-green-500" : "bg-red-500";
             const textClass =
-              gameResult === "won" ? "text-white" : "text-black";
+              gameResult === "won" ? "text-green-900" : "text-red-900";
 
             const opposingTeam = game.teams.find((team) => team !== userTeam);
 
@@ -35,36 +35,29 @@ function Doubles({ playerData }) {
             );
 
             return (
-              <div key={game._id} className="bg-gray-500 w-60">
-                {/* Top Border */}
-
-                <div
-                  className={`${bgClass} ${textClass} w-full h-8 flex justify-between items-center text-xs`}
-                >
-                  <p className="ml-3">{game.matchType}</p>
-                  <p className="mr-3">
-                    {gameResult === "won" ? "Game Won" : "Game Lost"}
-                  </p>
-                </div>
-
+              <div key={game._id} className="bg-gray-500  w-full">
                 {/* Players */}
                 <div className="flex flex-col divide-y text-xs">
                   <div className="flex mb-1">
-                    <div className="flex flex-col justify-center ml-3 mr-6 px-2 mb-1 mt-1 w-1/3">
-                      <p>
-                        {userPlayer.firstName} {userPlayer.lastName.charAt(0)}.
-                      </p>
-                      {userPartner ? (
-                        <Link
-                          className="hover:text-white hover:underline"
-                          href={`/player/${userPartner._id}`}
-                        >
-                          <p>
-                            {userPartner.firstName}{" "}
-                            {userPartner.lastName.charAt(0)}.
-                          </p>
-                        </Link>
-                      ) : null}
+                    <div className="flex justify-center ml-3 mr-6 px-2 mb-1 mt-1 w-1/3">
+                      <div>
+                        <p className={`${textClass}`}>
+                          {userPlayer.firstName} {userPlayer.lastName.charAt(0)}
+                          .
+                        </p>
+                        {userPartner ? (
+                          <Link
+                            className="hover:text-white hover:underline"
+                            href={`/player/${userPartner._id}`}
+                          >
+                            <p>
+                              {userPartner.firstName}{" "}
+                              {userPartner.lastName.charAt(0)}.
+                            </p>
+                          </Link>
+                        ) : null}
+                      </div>
+                      <div></div>
                     </div>
                     <div className="flex justify-center items-center mr-3">
                       <p className="text-white px-2 py-1 m-2 bg-gray-600">
