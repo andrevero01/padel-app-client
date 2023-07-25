@@ -3,20 +3,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useContext } from "react";
-import { AuthContext } from "@/app/context/auth.context";
-import { useRouter } from "next/navigation";
+import { LeaguesContext } from "../../context/leagues.context.js";
 
 const JoinLeague = ({ leagueId, playerId }) => {
-  const { playerData, getPlayerData, isLoggedIn } = useContext(AuthContext);
-  const router = useRouter();
+  const { updateLeagues } = useContext(LeaguesContext);
   const [message, setMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleJoinLeague = async () => {
-    if (!isLoggedIn) {
-      router.push("/login");
-      return;
-    }
     try {
       const response = await axios.post(
         `http://localhost:5005/api/leagues/${leagueId}/join`,
@@ -24,9 +18,7 @@ const JoinLeague = ({ leagueId, playerId }) => {
       );
       setMessage("Your are now part of this league");
       console.log("joined league");
-      // setTimeout(() => {
-      //   window.location.reload();
-      // }, 500);
+      updateLeagues();
     } catch (error) {
       if (error.response && error.response.status === 403) {
         setErrorMessage("League registration is closed.");
@@ -38,8 +30,18 @@ const JoinLeague = ({ leagueId, playerId }) => {
     }
   };
 
+  useEffect(() => {
+    if (message || errorMessage) {
+      const timer = setTimeout(() => {
+        setMessage("");
+        setErrorMessage("");
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [message, errorMessage]);
+
   return (
-    <div>
+    <>
       <button
         onClick={handleJoinLeague}
         className="btn btn-secondary w-2/3 text-white mb-4 ml-2"
@@ -47,17 +49,17 @@ const JoinLeague = ({ leagueId, playerId }) => {
         Join
       </button>
       {message ? (
-        <p className="text-orange-600 font-semibold text-center mr-2">
+        <p className="text-success font-semibold text-center mr-2 mb-2">
           {message}
         </p>
       ) : errorMessage ? (
-        <p className="text-orange-600 font-semibold text-center mr-2">
+        <p className="text-error font-semibold text-center mr-2 mb-2">
           {errorMessage}
         </p>
       ) : (
         ""
       )}
-    </div>
+    </>
   );
 };
 

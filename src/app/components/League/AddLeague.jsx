@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useContext } from "react";
+import { LeaguesContext } from "../../context/leagues.context.js";
 
-const AddLeague = () => {
+const AddLeague = ({ playerId }) => {
+  const { updateLeagues } = useContext(LeaguesContext);
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [schedule, setSchedule] = useState("");
@@ -10,6 +13,7 @@ const AddLeague = () => {
   const [registrationFee, setRegistrationfee] = useState("");
   const [leagueLogo, setLeagueLogo] = useState("");
   const [message, setMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const leagueLogoUrl =
     leagueLogo ||
@@ -25,6 +29,7 @@ const AddLeague = () => {
       registrationOpen,
       registrationDeadline,
       registrationFee,
+      createdBy: playerId,
     };
 
     axios
@@ -40,14 +45,23 @@ const AddLeague = () => {
         setRegistrationDeadline("");
         setLeagueLogo("");
         setMessage("You've successfully created your league!");
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
+        updateLeagues();
       })
       .catch((error) => {
-        console.error("Failed to create league", error);
+        console.error("Failed to create league", error.message);
+        setErrorMessage("Failed to create league");
       });
   };
+
+  useEffect(() => {
+    if (message || errorMessage) {
+      const timer = setTimeout(() => {
+        setMessage("");
+        setErrorMessage("");
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [message, errorMessage]);
 
   return (
     <>
@@ -164,7 +178,15 @@ const AddLeague = () => {
           >
             Create League
           </button>
-          {message && <p className="text-orange-600">{message}</p>}
+          {message ? (
+            <p className="text-success">{message}</p>
+          ) : errorMessage ? (
+            <p className="text-error font-semibold text-center mr-2 mb-2">
+              {errorMessage}
+            </p>
+          ) : (
+            ""
+          )}
         </div>
       </form>
     </>

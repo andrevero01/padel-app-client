@@ -44,14 +44,6 @@ const Navbar = () => {
               </Link>
               {isLoggedIn && (
                 <Link
-                  href="/settings"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Settings
-                </Link>
-              )}
-              {isLoggedIn && (
-                <Link
                   href="/adminPanel"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
@@ -67,12 +59,20 @@ const Navbar = () => {
                   Logout
                 </button>
               ) : (
-                <Link
-                  href="/login"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Login
-                </Link>
+                <>
+                  <Link
+                    href="/createPlayer"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    Signup
+                  </Link>
+                  <Link
+                    href="/login"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    Login
+                  </Link>
+                </>
               )}
             </div>
           </div>
