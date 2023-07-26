@@ -2,7 +2,8 @@ import React from "react";
 
 import React, { useState, useEffect } from "react";
 
-{/* 
+{
+  /* 
 
 const CreateTeam = () => {
   const [formData, setFormData] = useState({
@@ -15,7 +16,7 @@ const CreateTeam = () => {
 
   const fetchExistingObjects = async () => {
     try {
-      const res = await axios.get("http://localhost:5005/api/players");
+      const res = await axios.get("https://misty-stole-lamb.cyclic.app/api/players");
       setExistingObjects(res.data);
     } catch (error) {
       console.error(error);
@@ -26,7 +27,8 @@ const CreateTeam = () => {
 
   });
 
-  */}
+  */
+}
 
 function AddElement() {
   return function AddObjects({

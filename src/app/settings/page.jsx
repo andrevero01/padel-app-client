@@ -5,7 +5,6 @@ import React from "react";
 import Sidebar from "@/app/components/Sidebar";
 
 function page() {
-  
   const [nationality, setNationality] = useState("");
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
@@ -67,7 +66,7 @@ function page() {
       achievements,
     };
     axios
-      .post("http://localhost:5005/api/players", data)
+      .post("https://misty-stole-lamb.cyclic.app/api/players", data)
       .then((response) => {
         console.log(response.data);
       })
