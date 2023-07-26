@@ -7,7 +7,9 @@ const AdminPlayers = () => {
   const [selectedPlayer, setSelectedPlayer] = useState(null);
 
   const getPlayers = async () => {
-    const response = await axios.get("http://localhost:5005/api/players");
+    const response = await axios.get(
+      "https://misty-stole-lamb.cyclic.app/api/players"
+    );
     setPlayers(response.data);
   };
 

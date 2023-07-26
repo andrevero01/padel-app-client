@@ -9,7 +9,7 @@ const Navbar = () => {
   const { isLoggedIn, player, logOutPlayer } = useContext(AuthContext);
   return (
     <nav
-      className={`w-full bg-neutral text-white fixed bottom-0 md:static md:top-0`}
+      className={`navbar lg:static lg:top-0 fixed bottom-0 justify-center bg-neutral text-white w-full`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">

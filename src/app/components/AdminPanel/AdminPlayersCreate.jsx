@@ -32,7 +32,7 @@ const CreatePlayer = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5005/api/players",
+        "https://misty-stole-lamb.cyclic.app/api/players",
         formData
       );
       console.log(res.data); // Handle the response as needed

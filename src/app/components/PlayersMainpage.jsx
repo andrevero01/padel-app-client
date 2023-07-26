@@ -11,11 +11,14 @@ const PlayersMainpage = () => {
   const [selectedPlayer, setSelectedPlayer] = useState(null); // Add this line
 
   const getPlayers = async () => {
-    const response = await axios.get("http://localhost:5005/api/players", {
-      params: {
-        limit: 5,
-      },
-    });
+    const response = await axios.get(
+      "https://misty-stole-lamb.cyclic.app/api/players",
+      {
+        params: {
+          limit: 5,
+        },
+      }
+    );
     setPlayers(response.data.slice(0, 5));
     setShowShuffleButton(true);
   };

@@ -20,7 +20,7 @@ export default function AuthProviderWrapper({ children }) {
     const storedToken = localStorage.getItem("authToken");
     if (storedToken) {
       axios
-        .get("http://localhost:5005/api/auth/verify", {
+        .get("https://misty-stole-lamb.cyclic.app/api/auth/verify", {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
@@ -55,7 +55,7 @@ export default function AuthProviderWrapper({ children }) {
     if (player) {
       const playerId = player._id;
       axios
-        .get(`http://localhost:5005/api/players/${playerId}`)
+        .get(`https://misty-stole-lamb.cyclic.app/api/players/${playerId}`)
         .then((response) => {
           console.log("Player data", response.data);
           setPlayerData(response.data);
