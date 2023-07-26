@@ -12,6 +12,7 @@ const CreateTeam = () => {
     captain: null,
     courts: [],
     leagues: [],
+    wins: 0,
   });
 
   const [existingPlayers, setExistingPlayers] = useState([]);
@@ -29,16 +30,18 @@ const CreateTeam = () => {
     e.preventDefault();
 
     try {
+
       const teamRes = await axios.post(
         "https://misty-stole-lamb.cyclic.app/api/teams",
         {
-          name: formData.name,
-          players: formData.players,
-          captain: formData.captain,
-          courts: formData.courts,
-          leagues: formData.leagues,
-        }
-      );
+     
+        name: formData.name,
+        players: formData.players,
+        captain: formData.captain,
+        courts: formData.courts,
+        leagues: formData.leagues,
+        wins: formData.wins,
+      });
 
       console.log(teamRes.data);
 
@@ -48,6 +51,7 @@ const CreateTeam = () => {
         captain: null,
         courts: null,
         leagues: "",
+        wins: 0,
       });
     } catch (error) {
       console.error(error);
@@ -116,6 +120,23 @@ const CreateTeam = () => {
           fetchExistingPlayers={fetchExistingPlayers}
           existingPlayers={existingPlayers}
         />
+
+        {/* Wins */}
+
+        <div className="flex justify-start mx-3">
+          <div className="flex flex-col w-full">
+            <label className="font-bold mb-3">Team Wins</label>
+            <input
+              type="number" 
+              placeholder="How many wins do they have"
+              name="wins"
+              value={formData.wins}
+              onChange={handleChange}
+              className="input border mr-3 grow"
+              required
+            />
+          </div>
+        </div>
 
         {/* Leagues */}
 
