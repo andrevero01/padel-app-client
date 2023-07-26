@@ -19,15 +19,13 @@ export default function LeaguesProviderWrapper({ children }) {
   }, []);
 
   const updateLeagues = () => {
-    axios
-      .get("https://misty-stole-lamb.cyclic.app/api/leagues")
-      .then((response) => {
-        console.log("Leagues data", response.data);
-        setLeagues(response.data);
-      });
+    axios.get("http://localhost:5005/api/leagues").then((response) => {
+      console.log("Leagues data", response.data);
+      setLeagues(response.data);
+    });
   };
   // useEffect(() => {
-  //   axios.get("https://misty-stole-lamb.cyclic.app/api/leagues").then((response) => {
+  //   axios.get("http://localhost:5005/api/leagues").then((response) => {
   //     console.log("Leagues data", response.data);
   //     setLeagues(response.data);
   //   });

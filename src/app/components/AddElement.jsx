@@ -16,7 +16,7 @@ const CreateTeam = () => {
 
   const fetchExistingObjects = async () => {
     try {
-      const res = await axios.get("https://misty-stole-lamb.cyclic.app/api/players");
+      const res = await axios.get("http://localhost:5005/api/players");
       setExistingObjects(res.data);
     } catch (error) {
       console.error(error);

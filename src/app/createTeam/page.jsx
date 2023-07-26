@@ -30,11 +30,7 @@ const CreateTeam = () => {
     e.preventDefault();
 
     try {
-
-      const teamRes = await axios.post(
-        "https://misty-stole-lamb.cyclic.app/api/teams",
-        {
-     
+      const teamRes = await axios.post("http://localhost:5005/api/teams", {
         name: formData.name,
         players: formData.players,
         captain: formData.captain,
@@ -64,9 +60,7 @@ const CreateTeam = () => {
 
   const fetchExistingPlayers = async () => {
     try {
-      const res = await axios.get(
-        "https://misty-stole-lamb.cyclic.app/api/players"
-      );
+      const res = await axios.get("http://localhost:5005/api/players");
       setExistingPlayers(res.data);
     } catch (error) {
       console.error(error);
@@ -75,9 +69,7 @@ const CreateTeam = () => {
 
   const fetchExistingCourts = async () => {
     try {
-      const res = await axios.get(
-        "https://misty-stole-lamb.cyclic.app/api/courts"
-      );
+      const res = await axios.get("http://localhost:5005/api/courts");
       setExistingCourts(res.data);
     } catch (error) {
       console.error(error);
@@ -127,7 +119,7 @@ const CreateTeam = () => {
           <div className="flex flex-col w-full">
             <label className="font-bold mb-3">Team Wins</label>
             <input
-              type="number" 
+              type="number"
               placeholder="How many wins do they have"
               name="wins"
               value={formData.wins}

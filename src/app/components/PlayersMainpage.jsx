@@ -8,14 +8,11 @@ const PlayersMainpage = () => {
   const [selectedPlayer, setSelectedPlayer] = useState(null); // Add this line
 
   const getPlayers = async () => {
-    const response = await axios.get(
-      "https://misty-stole-lamb.cyclic.app/api/players",
-      {
-        params: {
-          limit: 5,
-        },
-      }
-    );
+    const response = await axios.get("http://localhost:5005/api/players", {
+      params: {
+        limit: 5,
+      },
+    });
     setPlayers(response.data.slice(0, 5));
   };
 
@@ -34,7 +31,12 @@ const PlayersMainpage = () => {
   return (
     <div>
       <div>
-        <button onClick={handleGetPlayers} className="my-4 py-2 px-4 bg-primary text-white rounded">Get Players</button>
+        <button
+          onClick={handleGetPlayers}
+          className="my-4 py-2 px-4 bg-primary text-white rounded"
+        >
+          Get Players
+        </button>
 
         <div className="flex flex-wrap justify-center">
           {players.map((player) => (
@@ -43,7 +45,9 @@ const PlayersMainpage = () => {
               className="max-w-xs p-4 mx-2 my-2 bg-white rounded shadow"
             >
               <div className="font-bold">
-                <p>{player.firstName} {player.lastName}</p>
+                <p>
+                  {player.firstName} {player.lastName}
+                </p>
                 <br />
                 Team(s):
                 <ul>

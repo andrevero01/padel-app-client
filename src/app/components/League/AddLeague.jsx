@@ -33,7 +33,7 @@ const AddLeague = ({ playerId }) => {
     };
 
     axios
-      .post("https://misty-stole-lamb.cyclic.app/api/leagues", body)
+      .post("http://localhost:5005/api/leagues", body)
       .then((newLeague) => {
         console.log(newLeague.data);
         setName("");

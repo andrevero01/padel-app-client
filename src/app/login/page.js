@@ -36,7 +36,7 @@ export default function loginPage() {
     };
 
     axios
-      .post("https://misty-stole-lamb.cyclic.app/api/auth/login", body)
+      .post("http://localhost:5005/api/auth/login", body)
       .then((response) => {
         console.log("JWT token", response.data.authToken);
         storedToken(response.data.authToken);

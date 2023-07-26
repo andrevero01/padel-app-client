@@ -6,9 +6,7 @@ const TeamsMainPage = () => {
   const [teams, setTeams] = useState([]);
 
   const getTeams = async () => {
-    const response = await axios.get(
-      "https://misty-stole-lamb.cyclic.app/api/teams"
-    );
+    const response = await axios.get("http://localhost:5005/api/teams");
     setTeams(response.data);
   };
 
