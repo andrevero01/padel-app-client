@@ -163,9 +163,9 @@ const Page = () => {
           </div>
         )}
 
-        <Suspense fallback={<div>Loading...</div>}>
+{/*         <Suspense fallback={<div>Loading...</div>}>
           <TeamMates playerData={playerData} />
-        </Suspense>
+        </Suspense> */}
 
         {/* Winning Streak Counter */}
         {!isLoading && winningStreak > 0 && (
