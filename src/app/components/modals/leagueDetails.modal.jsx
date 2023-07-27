@@ -1,7 +1,17 @@
 "use client";
 import React from "react";
+import Link from "next/link"; // Import Link from Next.js
+
 const LeagueDetailsModal = ({ league, onClose }) => {
   console.log(league);
+
+  // Function to handle button click and redirect to league ID's link
+  const handleRedirectToLeague = () => {
+    // Assuming the league ID is available in league._id
+    const leagueId = league._id; // Adjust this based on your data structure
+    window.location.href = `http://localhost:3000/leagues/details/${leagueId}`;
+  };
+
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-30">
       <div className="relative bg-white p-8 rounded shadow w-1/2">
@@ -56,9 +66,17 @@ const LeagueDetailsModal = ({ league, onClose }) => {
         >
           ✕
         </button>
+        <br></br>
+        <button
+          onClick={handleRedirectToLeague}
+          className="btn btn-sm absolute bottom-2 left-2"
+        >
+         Take me to the Standings 
+        </button>
       </div>
     </div>
   );
 };
 
 export default LeagueDetailsModal;
+
