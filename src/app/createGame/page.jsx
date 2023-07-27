@@ -214,12 +214,13 @@ const CreateGame = () => {
       </select>
 
       {/* Add the searchable field */}
-      {formData.matchType === "League Game" && leaguesFetched && (
+      {formData.matchType === "League Game" && (
         <AddLeagues
           formData={formData}
           onChange={handleChange}
           existingLeagues={existingLeagues}
           playerData={playerData}
+          disabled={!leaguesFetched}
         />
       )}
 
