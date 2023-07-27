@@ -1,6 +1,10 @@
 import React from "react";
 
 const AddLeagues = ({ formData, onChange, existingLeagues, playerData }) => {
+  // Check if playerData and existingLeagues are available
+  const isDataLoaded = !!playerData && existingLeagues.length > 0;
+
+  // Filter the leagues based on playerData
   const filteredLeagues = existingLeagues.filter((league) =>
     league.players.some((player) => player._id === playerData._id)
   );
@@ -13,9 +17,10 @@ const AddLeagues = ({ formData, onChange, existingLeagues, playerData }) => {
         name="leagues"
         onChange={onChange}
         value={formData.leagues}
+        disabled={!isDataLoaded}
       >
-        <option value="" disabled>
-          Select a League
+        <option value="" disabled={!isDataLoaded}>
+          {isDataLoaded ? "Select a League" : "Loading..."}
         </option>
         {filteredLeagues.map((league) => (
           <option key={league._id} value={league._id}>

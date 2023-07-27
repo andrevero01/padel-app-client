@@ -13,7 +13,6 @@ const CreateGame = () => {
   const [existingPlayers, setExistingPlayers] = useState([]);
   const [existingCourts, setExistingCourts] = useState([]);
   const [existingLeagues, setExistingLeagues] = useState([]);
-  const [showLeagueField, setShowLeagueField] = useState(false);
   const [leaguesFetched, setLeaguesFetched] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -65,14 +64,10 @@ const CreateGame = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    const currentShowLeagueField =
-      formData.matchType === "League Game" ? true : showLeagueField;
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
     }));
-    setShowLeagueField(currentShowLeagueField);
-    setShowLeagueField(value === "League Game");
   };
 
   const handleSubmit = async (e) => {
@@ -185,6 +180,8 @@ const CreateGame = () => {
     });
   };
 
+  const showLeagueField = formData.matchType === "League Game" && leaguesFetched;
+
   return (
     <div className="py-4 flex flex-col bg-white mb-14">
       <h1 className="text-2xl font-bold mb-4 mx-3">Register Game</h1>
@@ -217,7 +214,7 @@ const CreateGame = () => {
       </select>
 
       {/* Add the searchable field */}
-      {showLeagueField && (
+      {formData.matchType === "League Game" && leaguesFetched && (
         <AddLeagues
           formData={formData}
           onChange={handleChange}
