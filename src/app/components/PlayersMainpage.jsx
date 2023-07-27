@@ -31,7 +31,12 @@ const PlayersMainpage = () => {
   return (
     <div>
       <div>
-        <button onClick={handleGetPlayers} className="my-4 py-2 px-4 bg-primary text-white rounded">Get Players</button>
+        <button
+          onClick={handleGetPlayers}
+          className="my-4 py-2 px-4 bg-primary text-white rounded"
+        >
+          Get Players
+        </button>
 
         <div className="flex flex-wrap justify-center">
           {players.map((player) => (
@@ -40,7 +45,9 @@ const PlayersMainpage = () => {
               className="max-w-xs p-4 mx-2 my-2 bg-white rounded shadow"
             >
               <div className="font-bold">
-                <p>{player.firstName} {player.lastName}</p>
+                <p>
+                  {player.firstName} {player.lastName}
+                </p>
                 <br />
                 Team(s):
                 <ul>

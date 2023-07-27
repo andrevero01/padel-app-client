@@ -57,6 +57,8 @@ const Page = () => {
     }
   }, [playerData]);
 
+  console.log(playerData);
+
   return (
     <div className="flex justify-evenly h-full">
       <Sidebar />
@@ -79,7 +81,7 @@ const Page = () => {
         <div className="flex justify-between md:justify-center mx-3">
           <Link
             href="/createGame"
-            className="bg-green-600 w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0 mr-3"
+            className="bg-primary w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0 mr-3"
           >
             <button className="flex flex-col justify-center items-center">
               <img
@@ -92,7 +94,7 @@ const Page = () => {
           </Link>
           <Link
             href="/leagues"
-            className="bg-green-600 w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0"
+            className="bg-primary w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0"
           >
             <button className="flex flex-col justify-center items-center">
               <img
@@ -105,7 +107,7 @@ const Page = () => {
           </Link>
           <Link
             href="/teams"
-            className="bg-green-600 w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0 ml-3"
+            className="bg-primary w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0 ml-3"
           >
             <button className="flex flex-col justify-center items-center">
               <img src={team.src} alt="Trophy Icon" className="max-h-10 my-1" />
@@ -147,8 +149,8 @@ const Page = () => {
               <p>Played Games</p>
             </div>
             <div className="w-2/5 md:max-w-xs py-3 text-center text-slate-500">
-              <p>{playerData.games.leagues || 0} </p>
-              <p>Played Leagues</p>
+              <p>{playerData.leagues.length || 0} </p>
+              <p>Active Leagues</p>
             </div>
             <div className="w-2/5 md:max-w-xs py-3 text-center text-slate-500">
               <p>
@@ -163,9 +165,9 @@ const Page = () => {
           </div>
         )}
 
-        <Suspense fallback={<div>Loading...</div>}>
+        {/* <Suspense fallback={<div>Loading...</div>}>
           <TeamMates playerData={playerData} />
-        </Suspense>
+        </Suspense> */}
 
         {/* Winning Streak Counter */}
         {!isLoading && winningStreak > 0 && (

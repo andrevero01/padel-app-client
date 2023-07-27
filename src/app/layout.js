@@ -18,6 +18,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <AuthProviderWrapper>
+
           <FileUploadProviderWrapper>
             <LeaguesProviderWrapper>
               <Navbar />
@@ -25,6 +26,7 @@ export default function RootLayout({ children }) {
               <Footer />
             </LeaguesProviderWrapper>
           </FileUploadProviderWrapper>
+
         </AuthProviderWrapper>
       </body>
     </html>
