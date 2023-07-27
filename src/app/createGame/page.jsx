@@ -19,7 +19,7 @@ const CreateGame = () => {
     date: "",
     matchType: "Singles",
     courts: [],
-    leagues: [],
+    leagues: {},
     teams: [
       {
         name: "Team 1",
@@ -180,7 +180,8 @@ const CreateGame = () => {
     });
   };
 
-  const showLeagueField = formData.matchType === "League Game" && leaguesFetched;
+  const showLeagueField =
+    formData.matchType === "League Game" && leaguesFetched;
 
   return (
     <div className="py-4 flex flex-col bg-white mb-14">
@@ -226,14 +227,13 @@ const CreateGame = () => {
 
       <form onSubmit={handleSubmit}>
         {/* Courts */}
-
         <AddCourt
           setFormData={setFormData}
           fetchExistingCourts={fetchExistingCourts}
           existingCourts={existingCourts}
         />
-
-        {/* Players - Team 1 */}
+        {/* Players - Team 1 */}{" "}
+        <label className="font-bold ml-3">Players team 1:</label>
         <AddPlayersToTeam
           formData={formData}
           setFormData={setFormData}
@@ -241,8 +241,8 @@ const CreateGame = () => {
           existingPlayers={existingPlayers}
           teamIndex={0}
         />
-
         {/* Players - Team 2 */}
+        <label className="font-bold ml-3">Players team 2:</label>
         <AddPlayersToTeam
           formData={formData}
           setFormData={setFormData}
@@ -250,7 +250,6 @@ const CreateGame = () => {
           existingPlayers={existingPlayers}
           teamIndex={1}
         />
-
         {/* Team 1 */}
         <div className="flex flex-col mx-3 border-gray-400 border-x-2 border-t-2">
           <div className="flex">
@@ -325,7 +324,6 @@ const CreateGame = () => {
             </select>
           </div>
         </div>
-
         {/* Team 2 */}
         <div className="flex flex-col mx-3 border-2 border-gray-400">
           <div className="flex">
@@ -400,7 +398,6 @@ const CreateGame = () => {
             </select>
           </div>
         </div>
-
         {/* Submit Button */}
         <div className="flex justify-center items-center">
           <button

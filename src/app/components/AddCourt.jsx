@@ -99,7 +99,6 @@ function AddCourt({ setFormData, fetchExistingCourts, existingCourts }) {
       {/* Selected Courts */}
       <div className="flex justify-start mt-6">
         <div className="flex flex-col w-full">
-          <label className="font-bold mb-3">Selected Courts</label>
           <div>
             {selectedCourts.map((court) => (
               <div key={court._id} className="px-2 py-1 flex items-center">
