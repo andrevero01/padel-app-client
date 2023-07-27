@@ -9,12 +9,12 @@ function Last5({ playerData }) {
       </h1>
       {playerData.games && playerData.games.length > 0 ? (
         <div className="flex flex-col justify-center items-center divide-y">
-          {playerData.games.slice(0, 5).map((game) => {
+        {playerData.games.slice(playerData.games.length - 5, playerData.games.length).map((game) => {
             const userTeam = game.teams.find((team) =>
               team.players.some((player) => player._id === playerData._id)
             );
 
-            if (!userTeam) return ndivl;
+            if (!userTeam) return null;
 
             const gameResult = userTeam.winner ? "won" : "lost";
             const bgClass =
