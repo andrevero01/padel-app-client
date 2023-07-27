@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import PlayerModal from "../../modals/PlayerModal";
+import PlayerModal from "../modals/PlayerModal";
 
 const AdminPlayers = () => {
   const [players, setPlayers] = useState([]);
@@ -41,8 +41,13 @@ const AdminPlayers = () => {
               className="max-w-xs p-4 mx-2 my-2 bg-white rounded shadow"
             >
               <div className="font-bold">
-                {player.firstName} {player.lastName} <br />
-                <br />
+                {player.firstName} {player.lastName} <br /> <br />
+                Team(s):
+                <ul>
+                  {player.team.map((team) => (
+                    <li key={team._id}>{team.name}</li>
+                  ))}
+                </ul>
                 <button
                   onClick={() => handleOpenModal(player)}
                   className="mt-4 py-2 px-4 bg-primary text-white rounded"
