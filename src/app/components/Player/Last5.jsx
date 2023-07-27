@@ -4,11 +4,11 @@ import Link from "next/link";
 function Last5({ playerData }) {
   return (
     <div>
-      <h1 className="font-bold text-center text-1xl text-slate-500 mt-6 bg-gray-800 rounded-t-md text-white">
+      <h1 className="font-bold text-center text-1xl text-slate-500 mt-6 bg-accent rounded-t-md text-white">
         Last 5 Games
       </h1>
       {playerData.games && playerData.games.length > 0 ? (
-        <div className="flex flex-col justify-center items-center divide-y">
+        <div className="flex flex-col justify-center items-center divide-y divide-accent">
         {playerData.games.slice(playerData.games.length - 5, playerData.games.length).map((game) => {
             const userTeam = game.teams.find((team) =>
               team.players.some((player) => player._id === playerData._id)
@@ -35,11 +35,11 @@ function Last5({ playerData }) {
               /*   <p className="ml-3">{game.matchType}</p> */
             }
             return (
-              <div key={game._id} className="bg-gray-500 w-full">
+              <div key={game._id} className="bg-base-200 w-full">
                 {/* Top Border */}
 
                 {/* Players */}
-                <div className="flex flex-col divide-y divide-gray-400 text-xs">
+                <div className="flex flex-col divide-y divide-yellow-100 text-xs">
                   <div className="flex mb-1">
                     <div className="flex flex-col justify-center ml-3 mr-6 px-2 mt-1 w-1/3">
                       <p className={`${textClass}`}>

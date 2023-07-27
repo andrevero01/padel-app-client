@@ -81,7 +81,7 @@ const Page = () => {
         <div className="flex justify-between md:justify-center mx-3">
           <Link
             href="/createGame"
-            className="bg-green-600 w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0 mr-3"
+            className="bg-primary w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0 mr-3"
           >
             <button className="flex flex-col justify-center items-center">
               <img
@@ -94,7 +94,7 @@ const Page = () => {
           </Link>
           <Link
             href="/leagues"
-            className="bg-green-600 w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0"
+            className="bg-primary w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0"
           >
             <button className="flex flex-col justify-center items-center">
               <img
@@ -107,7 +107,7 @@ const Page = () => {
           </Link>
           <Link
             href="/teams"
-            className="bg-green-600 w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0 ml-3"
+            className="bg-primary w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0 ml-3"
           >
             <button className="flex flex-col justify-center items-center">
               <img src={team.src} alt="Trophy Icon" className="max-h-10 my-1" />
