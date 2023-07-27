@@ -49,7 +49,7 @@ const AdminPlayersCreate = () => {
 
     try {
       const res = await axios.post(
-        "https://misty-stole-lamb.cyclic.app/api/players",
+        "http://localhost:5005/api/players",
         formData
       );
       console.log(res.data); // Handle the response as needed

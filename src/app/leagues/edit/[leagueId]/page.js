@@ -30,7 +30,7 @@ export default function leagueDetailsPage() {
   useEffect(() => {
     if (leagueId) {
       axios
-        .get(`https://misty-stole-lamb.cyclic.app/api/leagues/${leagueId}`)
+        .get(`http://localhost:5005/api/leagues/${leagueId}`)
         .then((response) => {
           setLeagueDetails(response.data);
 
@@ -55,10 +55,7 @@ export default function leagueDetailsPage() {
     };
 
     axios
-      .put(
-        `https://misty-stole-lamb.cyclic.app/api/leagues/${leagueId}`,
-        requestBody
-      )
+      .put(`http://localhost:5005/api/leagues/${leagueId}`, requestBody)
       .then((response) => {
         console.log(response);
         setName("");

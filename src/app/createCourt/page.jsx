@@ -43,7 +43,7 @@ const CreateCourt = () => {
 
     try {
       const response = await axios.post(
-        "https://misty-stole-lamb.cyclic.app/api/courts",
+        "http://localhost:5005/api/courts",
         formData
       );
       console.log("Court stored successfully!");

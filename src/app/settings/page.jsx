@@ -66,7 +66,7 @@ function page() {
       achievements,
     };
     axios
-      .post("https://misty-stole-lamb.cyclic.app/api/players", data)
+      .post("http://localhost:5005/api/players", data)
       .then((response) => {
         console.log(response.data);
       })

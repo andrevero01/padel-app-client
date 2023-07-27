@@ -48,16 +48,13 @@ const CreateGame = () => {
     e.preventDefault();
 
     try {
-      const gameRes = await axios.post(
-        "https://misty-stole-lamb.cyclic.app/api/games",
-        {
-          date: formData.date,
-          courts: formData.courts,
-          score: formData.score,
-          winner: formData.winner,
-          teams: formData.teams,
-        }
-      );
+      const gameRes = await axios.post("http://localhost:5005/api/games", {
+        date: formData.date,
+        courts: formData.courts,
+        score: formData.score,
+        winner: formData.winner,
+        teams: formData.teams,
+      });
 
       console.log(gameRes.data);
 
@@ -90,9 +87,7 @@ const CreateGame = () => {
 
   const fetchExistingPlayers = async () => {
     try {
-      const res = await axios.get(
-        "https://misty-stole-lamb.cyclic.app/api/players"
-      );
+      const res = await axios.get("http://localhost:5005/api/players");
       setExistingPlayers(res.data);
     } catch (error) {
       console.error(error);
@@ -101,9 +96,7 @@ const CreateGame = () => {
 
   const fetchExistingCourts = async () => {
     try {
-      const res = await axios.get(
-        "https://misty-stole-lamb.cyclic.app/api/courts"
-      );
+      const res = await axios.get("http://localhost:5005/api/courts");
       setExistingCourts(res.data);
     } catch (error) {
       console.error(error);
