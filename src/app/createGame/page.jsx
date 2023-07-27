@@ -1,15 +1,25 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../context/auth.context";
 import axios from "axios";
 import AddPlayersToTeam from "../components/AddPlayersToTeam";
 import AddCourt from "../components/AddCourt";
+import AddLeagues from "../components/AddLeagues";
 
 const CreateGame = () => {
+  const { playerData, getPlayerData } = useContext(AuthContext);
+
+  const [existingPlayers, setExistingPlayers] = useState([]);
+  const [existingCourts, setExistingCourts] = useState([]);
+  const [existingLeagues, setExistingLeagues] = useState([]);
+  const [leaguesFetched, setLeaguesFetched] = useState(false);
+
   const [formData, setFormData] = useState({
     date: "",
     matchType: "Singles",
     courts: [],
+    leagues: {},
     teams: [
       {
         name: "Team 1",
@@ -34,15 +44,30 @@ const CreateGame = () => {
     ],
   });
 
-  const [existingPlayers, setExistingPlayers] = useState([]);
-  const [existingCourts, setExistingCourts] = useState([]);
+  useEffect(() => {
+    getPlayerData();
+    fetchExistingPlayers();
+    fetchExistingCourts();
+  }, []);
+
+  useEffect(() => {
+    if (playerData && formData.matchType === "League Game") {
+      fetchExistingLeagues(playerData._id, playerData.leagues);
+    }
+  }, [formData.matchType, playerData]);
+
+  useEffect(() => {
+    if (existingLeagues.length > 0) {
+      setLeaguesFetched(true);
+    }
+  }, [existingLeagues]);
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }));
-    console.log(formData);
   };
 
   const handleSubmit = async (e) => {
@@ -56,9 +81,8 @@ const CreateGame = () => {
         winner: formData.winner,
         teams: formData.teams,
         matchType: formData.matchType,
+        leagues: formData.leagues,
       });
-
-      console.log(gameRes.data);
 
       // Reset the form
       setFormData({
@@ -106,6 +130,22 @@ const CreateGame = () => {
     }
   };
 
+  const fetchExistingLeagues = async (playerId, playerLeagueIds) => {
+    try {
+      const leagueIdsString = playerLeagueIds.join(",");
+
+      const response = await axios.get(
+        `http://localhost:5005/api/leagues?playerId=${playerId}&playerLeagueId=${leagueIdsString}`
+      );
+
+      const leagues = response.data;
+      console.log("Fetched Leagues:", leagues);
+      setExistingLeagues(leagues);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handlePlayerScoreChange = (teamIndex, category, value) => {
     setFormData((prevFormData) => {
       const updatedFormData = { ...prevFormData };
@@ -122,6 +162,8 @@ const CreateGame = () => {
 
       return updatedFormData;
     });
+    console.log("ping");
+    console.log(formData);
   };
 
   const handleTeamWinChange = (teamIndex, value) => {
@@ -138,12 +180,27 @@ const CreateGame = () => {
     });
   };
 
+  const showLeagueField =
+    formData.matchType === "League Game" && leaguesFetched;
+
   return (
     <div className="py-4 flex flex-col bg-white mb-14">
       <h1 className="text-2xl font-bold mb-4 mx-3">Register Game</h1>
+
+      {/* Date */}
+      <div className="my-4">
+        <label>Date:</label>
+        <input
+          type="date"
+          name="date"
+          value={formData.date}
+          onChange={handleChange}
+        />
+      </div>
+
       <h1 className="mx-3 font-bold mb-3">Match Type</h1>
       <select
-        className=" mx-3 select select-bordered"
+        className="mx-3 select select-bordered"
         type="string"
         name="matchType"
         value={formData.matchType}
@@ -154,7 +211,19 @@ const CreateGame = () => {
         <option value="Doubles">Doubles</option>
         <option value="Mixed doubles">Mixed doubles</option>
         <option value="Practice">Practice</option>
+        <option value="League Game">League Game</option>
       </select>
+
+      {/* Add the searchable field */}
+      {formData.matchType === "League Game" && (
+        <AddLeagues
+          formData={formData}
+          onChange={handleChange}
+          existingLeagues={existingLeagues}
+          playerData={playerData}
+          disabled={!leaguesFetched}
+        />
+      )}
 
       <form onSubmit={handleSubmit}>
         {/* Courts */}
@@ -163,25 +232,24 @@ const CreateGame = () => {
           fetchExistingCourts={fetchExistingCourts}
           existingCourts={existingCourts}
         />
-
-        {/* Players - Team 1 */}
+        {/* Players - Team 1 */}{" "}
+        <label className="font-bold ml-3">Players team 1:</label>
         <AddPlayersToTeam
           formData={formData}
           setFormData={setFormData}
           fetchExistingPlayers={fetchExistingPlayers}
           existingPlayers={existingPlayers}
-          teamIndex={0} // Pass the teamIndex as 0 for Team 1
+          teamIndex={0}
         />
-
         {/* Players - Team 2 */}
+        <label className="font-bold ml-3">Players team 2:</label>
         <AddPlayersToTeam
           formData={formData}
           setFormData={setFormData}
           fetchExistingPlayers={fetchExistingPlayers}
           existingPlayers={existingPlayers}
-          teamIndex={1} // Pass the teamIndex as 1 for Team 2
+          teamIndex={1}
         />
-
         {/* Team 1 */}
         <div className="flex flex-col mx-3 border-gray-400 border-x-2 border-t-2">
           <div className="flex">
@@ -256,7 +324,6 @@ const CreateGame = () => {
             </select>
           </div>
         </div>
-
         {/* Team 2 */}
         <div className="flex flex-col mx-3 border-2 border-gray-400">
           <div className="flex">
@@ -331,18 +398,6 @@ const CreateGame = () => {
             </select>
           </div>
         </div>
-
-        {/* Date */}
-        <div className="my-4">
-          <label>Date:</label>
-          <input
-            type="date"
-            name="date"
-            value={formData.date}
-            onChange={handleChange}
-          />
-        </div>
-
         {/* Submit Button */}
         <div className="flex justify-center items-center">
           <button

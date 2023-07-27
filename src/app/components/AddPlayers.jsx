@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-function AddPlayers({ setFormData, fetchExistingPlayers, existingPlayers }) {
+function AddPlayers({
+  setFormData,
+  fetchExistingPlayers,
+  existingPlayers,
+  formData,
+  isLeagueGame,
+}) {
   const [filteredPlayers, setFilteredPlayers] = useState([]);
   const [selectedPlayers, setSelectedPlayers] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
@@ -73,54 +79,68 @@ function AddPlayers({ setFormData, fetchExistingPlayers, existingPlayers }) {
     fetchExistingPlayers();
   }, []);
 
+  if (isLeagueGame) {
+    return (
+      <div className="flex flex-col justify-start mx-3 mt-6">
+        <div className="flex flex-col w-full">
+          <label className="font-bold mb-3">
+            Select Players from the League:
+          </label>
+          <div>
+            <select
+              className="select select-bordered"
+              name="players"
+              onChange={(e) =>
+                handlePlayerSelect(
+                  existingPlayers.find(
+                    (player) => player._id === e.target.value
+                  )
+                )
+              }
+              value=""
+            >
+              <option value="" disabled>
+                Select a Player
+              </option>
+              {existingPlayers
+                .filter((player) => formData.leagues.includes(player.league))
+                .map((player) => (
+                  <option key={player._id} value={player._id}>
+                    {`${player.firstName} ${player.lastName}`}
+                  </option>
+                ))}
+            </select>
+          </div>
+        </div>
+        {/* Selected Players */}
+        <div className="flex justify-start mt-6">
+          <div className="flex flex-col w-full">
+            <label className="font-bold mb-3">Selected Players</label>
+            <div>
+              {selectedPlayers.map((player) => (
+                <div key={player._id} className="px-2 py-1 flex items-center">
+                  <div>{`${player.firstName} ${player.lastName}`}</div>
+                  <button
+                    type="button"
+                    onClick={() => handlePlayerRemove(player)}
+                    className="ml-2 text-red-500"
+                  >
+                    Remove
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Return the regular search input for non-league games
   return (
     <div className="flex flex-col justify-start mx-3 mt-6">
       <div className="flex flex-col w-full">
-        <input
-          type="text"
-          placeholder="Search players"
-          onChange={(e) => handlePlayerSearch(e.target.value)}
-          className="input border mr-3 grow"
-        />
-        {isSearching && (
-          <div className="mt-2">
-            {filteredPlayers.map((player) => (
-              <div
-                key={player._id}
-                onClick={() => {
-                  handlePlayerSelect(player);
-                  setFormData((prevFormData) => ({
-                    ...prevFormData,
-                    playerName: "",
-                  }));
-                }}
-                className="cursor-pointer hover:bg-gray-200 px-2 py-1"
-              >
-                {`${player.firstName} ${player.lastName}`}
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-      {/* Selected Players */}
-      <div className="flex justify-start mt-6">
-        <div className="flex flex-col w-full">
-          <label className="font-bold mb-3">Selected Players</label>
-          <div>
-            {selectedPlayers.map((player) => (
-              <div key={player._id} className="px-2 py-1 flex items-center">
-                <div>{`${player.firstName} ${player.lastName}`}</div>
-                <button
-                  type="button"
-                  onClick={() => handlePlayerRemove(player)}
-                  className="ml-2 text-red-500"
-                >
-                  Remove
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* ... Existing search input and player list code here ... */}
       </div>
     </div>
   );

@@ -78,7 +78,7 @@ function AddPlayersToTeam({ teamIndex, formData, setFormData, fetchExistingPlaye
   }, []);
 
   return (
-    <div className="flex flex-col justify-start mx-3 mt-6">
+    <div className="flex flex-col justify-start mx-3 mt-3">
       <div className="flex flex-col w-full">
         <input
           type="text"
