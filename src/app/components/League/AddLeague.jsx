@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useContext } from "react";
 import { LeaguesContext } from "../../context/leagues.context.js";
+import { FileUploadContext } from "../../context/fileUpload.context.js";
+import FileUpload from "../UploadFile.jsx";
 
 const AddLeague = ({ playerId }) => {
   const { updateLeagues } = useContext(LeaguesContext);
+  const { uploadedFile, uploadedFileURL, setUploadedFile, setUploadedFileURL } =
+    useContext(FileUploadContext);
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [schedule, setSchedule] = useState("");
@@ -15,17 +19,23 @@ const AddLeague = ({ playerId }) => {
   const [message, setMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const leagueLogoUrl =
-    leagueLogo ||
-    "https://www.usaclicosenza.it/wp-content/uploads/2021/04/Padel-League-Logo.jpeg";
+  // const leagueLogoUrl =
+  //   uploadedFileURL ||
+  //   "https://www.usaclicosenza.it/wp-content/uploads/2021/04/Padel-League-Logo.jpeg";
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // const uploadedLogoURL = await FileUpload.handleSendClick();
+    // if (uploadedLogoURL) {
+    //   setLeagueLogo(uploadedLogoURL);
+    // }
+
     const body = {
       name,
       location,
       schedule,
-      leagueLogo: leagueLogoUrl,
+      leagueLogo: uploadedFileURL,
       registrationOpen,
       registrationDeadline,
       registrationFee,
@@ -115,14 +125,15 @@ const AddLeague = ({ playerId }) => {
             <label className="text-md font-medium my-2 text-neutral">
               League logo:
             </label>
-            <input
+            <FileUpload />
+            {/* <input
               className="input input-bordered input-primary w-full shadow-md rounded-md mb-2 "
               type="string"
               placeholder="Add your URL here"
               name="leagueLogo"
               onChange={(e) => setLeagueLogo(e.target.value)}
               value={leagueLogo}
-            />
+            /> */}
           </div>
         </div>
         {/* Deadline and fee container */}

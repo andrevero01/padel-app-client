@@ -80,9 +80,16 @@ const CreateGame = () => {
         score: formData.score,
         winner: formData.winner,
         teams: formData.teams,
+
+      });
+
+      console.log(gameRes.data);
+
+
         matchType: formData.matchType,
         leagues: formData.leagues,
       });
+
 
       // Reset the form
       setFormData({

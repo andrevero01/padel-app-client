@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import AuthProviderWrapper from "./context/auth.context";
 import LeaguesProviderWrapper from "./context/leagues.context";
+import FileUploadProviderWrapper from "./context/fileUpload.context";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,10 +18,15 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <AuthProviderWrapper>
-          <LeaguesProviderWrapper>
-            <Navbar />
-            {children}
-          </LeaguesProviderWrapper>
+
+          <FileUploadProviderWrapper>
+            <LeaguesProviderWrapper>
+              <Navbar />
+              {children}
+              <Footer />
+            </LeaguesProviderWrapper>
+          </FileUploadProviderWrapper>
+
         </AuthProviderWrapper>
       </body>
     </html>

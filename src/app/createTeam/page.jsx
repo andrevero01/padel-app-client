@@ -36,7 +36,6 @@ const CreateTeam = () => {
         captain: formData.captain,
         courts: formData.courts,
         leagues: formData.leagues,
-        wins: formData.wins,
       });
 
       console.log(teamRes.data);
