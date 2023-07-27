@@ -55,7 +55,7 @@ const CreateGame = () => {
     if (playerData && formData.matchType === "League Game") {
       fetchExistingLeagues(playerData._id, playerData.leagues);
     }
-  }, [playerData, formData]);
+  }, [formData.matchType, playerData]);
 
   useEffect(() => {
     if (existingLeagues.length > 0) {
@@ -65,10 +65,13 @@ const CreateGame = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    const currentShowLeagueField =
+      formData.matchType === "League Game" ? true : showLeagueField;
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
     }));
+    setShowLeagueField(currentShowLeagueField);
     setShowLeagueField(value === "League Game");
   };
 
@@ -83,6 +86,7 @@ const CreateGame = () => {
         winner: formData.winner,
         teams: formData.teams,
         matchType: formData.matchType,
+        leagues: formData.leagues,
       });
 
       // Reset the form
@@ -163,6 +167,8 @@ const CreateGame = () => {
 
       return updatedFormData;
     });
+    console.log("ping");
+    console.log(formData);
   };
 
   const handleTeamWinChange = (teamIndex, value) => {
@@ -182,6 +188,18 @@ const CreateGame = () => {
   return (
     <div className="py-4 flex flex-col bg-white mb-14">
       <h1 className="text-2xl font-bold mb-4 mx-3">Register Game</h1>
+
+      {/* Date */}
+      <div className="my-4">
+        <label>Date:</label>
+        <input
+          type="date"
+          name="date"
+          value={formData.date}
+          onChange={handleChange}
+        />
+      </div>
+
       <h1 className="mx-3 font-bold mb-3">Match Type</h1>
       <select
         className="mx-3 select select-bordered"
@@ -207,7 +225,6 @@ const CreateGame = () => {
           playerData={playerData}
         />
       )}
-      
 
       <form onSubmit={handleSubmit}>
         {/* Courts */}
@@ -384,17 +401,6 @@ const CreateGame = () => {
               <option value="deuce">Deuce</option>
             </select>
           </div>
-        </div>
-
-        {/* Date */}
-        <div className="my-4">
-          <label>Date:</label>
-          <input
-            type="date"
-            name="date"
-            value={formData.date}
-            onChange={handleChange}
-          />
         </div>
 
         {/* Submit Button */}

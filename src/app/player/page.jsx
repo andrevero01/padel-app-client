@@ -57,6 +57,8 @@ const Page = () => {
     }
   }, [playerData]);
 
+  console.log(playerData)
+
   return (
     <div className="flex justify-evenly h-full">
       <Sidebar />
@@ -147,8 +149,8 @@ const Page = () => {
               <p>Played Games</p>
             </div>
             <div className="w-2/5 md:max-w-xs py-3 text-center text-slate-500">
-              <p>{playerData.games.leagues || 0} </p>
-              <p>Played Leagues</p>
+              <p>{playerData.leagues.length || 0} </p>
+              <p>Active Leagues</p>
             </div>
             <div className="w-2/5 md:max-w-xs py-3 text-center text-slate-500">
               <p>

@@ -11,7 +11,7 @@ function Singles({ playerData }) {
         Mixed doubles
       </h1>
       {mixedGames.length > 0 ? (
-        <div className="flex flex-col justify-center items-center divide-y-8">
+        <div className="flex flex-col justify-center items-center divide-y">
           {mixedGames.slice(0, 5).map((game) => {
             const userTeam = game.teams.find((team) =>
               team.players.some((player) => player._id === playerData._id)
@@ -38,7 +38,7 @@ function Singles({ playerData }) {
               <div key={game._id} className="bg-gray-500 w-full">
 
                 {/* Players */}
-                <div className="flex flex-col divide-y text-xs">
+                <div className="flex flex-col divide-y divide-gray-400 text-xs">
                   <div className="flex mb-1">
                     <div className="flex flex-col justify-center ml-3 mr-6 px-2 mb-1 mt-1 w-1/3">
                       <p className={`${textClass}`}>

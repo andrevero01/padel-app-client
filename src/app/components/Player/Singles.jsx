@@ -37,7 +37,7 @@ function Singles({ playerData }) {
             return (
               <div key={game._id} className="bg-gray-500 w-full">
                 {/* Players */}
-                <div className="flex flex-col divide-y text-xs">
+                <div className="flex flex-col divide-y divide-gray-400 text-xs">
                   <div className="flex mb-1">
                     <div className="flex flex-col justify-center ml-3 mr-6 px-2 mb-1 mt-1 w-1/3">
                       <p className={`${textClass}`}>

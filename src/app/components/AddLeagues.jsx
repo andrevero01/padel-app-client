@@ -10,9 +10,9 @@ const AddLeagues = ({ formData, onChange, existingLeagues, playerData }) => {
       <label>Select a League:</label>
       <select
         className="select select-bordered"
-        name="searchableField"
+        name="leagues"
         onChange={onChange}
-        value={formData.searchableField}
+        value={formData.leagues}
       >
         <option value="" disabled>
           Select a League
