@@ -57,7 +57,7 @@ const Page = () => {
     }
   }, [playerData]);
 
-  console.log(playerData)
+  console.log(playerData);
 
   return (
     <div className="flex justify-evenly h-full">
@@ -165,7 +165,7 @@ const Page = () => {
           </div>
         )}
 
-{/*         <Suspense fallback={<div>Loading...</div>}>
+        {/* <Suspense fallback={<div>Loading...</div>}>
           <TeamMates playerData={playerData} />
         </Suspense> */}
 

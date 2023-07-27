@@ -70,7 +70,7 @@ const TopTeammatesStats = ({ playerData }) => {
 
   return (
     <div>
-      <h2 className="rounded-full bg-purple-900 py-2 px-4 text-white">
+      <h2 className="rounded-full bg-secondary py-2 px-4 text-white">
         Best performance with teammates
       </h2>
       {topTeammates.map(({ teammate, gamesWithTeammate }) => (
