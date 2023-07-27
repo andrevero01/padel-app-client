@@ -20,7 +20,6 @@ export default function RootLayout({ children }) {
           <LeaguesProviderWrapper>
             <Navbar />
             {children}
-            <Footer />
           </LeaguesProviderWrapper>
         </AuthProviderWrapper>
       </body>
