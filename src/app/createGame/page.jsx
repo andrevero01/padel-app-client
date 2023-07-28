@@ -6,6 +6,7 @@ import axios from "axios";
 import AddPlayersToTeam from "../components/AddPlayersToTeam";
 import AddCourt from "../components/AddCourt";
 import AddLeagues from "../components/AddLeagues";
+import Sidebar from "../components/Sidebar";
 
 const CreateGame = () => {
   const { playerData, getPlayerData } = useContext(AuthContext);
@@ -200,6 +201,7 @@ const CreateGame = () => {
 
   return (
     <div className="py-4 flex flex-col bg-white mb-14">
+    <Sidebar />
       <h1 className="text-2xl font-bold mb-4 mx-3">Register Game</h1>
 
       {/* Date */}
@@ -423,6 +425,7 @@ const CreateGame = () => {
           </button>
         </div>
       </form>
+      <Sidebar />
     </div>
   );
 };
