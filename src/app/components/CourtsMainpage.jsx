@@ -42,7 +42,7 @@ function CourtsMainpage() {
           </button>
         )}
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 gap-4">
         {courts.map((court) => (
           <div
             key={court._id}
@@ -56,6 +56,11 @@ function CourtsMainpage() {
             <p>
               <span className="font-bold">Surface:</span> {court.surface}
             </p>
+            <img
+                    src={court.picture}
+                    alt={court.name}
+                    className="w-full h-48 object-cover rounded-b-lg"
+                />
           </div>
         ))}
       </div>
