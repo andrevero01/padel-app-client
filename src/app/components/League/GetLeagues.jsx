@@ -31,7 +31,7 @@ const GetLeagues = () => {
   return (
     <div className="drawer drawer-end ">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
-      <div className="mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 lg:gap-16 drawer-content">
+      <div className="mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-10 lg:gap-16 drawer-content">
         {leagues.map((league) => (
           <div
             key={league._id}

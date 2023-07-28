@@ -55,14 +55,15 @@ export default function loginPage() {
   return (
     <div className="h-screen">
       <form onSubmit={handleSubmit}>
-        <div className="flex flex-col justify-between items-center mt-8 mb-4 gap-5">
-          <h2>Welcome back! Log in to your account</h2>
-          <div className="flex flex-col w-1/3 mr-2">
+        <div className="flex flex-col justify-between items-center mt-10 mb-4 gap-5 bg-white md:mx-20 rounded-lg ">
+          <h2 className="mt-6 text-neutral">Welcome back!</h2>
+          <div className="flex flex-col mr-2">
             <label className="text-md font-medium mb-2 text-neutral">
               Email:
             </label>
             <input
-              className="input input-bordered input-primary w-full shadow-md rounded-md mb-2"
+              className="input bg-gray-100 shadow-md rounded-md mr-3 text-neutral"
+              placeholder="Email@gmail.com"
               type="text"
               id="email"
               value={email}
@@ -70,12 +71,13 @@ export default function loginPage() {
             />
           </div>
 
-          <div className="flex flex-col w-1/3 mr-2">
+          <div className="flex flex-col mr-2">
             <label className="text-md font-medium mb-2 text-neutral">
               Password:
             </label>
             <input
-              className="input input-bordered input-primary w-full shadow-md rounded-md mb-2"
+              className="input bg-gray-100 shadow-md rounded-md text-neutral mr-3"
+              placeholder="**********"
               type="password"
               id="password"
               value={password}
@@ -83,7 +85,7 @@ export default function loginPage() {
             />
           </div>
           <button
-            className="bg-primary hover:bg-secondary font-bold py-2 px-4 rounded my-4 w-1/6 text-white"
+            className="bg-primary hover:bg-primary-focus font-bold py-2 px-10 rounded mt-3 text-white shadow-lg"
             type="submit"
           >
             Login
@@ -91,7 +93,7 @@ export default function loginPage() {
           {errorMessage && <p className="error-message">{errorMessage}</p>}
           <p>Don't have an account yet?</p>
           <Link
-            className="bg-secondary hover:bg-primary font-bold py-2 px-4 rounded mb-4 w-1/8 text-white"
+            className="bg-secondary hover:bg-secondary-focus font-bold py-2 px-10 rounded mb-10 text-white shadow-lg"
             href="/createPlayer"
           >
             {" "}
