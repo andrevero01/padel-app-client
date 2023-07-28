@@ -23,42 +23,58 @@ export default function LeagueDetailsPage() {
     }
   }, [leagueId]);
 
+  console.log(leagueDetails);
+
+  // Compare player IDs
+  const comparePlayerIDs = (leagueDetails) => {
+    const allPlayers = leagueDetails.players.map((player) => player._id);
+    const commonPlayers = new Set(allPlayers);
+    return commonPlayers;
+  };
+
+  const checkGamesWonBetweenPlayers = (leagueDetails, commonPlayers) => {
+    leagueDetails.players.forEach((player) => {
+      player.wins = 0;
+    });
+
+    leagueDetails.players.forEach((player) => {
+      if (player.gamesWon && Array.isArray(player.gamesWon)) {
+        player.wins = player.gamesWon.length;
+      }
+    });
+  };
+
   if (!leagueDetails) {
     return <div>Loading...</div>;
   }
 
-  const sortedTeams = leagueDetails.teams.slice().sort((a, b) => b.wins - a.wins);
+  const commonPlayers = comparePlayerIDs(leagueDetails);
+  checkGamesWonBetweenPlayers(leagueDetails, commonPlayers);
 
+  const sortedPlayers = leagueDetails.players.slice().sort((a, b) => b.wins - a.wins);
 
   return (
     <div>
-      <div className="text-center mt-4">
-        <h1 className="text-2xl font-semibold">{leagueDetails.name}</h1>
-        <p className="mt-2 text-gray-600">City: {leagueDetails.location}</p>
-        <img
-          className="mx-auto my-4 max-w-xs"
-          src={leagueDetails.leagueLogo}
-          alt={leagueDetails.name + " Logo"}
-        />
-        </div>
-        <h2 className="mt-8 text-xl font-semibold">Teams</h2>
+      {/* ... (existing JSX code) */}
       <table className="min-w-full">
         <thead>
           <tr>
-            <th className="px-4 py-2">Team Name</th>
+            <th className="px-4 py-2">Players</th>
             <th className="px-4 py-2">Wins</th>
           </tr>
         </thead>
         <tbody>
-          {sortedTeams.map((team) => (
-            <tr key={team._id}>
-              <td className="border px-4 py-2">{team.name}</td>
-              <td className="border px-4 py-2">{team.wins}</td>
+          {sortedPlayers.map((player) => (
+            <tr key={player._id}>
+              <td className="border px-4 py-2">
+                {player.firstName} {player.lastName}
+              </td>
+              <td className="border px-4 py-2">{player.wins || 0}</td>
             </tr>
           ))}
         </tbody>
       </table>
-      <ScrollToTopButton />
+      {/* ... (existing JSX code) */}
     </div>
   );
 }

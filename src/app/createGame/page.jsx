@@ -64,10 +64,23 @@ const CreateGame = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
+
+    // Check if the "leagues" field is being changed
+    if (name === "leagues") {
+      // If the value is an empty object, set "leagues" to null
+      const leaguesValue = JSON.stringify(value) === "{}" ? null : value;
+
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        leagues: leaguesValue,
+      }));
+    } else {
+      // For other fields, update the state as usual
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -80,16 +93,9 @@ const CreateGame = () => {
         score: formData.score,
         winner: formData.winner,
         teams: formData.teams,
-
-      });
-
-      console.log(gameRes.data);
-
-
         matchType: formData.matchType,
         leagues: formData.leagues,
       });
-
 
       // Reset the form
       setFormData({
@@ -115,7 +121,7 @@ const CreateGame = () => {
         },
       });
     } catch (error) {
-      console.error(error);
+      console.error("Error response:", error.response);
     }
   };
 
@@ -240,7 +246,7 @@ const CreateGame = () => {
           existingCourts={existingCourts}
         />
         {/* Players - Team 1 */}{" "}
-        <label className="font-bold ml-3">Players team 1:</label>
+        <label className="font-bold ml-3 mt-6">Players team 1:</label>
         <AddPlayersToTeam
           formData={formData}
           setFormData={setFormData}
