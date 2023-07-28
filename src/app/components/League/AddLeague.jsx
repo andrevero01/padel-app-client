@@ -74,9 +74,9 @@ const AddLeague = ({ playerId }) => {
       {/* Create new league form */}
       <form onSubmit={handleSubmit}>
         {/* Name and location container */}
-        <div className="flex justify-center md:justify-between lg:justify-between mb-4 gap-5">
-          <div className="flex flex-col w-1/2 mr-2 text-neutral items-center md:items-start">
-            <label className="text-md w-1/2 font-medium mb-2 text-neutral text-center md:text-left">
+        <div className="flex flex-col md:flex-row justify-center items-center md:justify-between lg:justify-between mb-4 gap-5">
+          <div className="flex flex-col w-full mr-2 text-neutral items-center md:items-start">
+            <label className="text-md w-full font-medium mb-2 text-neutral text-center md:text-left">
               League name:
             </label>
             <input
@@ -88,12 +88,12 @@ const AddLeague = ({ playerId }) => {
               value={name}
             />
           </div>
-          <div className="flex flex-col w-1/2 mr-2 text-neutral items-center md:items-start">
-            <label className="text-md w-1/2 font-medium mb-2 text-neutral text-center md:text-left">
+          <div className="flex flex-col w-full mr-2 text-neutral items-center md:items-start">
+            <label className="text-md w-full font-medium mb-2 text-neutral text-center md:text-left">
               League location:
             </label>
             <input
-              className="input bg-gray-100 w-full  shadow-md rounded-md mb-2 placeholder:text-gray-500"
+              className="input bg-gray-100 w-full shadow-md rounded-md mb-2 placeholder:text-gray-500"
               placeholder="Somewhere on earth"
               type="text"
               name="location"
@@ -103,8 +103,8 @@ const AddLeague = ({ playerId }) => {
           </div>
         </div>
         {/* Schedule and logo container */}
-        <div className="flex justify-center md:justify-between lg:justify-between mb-4 gap-5">
-          <div className="flex flex-col w-1/2 mr-2 text-neutral items-center md:items-start">
+        <div className="flex flex-col md:flex-row justify-center items-center md:justify-between lg:justify-between mb-4 gap-5">
+          <div className="flex flex-col w-full mr-2 text-neutral items-center md:items-start">
             <label className="text-md font-medium my-2 text-neutral text-center md:text-left">
               League schedule:
             </label>
@@ -133,8 +133,8 @@ const AddLeague = ({ playerId }) => {
           </div>
         </div>
         {/* Deadline and fee container */}
-        <div className="flex justify-center md:justify-between lg:justify-between mb-4 gap-5">
-          <div className="flex flex-col w-1/3 md:w-1/2 lg:w-1/2 mr-2 text-neutral items-center md:items-start">
+        <div className="flex flex-col md:flex-row justify-center items-center md:justify-between lg:justify-between mb-4 gap-5">
+          <div className="flex flex-col w-full mr-2 text-neutral items-center md:items-start">
             <label className="text-md font-medium my-2 text-neutral text-center md:text-left">
               Open for registration:
             </label>
@@ -152,7 +152,7 @@ const AddLeague = ({ playerId }) => {
             </select>
           </div>
 
-          <div className="flex flex-col w-1/3 md:w-1/2 lg:w-1/2 mr-2 text-neutral items-center md:items-start">
+          <div className="flex flex-col w-full md:w-1/2 lg:w-1/2 mr-2 text-neutral items-center md:items-start">
             <label className="text-md font-medium my-2 text-neutral text-center md:text-left">
               Registration deadline:
             </label>
@@ -164,7 +164,7 @@ const AddLeague = ({ playerId }) => {
               value={registrationDeadline}
             />
           </div>
-          <div className="flex flex-col w-1/3 md:w-1/2 lg:w-1/2 mr-2 text-neutral items-center md:items-start ">
+          <div className="flex flex-col w-full md:w-1/2 lg:w-1/2 mr-2 text-neutral items-center md:items-start ">
             <label className="text-md font-medium my-2 text-neutral text-center md:text-left">
               Registration fee (EUR):
             </label>

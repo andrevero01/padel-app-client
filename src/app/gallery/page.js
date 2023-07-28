@@ -78,8 +78,8 @@ export default function DisplayImages() {
   };
 
   return (
-    <div className="bg-gray-100 flex justify-center ">
-      <div className=" bg-white shadow-lg p-10 w-1/2 md:w-3/4">
+    <div className="bg-gray-100 flex justify-center h-full">
+      <div className=" bg-white shadow-lg p-10 w-full md:w-3/4">
         <h1 className="text-2xl text-primary-focus font-bold mb-10 text-center">
           Check out our gallery
         </h1>
@@ -108,7 +108,7 @@ export default function DisplayImages() {
           <h3 className="text-lg mt-20  text-center font-semibold text-gray-800">
             Have some nice photos to add?
           </h3>
-          <div className=" shadow-lg rounded-lg p-6">
+          <div className=" shadow-lg rounded-lg p-6 flex flex-col justify-center items-center">
             <p className="text-gray-600 mb-2">Upload file:</p>
             <input
               type="file"
