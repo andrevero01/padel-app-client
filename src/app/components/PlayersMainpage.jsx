@@ -37,7 +37,7 @@ const PlayersMainpage = () => {
           <div>
             <button
               onClick={handleGetPlayers}
-              className="my-4 py-2 px-4 bg-primary text-white rounded"
+              className="my-4 py-2 px-4 bg-secondary text-white rounded"
             >
               Show me the top 5 players
             </button>

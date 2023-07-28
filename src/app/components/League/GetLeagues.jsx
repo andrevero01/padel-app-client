@@ -40,8 +40,8 @@ const GetLeagues = () => {
             <figure className="w-44 h-44 lg:w-72 lg:h-72 bg-white">
               <img src={league.leagueLogo} alt="League logo" />
             </figure>
-            <div className="card-body">
-              <h2 className="card-title text-neutral">{league.name}</h2>
+            <div className="card-body bg-gray-900">
+              <h2 className="card-title text-primary">{league.name}</h2>
               <div className="flex justify-around">
                 <span className="text-md font-medium">
                   📍 {league.location}
@@ -60,7 +60,7 @@ const GetLeagues = () => {
                 </span>
               </div>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center bg-gray-900 rounded-b-2xl">
               {/* Get league details */}
               <button
                 onClick={() => handleOpenModal(league)}
@@ -88,7 +88,7 @@ const GetLeagues = () => {
               )}
             </div>
             {isLoggedIn && playerData._id == league.createdBy && (
-              <div className="card-actions flex justify-center mt-2">
+              <div className="card-actions flex justify-center mt-2 bg-gray-900 rounded-b-2xl">
                 {/* Delete league / Edit league */}
                 <DeleteLeague leagueId={league._id} />
                 <Link
@@ -103,6 +103,7 @@ const GetLeagues = () => {
           </div>
         ))}
       </div>
+
       {/* Login sidebar */}
       <div className="drawer-side">
         <label htmlFor="my-drawer-4" className="drawer-overlay"></label>

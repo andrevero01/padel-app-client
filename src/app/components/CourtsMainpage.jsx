@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useState } from "react";
 import axios from "axios";
 import CourtModal from "./modals/CourtModal";
@@ -36,7 +36,7 @@ function CourtsMainpage() {
         {!buttonClicked && (
           <button
             onClick={handleGetCourts}
-            className="py-2 px-4 bg-primary text-white rounded"
+            className="py-2 px-4 bg-secondary text-white rounded"
           >
             Show me courts in my area
           </button>
@@ -57,10 +57,10 @@ function CourtsMainpage() {
               <span className="font-bold">Surface:</span> {court.surface}
             </p>
             <img
-                    src={court.picture}
-                    alt={court.name}
-                    className="w-full h-48 object-cover rounded-b-lg"
-                />
+              src={court.picture}
+              alt={court.name}
+              className="w-full h-48 object-cover rounded-b-lg"
+            />
           </div>
         ))}
       </div>

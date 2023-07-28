@@ -108,6 +108,7 @@ const Page = () => {
                   Find a Team
                 </button>
               </Link>
+
             </div>
 
             {/* Profile Picture */}
@@ -163,6 +164,7 @@ const Page = () => {
           <TeamMates playerData={playerData} />
         </Suspense> */}
 
+
             {/* Winning Streak Counter */}
             {!isLoading && winningStreak > 0 && (
               <div className="mt-6">
@@ -194,6 +196,7 @@ const Page = () => {
                 <MixedDoubles playerData={playerData} />
               </Suspense>
             </div>
+
           </div>
           <Sidebar />
         </div>

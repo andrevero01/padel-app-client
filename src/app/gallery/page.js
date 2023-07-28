@@ -78,16 +78,19 @@ export default function DisplayImages() {
   };
 
   return (
-    <div className="flex justify-center mt-20">
-      <div className="w-1/2 md:w-3/4">
-        <h1 className="text-2xl font-bold mb-10 text-center">
+    <div className="bg-gray-100 flex justify-center ">
+      <div className=" bg-white shadow-lg p-10 w-1/2 md:w-3/4">
+        <h1 className="text-2xl text-primary-focus font-bold mb-10 text-center">
           Check out our gallery
         </h1>
 
         <Slider {...settings}>
           {images.map((imageName, index) => (
             <div key={index} className="h-96 md:h-80 lg:h-96">
-              <div className="w-full h-20rem flex items-center justify-center">
+              <div
+                className="w-full h-96
+             flex items-center justify-center"
+              >
                 <img
                   src={getImageURL(imageName)}
                   alt={`Image ${index + 1}`}
