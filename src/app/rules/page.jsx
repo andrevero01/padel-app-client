@@ -42,8 +42,8 @@ function Rules() {
   };
 
   return (
-    <div className="bg-gray-100 pt-10 flex justify-center h-screen">
-      <div className="bg-white w-1/2 md:w-3/4 p-10">
+    <div className="bg-gray-100 pt-10 flex justify-center h-screen w-full">
+      <div className="bg-white w-full md:w-3/4 p-10">
         <h1 className="text-2xl text-primary-focus font-bold mb-10 text-center">
           Everything you need to know:
         </h1>

@@ -70,7 +70,7 @@ const AdminPlayersCreate = () => {
         coach: "",
       });
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   };
 
@@ -80,8 +80,8 @@ const AdminPlayersCreate = () => {
       <form onSubmit={handleSubmit}>
         {/* Name */}
 
-        <div className="flex justify-start mx-3">
-          <div className="flex flex-col w-3/6">
+        <div className="flex flex-col lg:flex-row justify-center items-center mx-3">
+          <div className="flex flex-col w-full">
             <label className="font-bold mb-3">Email</label>
             <input
               type="text"
@@ -93,7 +93,7 @@ const AdminPlayersCreate = () => {
               required
             />
           </div>
-          <div className="flex flex-col w-3/6">
+          <div className="flex flex-col w-full">
             <label className="font-bold mb-3">Password</label>
             <input
               type="text"
@@ -105,7 +105,7 @@ const AdminPlayersCreate = () => {
               required
             />
           </div>
-          <div className="flex flex-col w-3/6">
+          <div className="flex flex-col w-full">
             <label className="font-bold mb-3">First Name</label>
             <input
               type="text"
@@ -117,7 +117,7 @@ const AdminPlayersCreate = () => {
               required
             />
           </div>
-          <div className="flex flex-col w-3/6">
+          <div className="flex flex-col w-full">
             <label className="font-bold mb-3">Last Name</label>
             <input
               type="text"
@@ -235,7 +235,9 @@ const AdminPlayersCreate = () => {
         <div className=" mx-3 mt-6">
           <div className="collapse bg-base-100 rounded-lg">
             <input type="checkbox" />
-            <div className="collapse-title text-xl font-medium bg-gray-100 placeholder:text-gray-500 mr-3">Advanced</div>
+            <div className="collapse-title text-xl font-medium bg-gray-100 placeholder:text-gray-500 mr-3">
+              Advanced
+            </div>
             <div className="collapse-content bg-gray-100 shadow-md placeholder:text-gray-500 mr-3">
               {/* Handedness */}
 
