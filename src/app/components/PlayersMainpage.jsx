@@ -5,7 +5,8 @@ import PlayerModal from "./modals/PlayerModal";
 
 const PlayersMainpage = () => {
   const [players, setPlayers] = useState([]);
-  const [selectedPlayer, setSelectedPlayer] = useState(null); // Add this line
+  const [selectedPlayer, setSelectedPlayer] = useState(null);
+  const [buttonClicked, setButtonClicked] = useState(false);
 
   const getPlayers = async () => {
     const response = await axios.get("http://localhost:5005/api/players", {
@@ -18,6 +19,7 @@ const PlayersMainpage = () => {
 
   const handleGetPlayers = () => {
     getPlayers();
+    setButtonClicked(true);
   };
 
   const handleOpenModal = (player) => {
@@ -30,46 +32,50 @@ const PlayersMainpage = () => {
 
   return (
     <div>
-      <div>
-        <button
-          onClick={handleGetPlayers}
-          className="my-4 py-2 px-4 bg-primary text-white rounded"
-        >
-          Get Players
-        </button>
-
-        <div className="flex flex-wrap justify-center">
-          {players.map((player) => (
-            <div
-              key={player._id} // Use _id instead of id
-              className="max-w-xs p-4 mx-2 my-2 bg-white rounded shadow"
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        {!buttonClicked && (
+          <div>
+            <button
+              onClick={handleGetPlayers}
+              className="my-4 py-2 px-4 bg-primary text-white rounded"
             >
-              <div className="font-bold">
-                <p>
-                  {player.firstName} {player.lastName}
-                </p>
-                <br />
-                Team(s):
-                <ul>
-                  {player.team.map((team) => (
-                    <li key={team._id}>{team.name}</li>
-                  ))}
-                </ul>
-                <button
-                  onClick={() => handleOpenModal(player)}
-                  className="mt-4 py-2 px-4 bg-primary text-white rounded"
-                >
-                  View Details
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {selectedPlayer && (
-          <PlayerModal player={selectedPlayer} onClose={handleCloseModal} />
+              Show me the top 5 players
+            </button>
+          </div>
         )}
       </div>
+
+      <div className="flex flex-wrap justify-center">
+        {players.map((player) => (
+          <div
+            key={player._id}
+            className="max-w-xs p-4 mx-2 my-2 bg-white rounded shadow"
+          >
+            <div className="font-bold">
+              <p>
+                {player.firstName} {player.lastName}
+              </p>
+              <br />
+              Team(s):
+              <ul>
+                {player.team.map((team) => (
+                  <li key={team._id}>{team.name}</li>
+                ))}
+              </ul>
+              <button
+                onClick={() => handleOpenModal(player)}
+                className="mt-4 py-2 px-4 bg-primary text-white rounded"
+              >
+                View Details
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {selectedPlayer && (
+        <PlayerModal player={selectedPlayer} onClose={handleCloseModal} />
+      )}
     </div>
   );
 };
