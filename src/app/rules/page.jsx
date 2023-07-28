@@ -42,7 +42,7 @@ function Rules() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="mt-20 flex justify-center h-screen">
       <div className="w-1/2 md:w-3/4">
         <h1 className="text-2xl font-bold mb-4 text-center">
           Everything you need to know:

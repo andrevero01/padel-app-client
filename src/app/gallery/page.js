@@ -87,7 +87,10 @@ export default function DisplayImages() {
         <Slider {...settings}>
           {images.map((imageName, index) => (
             <div key={index} className="h-96 md:h-80 lg:h-96">
-              <div className="w-full h-20rem flex items-center justify-center">
+              <div
+                className="w-full h-96
+             flex items-center justify-center"
+              >
                 <img
                   src={getImageURL(imageName)}
                   alt={`Image ${index + 1}`}

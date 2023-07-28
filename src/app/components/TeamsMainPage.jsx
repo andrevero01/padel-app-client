@@ -24,7 +24,7 @@ const TeamsMainPage = () => {
       {teams.length === 0 ? (
         <button
           onClick={handleGetTeams}
-          className="my-4 py-2 px-4 bg-blue-500 text-white rounded"
+          className="my-4 py-2 px-4 bg-info text-white rounded"
         >
           Get Teams
         </button>
@@ -43,9 +43,7 @@ const TeamsMainPage = () => {
               />
             </div>
             <div className="font-bold text-xl mb-2">{team.name}</div>
-            <p>
-              Wins this season: {team.wins}
-            </p>
+            <p>Wins this season: {team.wins}</p>
           </div>
         ))}
       </div>
