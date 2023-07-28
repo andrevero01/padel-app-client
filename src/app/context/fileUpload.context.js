@@ -1,12 +1,12 @@
 "use client";
-
-import React, { createContext, useContext, useState } from "react";
+import React, { useState } from "react";
+import { createContext } from "react";
 
 export const FileUploadContext = createContext();
 
 export default function FileUploadProviderWrapper({ children }) {
-  const [uploadedFile, setUploadedFile] = useState(null);
-  const [uploadedFileURL, setUploadedFileURL] = useState(null);
+  const [uploadedFile, setUploadedFile] = useState();
+  const [uploadedFileURL, setUploadedFileURL] = useState();
 
   return (
     <FileUploadContext.Provider

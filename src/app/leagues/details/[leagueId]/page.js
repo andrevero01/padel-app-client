@@ -52,6 +52,7 @@ export default function LeagueDetailsPage() {
   checkGamesWonBetweenPlayers(leagueDetails, commonPlayers);
 
   const sortedPlayers = leagueDetails.players
+
     .slice()
     .sort((a, b) => b.wins - a.wins);
 

@@ -92,7 +92,7 @@ const GetLeagues = () => {
                 {/* Delete league / Edit league */}
                 <DeleteLeague leagueId={league._id} />
                 <Link
-                  className="bg-info  hover:bg-blue-600 font-bold py-2 px-4 rounded my-4  text-white text-center w-1/3 opacity-85 "
+                  className="bg-info  hover:bg-blue-600 font-bold py-2 px-4 rounded my-4  text-white text-center w-1/3 opacity-8 "
                   href={`/leagues/edit/${league._id}`}
                   passHref
                 >

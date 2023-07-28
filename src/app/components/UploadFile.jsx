@@ -6,12 +6,12 @@ import { useContext } from "react";
 import { FileUploadContext } from "../context/fileUpload.context";
 
 const FileUpload = () => {
-  const { uploadedFile, setUploadedFile, setUploadedFileURL } =
+  const { uploadedFile, setUploadedFile, uploadedFileURL, setUploadedFileURL } =
     useContext(FileUploadContext);
   const [message, setMessage] = useState();
 
-  const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0];
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
     setUploadedFile(selectedFile);
   };
 
@@ -19,19 +19,20 @@ const FileUpload = () => {
     try {
       const response = await axios.get("http://localhost:5005/api/s3/url");
       const awsURL = response.data.uploadURL;
-      console.log(awsURL);
+      console.log("awsURL", awsURL);
 
-      const formData = new FormData();
-      formData.append("file", file);
+      // const formData = new FormData();
+      // formData.append("file", file);
 
-      await axios.put(awsURL, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
+      await axios.put(awsURL, uploadedFile);
+      //   {
+      //   headers: {
+      //     "Content-Type": "multipart/form-data",
+      //   },
+      // });
+      console.log("uploadedFile", uploadedFile);
+      setUploadedFileURL(uploadedFile);
       setMessage("File uploaded successfully!");
-      return awsURL;
     } catch (error) {
       console.error("Error uploading file:", error.message);
       setMessage("Failed to upload file.");
@@ -42,7 +43,7 @@ const FileUpload = () => {
     <>
       <p>Upload file:</p>
       <input type="file" onChange={handleFileChange} />
-      <input type="button" value={"Send"} onClick={handleSendClick} />
+      <input type="button" onClick={handleSendClick} value={"Send"} />
       {message && <p>{message}</p>}
     </>
   );

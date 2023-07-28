@@ -16,11 +16,12 @@ export default function SendAWS() {
     try {
       // Make a request to your API to get the AWS URL
       const response = await axios.get("http://localhost:5005/api/s3/url");
-      const awsURL = response.data.uploadURL; // Assuming the response contains the uploadURL
+      const awsURL = response.data.uploadURL;
       console.log(awsURL);
 
       // Upload the selected file to AWS using the obtained URL
       await axios.put(awsURL, file);
+      console.log("awsURL", awsURL, "file", file);
       setMessage("File uploaded successfully!");
     } catch (error) {
       console.error("Error uploading file:", error);
