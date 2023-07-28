@@ -42,9 +42,9 @@ function Rules() {
   };
 
   return (
-    <div className="mt-20 flex justify-center h-screen">
-      <div className="w-1/2 md:w-3/4">
-        <h1 className="text-2xl font-bold mb-4 text-center">
+    <div className="bg-gray-100 pt-10 flex justify-center h-screen">
+      <div className="bg-white w-1/2 md:w-3/4 p-10">
+        <h1 className="text-2xl text-primary-focus font-bold mb-10 text-center">
           Everything you need to know:
         </h1>
         <Slider {...settings}>
@@ -54,7 +54,7 @@ function Rules() {
                 <img
                   src={slide.imgUrl}
                   alt={`Slide ${index + 1}`}
-                  className="h-full object-contain rounded-lg"
+                  className="h-full object-contain rounded-lg mb-10"
                 />
               </div>
               <p

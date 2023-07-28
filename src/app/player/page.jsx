@@ -63,8 +63,7 @@ const Page = () => {
     <div className="flex justify-evenly h-full">
       <Sidebar />
 
-      <div className="md:mb-10 h-full grow">
-
+      <div className="md:mb-10 grow h-screen">
         {/* Buttons */}
 
         <div className="flex justify-between md:justify-center mx-3">
@@ -162,7 +161,8 @@ const Page = () => {
         {!isLoading && winningStreak > 0 && (
           <div className="mt-6">
             <p className="text-center text-slate-500">
-              Current Winning Streak: <span className="font-bold"> {winningStreak} </span>games
+              Current Winning Streak:{" "}
+              <span className="font-bold"> {winningStreak} </span>games
             </p>
           </div>
         )}

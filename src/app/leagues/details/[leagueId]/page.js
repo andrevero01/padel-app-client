@@ -5,10 +5,12 @@ import axios from "axios";
 import { useContext } from "react";
 import { LeaguesContext } from "@/app/context/leagues.context";
 import { useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function LeagueDetailsPage() {
   const [leagueDetails, setLeagueDetails] = useState(null);
   const { leagueId } = useParams();
+  const router = useRouter();
 
   useEffect(() => {
     if (leagueId) {
@@ -57,7 +59,7 @@ export default function LeagueDetailsPage() {
     .sort((a, b) => b.wins - a.wins);
 
   return (
-    <div>
+    <div className="m-20">
       <div className="text-center mt-4">
         <h1 className="text-2xl font-semibold">{leagueDetails.name}</h1>
         <p className="mt-2 text-gray-600">City: {leagueDetails.location}</p>
@@ -67,7 +69,7 @@ export default function LeagueDetailsPage() {
           alt={leagueDetails.name + " Logo"}
         />
       </div>
-      <table className="min-w-full">
+      <table className="min-w-full text-center">
         <thead>
           <tr>
             <th className="px-4 py-2">Players</th>
@@ -77,7 +79,7 @@ export default function LeagueDetailsPage() {
         <tbody>
           {sortedPlayers.map((player) => (
             <tr key={player._id}>
-              <td className="border px-4 py-2">
+              <td className="border px-2 py-2">
                 {player.firstName} {player.lastName}
               </td>
               <td className="border px-4 py-2">{player.wins || 0}</td>
@@ -85,6 +87,16 @@ export default function LeagueDetailsPage() {
           ))}
         </tbody>
       </table>
+      <div>
+        <button
+          className="m-10 text-secondary-focus"
+          onClick={() => {
+            router.push("/leagues");
+          }}
+        >
+          Back to leagues
+        </button>
+      </div>
       <ScrollToTopButton />
     </div>
   );
