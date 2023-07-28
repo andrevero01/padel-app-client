@@ -6,6 +6,7 @@ import axios from "axios";
 import AddPlayersToTeam from "../components/AddPlayersToTeam";
 import AddCourt from "../components/AddCourt";
 import AddLeagues from "../components/AddLeagues";
+import Sidebar from "../components/Sidebar";
 
 const CreateGame = () => {
   const { playerData, getPlayerData } = useContext(AuthContext);
@@ -64,14 +65,30 @@ const CreateGame = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
+
+    // Check if the "leagues" field is being changed
+    if (name === "leagues") {
+      // If the value is an empty object, set "leagues" to null
+      const leaguesValue = JSON.stringify(value) === "{}" ? null : value;
+
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        leagues: leaguesValue,
+      }));
+    } else {
+      // For other fields, update the state as usual
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const leaguesValue =
+      formData.matchType === "League Game" ? formData.leagues : null;
 
     try {
       const gameRes = await axios.post("http://localhost:5005/api/games", {
@@ -81,7 +98,7 @@ const CreateGame = () => {
         winner: formData.winner,
         teams: formData.teams,
         matchType: formData.matchType,
-        leagues: formData.leagues,
+        leagues: leaguesValue,
       });
 
       // Reset the form
@@ -108,7 +125,7 @@ const CreateGame = () => {
         },
       });
     } catch (error) {
-      console.error(error);
+      console.error("Server error data:", error.response.data);
     }
   };
 
@@ -184,7 +201,7 @@ const CreateGame = () => {
     formData.matchType === "League Game" && leaguesFetched;
 
   return (
-    <div className="py-4 flex flex-col bg-white mb-14">
+    <div className="py-4 flex flex-col bg-white rounded-lg mb-14 md:w-1/2">
       <h1 className="text-2xl font-bold mb-4 mx-3">Register Game</h1>
 
       {/* Date */}
