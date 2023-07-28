@@ -1,14 +1,13 @@
 "use client";
 import React from "react";
-import Link from "next/link"; // Import Link from Next.js
+import Link from "next/link";
 
 const LeagueDetailsModal = ({ league, onClose }) => {
   console.log(league);
 
   // Function to handle button click and redirect to league ID's link
   const handleRedirectToLeague = () => {
-    // Assuming the league ID is available in league._id
-    const leagueId = league._id; // Adjust this based on your data structure
+    const leagueId = league._id;
     window.location.href = `http://localhost:3000/leagues/details/${leagueId}`;
   };
 
