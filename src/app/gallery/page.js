@@ -117,7 +117,7 @@ export default function DisplayImages() {
             />
             <input
               type="button"
-              className="btn btn-primary  w-1/4"
+              className="btn btn-primary 1/2 md:w-1/4 lg:w-1/4 text-white"
               onClick={handleSendClick}
               value={"Send"}
             />

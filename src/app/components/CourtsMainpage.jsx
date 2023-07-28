@@ -42,14 +42,16 @@ function CourtsMainpage() {
           </button>
         )}
       </div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-4 text-neutral">
         {courts.map((court) => (
           <div
             key={court._id}
             className="bg-white rounded-lg shadow p-4 hover:shadow-lg transition-shadow cursor-pointer"
             onClick={() => handleOpenModal(court)}
           >
-            <div className="font-bold text-xl mb-2">{court.name}</div>
+            <div className="font-bold text-xl mb-2 text-primary-focus">
+              {court.name}
+            </div>
             <p>
               <span className="font-bold">Address:</span> {court.address}
             </p>

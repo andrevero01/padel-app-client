@@ -45,7 +45,7 @@ const PlayersMainpage = () => {
         )}
       </div>
 
-      <div className="flex flex-wrap justify-center">
+      <div className="flex flex-wrap justify-center text-neutral">
         {players.map((player) => (
           <div
             key={player._id}
@@ -56,15 +56,10 @@ const PlayersMainpage = () => {
                 {player.firstName} {player.lastName}
               </p>
               <br />
-              Team(s):
-              <ul>
-                {player.team.map((team) => (
-                  <li key={team._id}>{team.name}</li>
-                ))}
-              </ul>
+
               <button
                 onClick={() => handleOpenModal(player)}
-                className="mt-4 py-2 px-4 bg-primary text-white rounded"
+                className="mt-4 py-2 px-4 btn-primary text-white rounded"
               >
                 View Details
               </button>

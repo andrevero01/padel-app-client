@@ -121,15 +121,15 @@ const AddLeague = ({ playerId }) => {
             <label className="text-md font-medium my-2 text-neutral text-center md:text-left">
               League logo:
             </label>
-            <FileUpload />
-            {/* <input
+            {/* <FileUpload /> */}
+            <input
               className="input bg-gray-100 placeholder:text-gray-500 w-full shadow-md rounded-md mb-2 "
               type="string"
               placeholder="Add your URL here"
               name="leagueLogo"
               onChange={(e) => setLeagueLogo(e.target.value)}
               value={leagueLogo}
-            /> */}
+            />
           </div>
         </div>
         {/* Deadline and fee container */}
