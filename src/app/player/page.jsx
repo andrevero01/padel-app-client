@@ -132,7 +132,7 @@ const Page = () => {
 
         {/* Basic Stat Logs */}
         {playerData && playerData.games && playerData.leagues && (
-          <div className="flex justify-center bg-base-200 rounded-lg shadow-lg mx-3 my-5 divide-x divide-green-800">
+          <div className="flex justify-center bg-base-200 rounded-lg shadow-lg mx-3 my-5 divide-x divide-secondary">
             <div className="w-2/5 md:max-w-xs py-3 text-center text-slate-500">
               <p>{playerData.games.length || 0}</p>
               <p>Played Games</p>
