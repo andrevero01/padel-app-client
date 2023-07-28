@@ -64,24 +64,13 @@ const Page = () => {
       <Sidebar />
 
       <div className="md:mb-10 h-full grow">
-        {/* Title */}
-
-        <div className="flex justify-between">
-          <Link href="/settings">
-            <img
-              src={cogs.src}
-              alt="Cogs Icon"
-              className="max-h-7 mr-3 mt-1 md:hidden"
-            />
-          </Link>
-        </div>
 
         {/* Buttons */}
 
         <div className="flex justify-between md:justify-center mx-3">
           <Link
             href="/createGame"
-            className="bg-primary w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0 mr-3"
+            className="bg-primary shadow-lg hover:text-white w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0 mr-3"
           >
             <button className="flex flex-col justify-center items-center">
               <img
@@ -94,7 +83,7 @@ const Page = () => {
           </Link>
           <Link
             href="/leagues"
-            className="bg-primary w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0"
+            className="bg-primary shadow-lg hover:text-white w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0"
           >
             <button className="flex flex-col justify-center items-center">
               <img
@@ -107,7 +96,7 @@ const Page = () => {
           </Link>
           <Link
             href="/teams"
-            className="bg-primary w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0 ml-3"
+            className="bg-primary shadow-lg hover:text-white w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0 ml-3"
           >
             <button className="flex flex-col justify-center items-center">
               <img src={team.src} alt="Trophy Icon" className="max-h-10 my-1" />
@@ -143,7 +132,7 @@ const Page = () => {
 
         {/* Basic Stat Logs */}
         {playerData && playerData.games && playerData.leagues && (
-          <div className="flex justify-center mx-3 my-5 divide-x divide-green-800">
+          <div className="flex justify-center bg-base-200 rounded-lg shadow-lg mx-3 my-5 divide-x divide-secondary">
             <div className="w-2/5 md:max-w-xs py-3 text-center text-slate-500">
               <p>{playerData.games.length || 0}</p>
               <p>Played Games</p>
@@ -172,8 +161,8 @@ const Page = () => {
         {/* Winning Streak Counter */}
         {!isLoading && winningStreak > 0 && (
           <div className="mt-6">
-            <p className="font-bold text-center text-slate-500">
-              Current Winning Streak: {winningStreak} games
+            <p className="text-center text-slate-500">
+              Current Winning Streak: <span className="font-bold"> {winningStreak} </span>games
             </p>
           </div>
         )}

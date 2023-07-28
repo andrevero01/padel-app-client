@@ -35,7 +35,7 @@ function Singles({ playerData }) {
             );
 
             return (
-              <div key={game._id} className="bg-base-200 w-full">
+              <div key={game._id} className="bg-base-200 shadow-lg w-full">
 
                 {/* Players */}
                 <div className="flex flex-col divide-y divide-yellow-100 text-xs">
@@ -57,13 +57,13 @@ function Singles({ playerData }) {
                       ) : null}
                     </div>
                     <div className="flex justify-center items-center mr-3">
-                      <p className="text-white px-2 py-1 m-2 bg-gray-600">
+                      <p className="text-accent px-2 py-1 m-2 bg-base-300">
                         {userTeam.score.sets}
                       </p>
-                      <p className="text-white px-2 py-1 m-2 bg-gray-600">
+                      <p className="text-accent px-2 py-1 m-2 bg-base-300">
                         {userTeam.score.games}
                       </p>
-                      <p className="text-white px-2 py-1 m-2 bg-gray-600">
+                      <p className="text-accent px-2 py-1 m-2 bg-base-300">
                         {userTeam.score.points}
                       </p>
                     </div>
@@ -72,7 +72,7 @@ function Singles({ playerData }) {
                     <div className="flex flex-col justify-center ml-3 mt-1 mr-6 px-2 mb-2 w-1/3">
                       {opposingTeam.players.map((player) => (
                         <Link
-                          className="hover:text-white hover:underline"
+                          className="hover:text-accent hover:underline"
                           href={`/player/${player._id}`}
                         >
                           <p key={player._id}>
@@ -82,13 +82,13 @@ function Singles({ playerData }) {
                       ))}
                     </div>
                     <div className="flex justify-center items-center mr-3">
-                      <p className="text-white px-2 py-1 m-2 bg-gray-600">
+                      <p className="text-accent px-2 py-1 m-2 bg-base-300">
                         {opposingTeam.score.sets}
                       </p>
-                      <p className="text-white px-2 py-1 m-2 bg-gray-600">
+                      <p className="text-accent px-2 py-1 m-2 bg-base-300">
                         {opposingTeam.score.games}
                       </p>
-                      <p className="text-white px-2 py-1 m-2 bg-gray-600">
+                      <p className="text-accent px-2 py-1 m-2 bg-base-300">
                         {opposingTeam.score.points}
                       </p>
                     </div>
