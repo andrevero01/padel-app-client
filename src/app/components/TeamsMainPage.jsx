@@ -29,7 +29,7 @@ const TeamsMainPage = () => {
           Get Teams
         </button>
       ) : null}
-      <div className="flex flex-wrap justify-center">
+      <div className="flex flex-wrap justify-center text-neutral">
         {teams.slice(0, numTeamsDisplayed).map((team) => (
           <div
             key={team.id}

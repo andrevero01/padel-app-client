@@ -3,8 +3,8 @@ import React, { useState } from "react";
 
 const PlayerModal = ({ player, onClose }) => {
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50">
-      <div className="bg-white p-8 rounded shadow">
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50">
+      <div className="bg-gray-100 p-8 rounded shadow text-neutral">
         <h2 className="text-lg font-bold mb-4">
           {player.firstName} {player.lastName}
         </h2>
