@@ -201,230 +201,235 @@ const CreateGame = () => {
     formData.matchType === "League Game" && leaguesFetched;
 
   return (
-    <div className="py-4 flex flex-col bg-white rounded-lg mb-14 md:w-1/2">
-      <h1 className="text-2xl font-bold mb-4 mx-3">Register Game</h1>
+    <div className="flex justify-center items-center mt-12 text-neutral">
+      <div className="py-4 flex flex-col bg-white rounded-lg mb-14 md:w-2/3 w-full">
+        <h1 className="text-2xl font-bold mb-4 mx-3">Register Game</h1>
 
-      {/* Date */}
-      <div className="my-4">
-        <label>Date:</label>
-        <input
-          type="date"
-          name="date"
-          value={formData.date}
+        {/* Date */}
+        <div className="my-4 font-bold ml-3">
+          <label className="mr-3">Date:</label>
+          <input
+            type="date"
+            name="date"
+            value={formData.date}
+            onChange={handleChange}
+            className="input bg-gray-100 shadow-md rounded-md mb-2 placeholder:text-gray-500"
+          />
+        </div>
+
+        <h1 className="mx-3 font-bold mb-3">Match Type</h1>
+        <select
+          className="mx-3 select input bg-gray-100 shadow-md rounded-md mb-2 placeholder:text-gray-500"
+          type="string"
+          name="matchType"
+          value={formData.matchType}
           onChange={handleChange}
-        />
+          
+        >
+          {" "}
+          <option value="Singles">Singles</option>
+          <option value="Doubles">Doubles</option>
+          <option value="Mixed doubles">Mixed doubles</option>
+          <option value="Practice">Practice</option>
+          <option value="League Game">League Game</option>
+        </select>
+
+        {/* Add the searchable field */}
+        {formData.matchType === "League Game" && (
+          <AddLeagues
+            formData={formData}
+            onChange={handleChange}
+            existingLeagues={existingLeagues}
+            playerData={playerData}
+            disabled={!leaguesFetched}
+        
+          />
+        )}
+
+        <form onSubmit={handleSubmit}>
+          {/* Courts */}
+          <AddCourt
+            setFormData={setFormData}
+            fetchExistingCourts={fetchExistingCourts}
+            existingCourts={existingCourts}
+          />
+          {/* Players - Team 1 */}{" "}
+          <label className="font-bold ml-3 mt-6">Players team 1:</label>
+          <AddPlayersToTeam
+            formData={formData}
+            setFormData={setFormData}
+            fetchExistingPlayers={fetchExistingPlayers}
+            existingPlayers={existingPlayers}
+            teamIndex={0}
+          />
+          {/* Players - Team 2 */}
+          <label className="font-bold ml-3">Players team 2:</label>
+          <AddPlayersToTeam
+            formData={formData}
+            setFormData={setFormData}
+            fetchExistingPlayers={fetchExistingPlayers}
+            existingPlayers={existingPlayers}
+            teamIndex={1}
+          />
+          {/* Team 1 */}
+          <div className="flex flex-col mx-3 border-gray-400 mt-2 justify-center items-center">
+            <div className="flex items-center">
+              <h1 className="font-bold mr-6 hidden md:block">Team 1 </h1>
+              {/* Win Toggle */}
+              <h2 className="mr-3">Won:</h2>
+              <input
+                type="checkbox"
+                className="checkbox bg-gray-100 mr-6 border border-gray-300 shadow-lg"
+                onChange={(e) => handleTeamWinChange(0, e.target.checked)}
+                checked={formData.teams[0].winner}
+                name="teams[0].winner"
+              />
+
+              {/* Sets */}
+
+              <select
+                className="select input bg-gray-100 shadow-md rounded-md placeholder:text-gray-500 mr-3"
+                type="number"
+                name="teams[0].score.sets"
+                placeholder="Sets"
+                value={formData.teams[0]?.score?.sets || 0}
+                onChange={(e) =>
+                  handlePlayerScoreChange(0, "sets", parseInt(e.target.value))
+                }
+              >
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+
+              {/* Games */}
+
+              <select
+                className="select input bg-gray-100 shadow-md rounded-md placeholder:text-gray-500 mr-3"
+                type="number"
+                name="teams[0].score.games"
+                placeholder="Games"
+                value={formData.teams[0]?.score?.games || 0}
+                onChange={(e) =>
+                  handlePlayerScoreChange(0, "games", parseInt(e.target.value))
+                }
+              >
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>
+
+              {/* Points */}
+
+              <select
+                className="select input bg-gray-100 shadow-md rounded-md placeholder:text-gray-500 mr-3"
+                name="teams[0].score.points"
+                value={formData.teams[0]?.score?.points || "0"}
+                onChange={(e) =>
+                  handlePlayerScoreChange(0, "points", e.target.value)
+                }
+              >
+                <option value="0">0</option>
+                <option value="15">15</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="advantage">Advantage</option>
+                <option value="deuce">Deuce</option>
+              </select>
+            </div>
+          </div>
+          {/* Team 2 */}
+          <div className="flex flex-col mx-3 border-gray-400 mt-2 justify-center items-center">
+            <div className="flex items-center">
+              <h1 className="font-bold mr-6 hidden md:block">Team 2</h1>
+              {/* Win Toggle */}
+              <h2 className="mr-3">Won:</h2>
+              <input
+                type="checkbox"
+                className="checkbox bg-gray-100 mr-6 border border-gray-300 shadow-lg"
+                onChange={(e) => handleTeamWinChange(1, e.target.checked)}
+                checked={formData.teams[1].winner}
+                name="teams[1].winner"
+              />
+
+              {/* Sets */}
+
+              <select
+                className="select input bg-gray-100 shadow-md rounded-md placeholder:text-gray-500 mr-3"
+                type="number"
+                name="teams[1].score.sets"
+                placeholder="Sets"
+                value={formData.teams[1]?.score?.sets || 0}
+                onChange={(e) =>
+                  handlePlayerScoreChange(1, "sets", parseInt(e.target.value))
+                }
+              >
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+
+              {/* Games */}
+              <select
+                className="select input bg-gray-100 shadow-md rounded-md placeholder:text-gray-500 mr-3"
+                type="number"
+                name="teams[1].score.games"
+                placeholder="Games"
+                value={formData.teams[1]?.score?.games || 0}
+                onChange={(e) =>
+                  handlePlayerScoreChange(1, "games", parseInt(e.target.value))
+                }
+              >
+                {" "}
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>
+
+              {/* Points */}
+
+              <select
+                className="select input bg-gray-100 shadow-md rounded-md placeholder:text-gray-500 mr-3"
+                name="teams[1].score.points"
+                value={formData.teams[1]?.score?.points || "0"}
+                onChange={(e) =>
+                  handlePlayerScoreChange(1, "points", e.target.value)
+                }
+              >
+                <option value="0">0</option>
+                <option value="15">15</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="advantage">Advantage</option>
+                <option value="deuce">Deuce</option>
+              </select>
+            </div>
+          </div>
+          {/* Submit Button */}
+          <div className="flex justify-center items-center">
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded mt-4"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
       </div>
-
-      <h1 className="mx-3 font-bold mb-3">Match Type</h1>
-      <select
-        className="mx-3 select select-bordered"
-        type="string"
-        name="matchType"
-        value={formData.matchType}
-        onChange={handleChange}
-      >
-        {" "}
-        <option value="Singles">Singles</option>
-        <option value="Doubles">Doubles</option>
-        <option value="Mixed doubles">Mixed doubles</option>
-        <option value="Practice">Practice</option>
-        <option value="League Game">League Game</option>
-      </select>
-
-      {/* Add the searchable field */}
-      {formData.matchType === "League Game" && (
-        <AddLeagues
-          formData={formData}
-          onChange={handleChange}
-          existingLeagues={existingLeagues}
-          playerData={playerData}
-          disabled={!leaguesFetched}
-        />
-      )}
-
-      <form onSubmit={handleSubmit}>
-        {/* Courts */}
-        <AddCourt
-          setFormData={setFormData}
-          fetchExistingCourts={fetchExistingCourts}
-          existingCourts={existingCourts}
-        />
-        {/* Players - Team 1 */}{" "}
-        <label className="font-bold ml-3 mt-6">Players team 1:</label>
-        <AddPlayersToTeam
-          formData={formData}
-          setFormData={setFormData}
-          fetchExistingPlayers={fetchExistingPlayers}
-          existingPlayers={existingPlayers}
-          teamIndex={0}
-        />
-        {/* Players - Team 2 */}
-        <label className="font-bold ml-3">Players team 2:</label>
-        <AddPlayersToTeam
-          formData={formData}
-          setFormData={setFormData}
-          fetchExistingPlayers={fetchExistingPlayers}
-          existingPlayers={existingPlayers}
-          teamIndex={1}
-        />
-        {/* Team 1 */}
-        <div className="flex flex-col mx-3 border-gray-400 border-x-2 border-t-2">
-          <div className="flex">
-            <h1>Team 1 </h1>
-            {/* Win Toggle */}
-            <h2>Won</h2>
-            <input
-              type="checkbox"
-              className="checkbox"
-              onChange={(e) => handleTeamWinChange(0, e.target.checked)}
-              checked={formData.teams[0].winner}
-              name="teams[0].winner"
-            />
-
-            {/* Sets */}
-
-            <select
-              className="select select-bordered"
-              type="number"
-              name="teams[0].score.sets"
-              placeholder="Sets"
-              value={formData.teams[0]?.score?.sets || 0}
-              onChange={(e) =>
-                handlePlayerScoreChange(0, "sets", parseInt(e.target.value))
-              }
-            >
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
-
-            {/* Games */}
-
-            <select
-              className="select select-bordered"
-              type="number"
-              name="teams[0].score.games"
-              placeholder="Games"
-              value={formData.teams[0]?.score?.games || 0}
-              onChange={(e) =>
-                handlePlayerScoreChange(0, "games", parseInt(e.target.value))
-              }
-            >
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-            </select>
-
-            {/* Points */}
-
-            <select
-              className="select select-bordered"
-              name="teams[0].score.points"
-              value={formData.teams[0]?.score?.points || "0"}
-              onChange={(e) =>
-                handlePlayerScoreChange(0, "points", e.target.value)
-              }
-            >
-              <option value="0">0</option>
-              <option value="15">15</option>
-              <option value="30">30</option>
-              <option value="40">40</option>
-              <option value="advantage">Advantage</option>
-              <option value="deuce">Deuce</option>
-            </select>
-          </div>
-        </div>
-        {/* Team 2 */}
-        <div className="flex flex-col mx-3 border-2 border-gray-400">
-          <div className="flex">
-            <h1>Team 2</h1>
-            {/* Win Toggle */}
-            <h2>Won</h2>
-            <input
-              type="checkbox"
-              className="checkbox"
-              onChange={(e) => handleTeamWinChange(1, e.target.checked)}
-              checked={formData.teams[1].winner}
-              name="teams[1].winner"
-            />
-
-            {/* Sets */}
-
-            <select
-              className="select select-bordered"
-              type="number"
-              name="teams[1].score.sets"
-              placeholder="Sets"
-              value={formData.teams[1]?.score?.sets || 0}
-              onChange={(e) =>
-                handlePlayerScoreChange(1, "sets", parseInt(e.target.value))
-              }
-            >
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
-
-            {/* Games */}
-            <select
-              className="select select-bordered"
-              type="number"
-              name="teams[1].score.games"
-              placeholder="Games"
-              value={formData.teams[1]?.score?.games || 0}
-              onChange={(e) =>
-                handlePlayerScoreChange(1, "games", parseInt(e.target.value))
-              }
-            >
-              {" "}
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-            </select>
-
-            {/* Points */}
-
-            <select
-              className="select select-bordered"
-              name="teams[1].score.points"
-              value={formData.teams[1]?.score?.points || "0"}
-              onChange={(e) =>
-                handlePlayerScoreChange(1, "points", e.target.value)
-              }
-            >
-              <option value="0">0</option>
-              <option value="15">15</option>
-              <option value="30">30</option>
-              <option value="40">40</option>
-              <option value="advantage">Advantage</option>
-              <option value="deuce">Deuce</option>
-            </select>
-          </div>
-        </div>
-        {/* Submit Button */}
-        <div className="flex justify-center items-center">
-          <button
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded mt-4"
-          >
-            Submit
-          </button>
-        </div>
-      </form>
     </div>
   );
 };

@@ -13,7 +13,7 @@ const AddLeagues = ({ formData, onChange, existingLeagues, playerData }) => {
     <div className="ml-3 mt-6 flex flex-col">
       <label className="font-bold mb-3">Select a League:</label>
       <select
-        className="select select-bordered"
+        className="select input bg-gray-100 shadow-md rounded-md placeholder:text-gray-500 mr-3"
         name="leagues"
         onChange={onChange}
         value={formData.leagues}
@@ -23,7 +23,7 @@ const AddLeagues = ({ formData, onChange, existingLeagues, playerData }) => {
           {isDataLoaded ? "Select a League" : "Loading..."}
         </option>
         {filteredLeagues.map((league) => (
-          <option key={league._id} value={league._id}>
+          <option key={league._id} value={league._id} className="input bg-gray-100 shadow-md rounded-md mb-2 placeholder:text-gray-500">
             {league.name}
           </option>
         ))}

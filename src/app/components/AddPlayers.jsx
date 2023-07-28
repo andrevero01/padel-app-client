@@ -136,11 +136,9 @@ function AddPlayers({
     );
   }
 
-  // Return the regular search input for non-league games
   return (
     <div className="flex flex-col justify-start mx-3 mt-6">
       <div className="flex flex-col w-full">
-        {/* ... Existing search input and player list code here ... */}
       </div>
     </div>
   );

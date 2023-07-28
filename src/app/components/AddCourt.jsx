@@ -74,7 +74,7 @@ function AddCourt({ setFormData, fetchExistingCourts, existingCourts }) {
           type="text"
           placeholder="Search courts"
           onChange={(e) => handleCourtSearch(e.target.value)}
-          className="input border mr-3 grow"
+          className="input border mr-3 grow bg-gray-100 shadow-md rounded-md mb-2 placeholder:text-gray-500"
         />
         {isSearching && (
           <div className="mt-2">
