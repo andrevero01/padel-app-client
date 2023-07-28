@@ -65,12 +65,12 @@ const CreateGame = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-  
+
     // Check if the "leagues" field is being changed
     if (name === "leagues") {
       // If the value is an empty object, set "leagues" to null
       const leaguesValue = JSON.stringify(value) === "{}" ? null : value;
-  
+
       setFormData((prevFormData) => ({
         ...prevFormData,
         leagues: leaguesValue,
@@ -83,11 +83,12 @@ const CreateGame = () => {
       }));
     }
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const leaguesValue = formData.matchType === "League Game" ? formData.leagues : null;
+    const leaguesValue =
+      formData.matchType === "League Game" ? formData.leagues : null;
 
     try {
       const gameRes = await axios.post("http://localhost:5005/api/games", {
@@ -200,8 +201,7 @@ const CreateGame = () => {
     formData.matchType === "League Game" && leaguesFetched;
 
   return (
-    <div className="py-4 flex flex-col bg-white mb-14">
-    <Sidebar />
+    <div className="py-4 flex flex-col bg-white rounded-lg mb-14 md:w-1/2">
       <h1 className="text-2xl font-bold mb-4 mx-3">Register Game</h1>
 
       {/* Date */}
@@ -425,7 +425,6 @@ const CreateGame = () => {
           </button>
         </div>
       </form>
-      <Sidebar />
     </div>
   );
 };

@@ -52,8 +52,7 @@ const AdminPlayersCreate = () => {
         "http://localhost:5005/api/players",
         formData
       );
-      console.log(res.data); // Handle the response as needed
-      // Reset the form
+      console.log(res.data);
       setFormData({
         email: "",
         password: "",
@@ -71,8 +70,7 @@ const AdminPlayersCreate = () => {
         coach: "",
       });
     } catch (error) {
-      console.error(error);
-      // Handle the error as needed
+      console.error(error)
     }
   };
 

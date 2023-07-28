@@ -51,11 +51,21 @@ export default function LeagueDetailsPage() {
   const commonPlayers = comparePlayerIDs(leagueDetails);
   checkGamesWonBetweenPlayers(leagueDetails, commonPlayers);
 
-  const sortedPlayers = leagueDetails.players.slice().sort((a, b) => b.wins - a.wins);
+  const sortedPlayers = leagueDetails.players
+    .slice()
+    .sort((a, b) => b.wins - a.wins);
 
   return (
     <div>
-      {/* ... (existing JSX code) */}
+      <div className="text-center mt-4">
+        <h1 className="text-2xl font-semibold">{leagueDetails.name}</h1>
+        <p className="mt-2 text-gray-600">City: {leagueDetails.location}</p>
+        <img
+          className="mx-auto my-4 max-w-xs"
+          src={leagueDetails.leagueLogo}
+          alt={leagueDetails.name + " Logo"}
+        />
+      </div>
       <table className="min-w-full">
         <thead>
           <tr>
@@ -74,7 +84,7 @@ export default function LeagueDetailsPage() {
           ))}
         </tbody>
       </table>
-      {/* ... (existing JSX code) */}
+      <ScrollToTopButton />
     </div>
   );
 }
