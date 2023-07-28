@@ -60,132 +60,147 @@ const Page = () => {
   console.log(playerData);
 
   return (
-    <div className="flex justify-evenly h-full">
-      <Sidebar />
+    <div className="flex justify-center items-center w-full bg-white md:bg-base-100 lg:bg-base-100">
+      <div className="flex justify-center items-center bg-white rounded-lg w-full md:w-5/6 my-12">
+        <div className="flex justify-evenly w-full h-full text-neutral">
+          <Sidebar />
 
-      <div className="md:mb-10 grow h-screen">
-        {/* Buttons */}
+          <div className="md:mb-10 h-full grow">
+            {/* Buttons */}
 
-        <div className="flex justify-between md:justify-center mx-3">
-          <Link
-            href="/createGame"
-            className="bg-primary shadow-lg hover:text-white w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0 mr-3"
-          >
-            <button className="flex flex-col justify-center items-center">
-              <img
-                src={racket.src}
-                alt="Racket Icon"
-                className="max-h-10 my-1"
-              />
-              Log Game
-            </button>
-          </Link>
-          <Link
-            href="/leagues"
-            className="bg-primary shadow-lg hover:text-white w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0"
-          >
-            <button className="flex flex-col justify-center items-center">
-              <img
-                src={trophy.src}
-                alt="Trophy Icon"
-                className="max-h-10 my-1"
-              />
-              Find a League
-            </button>
-          </Link>
-          <Link
-            href="/teams"
-            className="bg-primary shadow-lg hover:text-white w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0 ml-3"
-          >
-            <button className="flex flex-col justify-center items-center">
-              <img src={team.src} alt="Trophy Icon" className="max-h-10 my-1" />
-              Find a Team
-            </button>
-          </Link>
-        </div>
+            <div className="flex justify-between md:justify-center mx-3">
+              <Link
+                href="/createGame"
+                className="bg-primary shadow-lg hover:text-accent-focus w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0 mr-3"
+              >
+                <button className="flex flex-col justify-center items-center">
+                  <img
+                    src={racket.src}
+                    alt="Racket Icon"
+                    className="max-h-10 my-1"
+                  />
+                  Log Game
+                </button>
+              </Link>
+              <Link
+                href="/leagues"
+                className="bg-primary shadow-lg hover:text-accent-focus w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0"
+              >
+                <button className="flex flex-col justify-center items-center">
+                  <img
+                    src={trophy.src}
+                    alt="Trophy Icon"
+                    className="max-h-10 my-1"
+                  />
+                  Find a League
+                </button>
+              </Link>
+              <Link
+                href="/teams"
+                className="bg-primary shadow-lg hover:text-accent-focus w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0 ml-3"
+              >
+                <button className="flex flex-col justify-center items-center">
+                  <img
+                    src={team.src}
+                    alt="Trophy Icon"
+                    className="max-h-10 my-1"
+                  />
+                  Find a Team
+                </button>
+              </Link>
 
-        {/* Profile Picture */}
-
-        <div className="flex flex-col justify-center items-center mx-3 my-5">
-          <Link href={`/player/${playerData._id}`}>
-            <div>
-              {playerData.profilePicture ? (
-                <img
-                  src={playerData.profilePicture}
-                  alt={`${playerData.firstName} ${playerData.lastName}`}
-                />
-              ) : (
-                <img
-                  src={defaultProfilePicture}
-                  alt="Default Profile"
-                  className="rounded-full"
-                />
-              )}
-              <p key={playerData._id}></p>
             </div>
-          </Link>
-          <h1 className="my-5 font-semibold text-2xl">
-            {playerData.firstName} {playerData.lastName}
-          </h1>
-        </div>
 
-        {/* Basic Stat Logs */}
-        {playerData && playerData.games && playerData.leagues && (
-          <div className="flex justify-center bg-base-200 rounded-lg shadow-lg mx-3 my-5 divide-x divide-secondary">
-            <div className="w-2/5 md:max-w-xs py-3 text-center text-slate-500">
-              <p>{playerData.games.length || 0}</p>
-              <p>Played Games</p>
-            </div>
-            <div className="w-2/5 md:max-w-xs py-3 text-center text-slate-500">
-              <p>{playerData.leagues.length || 0} </p>
-              <p>Active Leagues</p>
-            </div>
-            <div className="w-2/5 md:max-w-xs py-3 text-center text-slate-500">
-              <p>
-                {(
-                  (playerData.gamesWon.length / playerData.games.length) *
-                  100
-                ).toFixed(2)}
-                %
-              </p>
-              <p>Win Percentage</p>
-            </div>
-          </div>
-        )}
+            {/* Profile Picture */}
 
-        {/* <Suspense fallback={<div>Loading...</div>}>
+            <div className="flex flex-col justify-center items-center mx-3 my-5">
+              <Link href={`/player/${playerData._id}`}>
+                <div>
+                  {playerData.profilePicture ? (
+                    <img
+                      src={playerData.profilePicture}
+                      alt={`${playerData.firstName} ${playerData.lastName}`}
+                    />
+                  ) : (
+                    <img
+                      src={defaultProfilePicture}
+                      alt="Default Profile"
+                      className="rounded-full"
+                    />
+                  )}
+                  <p key={playerData._id}></p>
+                </div>
+              </Link>
+              <h1 className="my-5 font-semibold text-2xl">
+                {playerData.firstName} {playerData.lastName}
+              </h1>
+            </div>
+
+            {/* Basic Stat Logs */}
+            {playerData && playerData.games && playerData.leagues && (
+              <div className="flex justify-center bg-gray-100 rounded-lg shadow-lg mx-3 my-5 divide-x divide-secondary">
+                <div className="w-2/5 md:max-w-xs py-3 text-center text-slate-500">
+                  <p className="text-primary">{playerData.games.length || 0}</p>
+                  <p>Played Games</p>
+                </div>
+                <div className="w-2/5 md:max-w-xs py-3 text-center text-slate-500">
+                  <p className="text-primary">{playerData.leagues.length || 0} </p>
+                  <p>Active Leagues</p>
+                </div>
+                <div className="w-2/5 md:max-w-xs py-3 text-center text-slate-500">
+                  <p className="text-primary">
+                    {(
+                      (playerData.gamesWon.length / playerData.games.length) *
+                      100
+                    ).toFixed(2)}
+                    %
+                  </p>
+                  <p>Win Percentage</p>
+                </div>
+              </div>
+            )}
+
+            {/* <Suspense fallback={<div>Loading...</div>}>
           <TeamMates playerData={playerData} />
         </Suspense> */}
 
-        {/* Winning Streak Counter */}
-        {!isLoading && winningStreak > 0 && (
-          <div className="mt-6">
-            <p className="text-center text-slate-500">
-              Current Winning Streak:{" "}
-              <span className="font-bold"> {winningStreak} </span>games
-            </p>
+
+            {/* Winning Streak Counter */}
+            {!isLoading && winningStreak > 0 && (
+              <div className="mt-6">
+                <p className="text-center ">
+                  Current Winning Streak:{" "}
+                  <span className="font-bold text-primary">
+                    {" "}
+                    {winningStreak}{" "}
+                  </span>
+                  games
+                </p>
+              </div>
+            )}
+
+            <div className="flex flex-col md:flex-row justify-evenly md:items-start">
+              <Suspense fallback={<div>Loading...</div>}>
+                <Last5 playerData={playerData} />
+              </Suspense>
+
+              <Suspense fallback={<div>Loading...</div>}>
+                <Singles playerData={playerData} />
+              </Suspense>
+
+              <Suspense fallback={<div>Loading...</div>}>
+                <Doubles playerData={playerData} />
+              </Suspense>
+
+              <Suspense fallback={<div>Loading...</div>}>
+                <MixedDoubles playerData={playerData} />
+              </Suspense>
+            </div>
+
           </div>
-        )}
-
-        <div className="flex flex-col md:flex-row justify-evenly md:items-start">
-          <Suspense fallback={<div>Loading...</div>}>
-            <Last5 playerData={playerData} />
-          </Suspense>
-
-          <Suspense fallback={<div>Loading...</div>}>
-            <Singles playerData={playerData} />
-          </Suspense>
-
-          <Suspense fallback={<div>Loading...</div>}>
-            <Doubles playerData={playerData} />
-          </Suspense>
-
-          <Suspense fallback={<div>Loading...</div>}>
-            <MixedDoubles playerData={playerData} />
-          </Suspense>
+          <Sidebar />
         </div>
       </div>
-      <Sidebar />
     </div>
   );
 };

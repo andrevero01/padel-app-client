@@ -70,7 +70,7 @@ const AdminPlayersCreate = () => {
         coach: "",
       });
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   };
 
@@ -80,8 +80,8 @@ const AdminPlayersCreate = () => {
       <form onSubmit={handleSubmit}>
         {/* Name */}
 
-        <div className="flex justify-start mx-3">
-          <div className="flex flex-col w-3/6">
+        <div className="flex flex-col lg:flex-row justify-center items-center mx-3">
+          <div className="flex flex-col w-full">
             <label className="font-bold mb-3">Email</label>
             <input
               type="text"
@@ -89,11 +89,11 @@ const AdminPlayersCreate = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="input border border-red-500 mr-3 grow"
+              className="input bg-gray-100 shadow-md rounded-md placeholder:text-gray-500 mr-3"
               required
             />
           </div>
-          <div className="flex flex-col w-3/6">
+          <div className="flex flex-col w-full">
             <label className="font-bold mb-3">Password</label>
             <input
               type="text"
@@ -101,11 +101,11 @@ const AdminPlayersCreate = () => {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              className="input border border-red-500 mr-3 grow"
+              className="input bg-gray-100 shadow-md rounded-md placeholder:text-gray-500 mr-3"
               required
             />
           </div>
-          <div className="flex flex-col w-3/6">
+          <div className="flex flex-col w-full">
             <label className="font-bold mb-3">First Name</label>
             <input
               type="text"
@@ -113,11 +113,11 @@ const AdminPlayersCreate = () => {
               name="firstName"
               value={formData.firstName}
               onChange={handleChange}
-              className="input border border-red-500 mr-3 grow"
+              className="input bg-gray-100 shadow-md rounded-md placeholder:text-gray-500 mr-3"
               required
             />
           </div>
-          <div className="flex flex-col w-3/6">
+          <div className="flex flex-col w-full">
             <label className="font-bold mb-3">Last Name</label>
             <input
               type="text"
@@ -125,7 +125,7 @@ const AdminPlayersCreate = () => {
               name="lastName"
               value={formData.lastName}
               onChange={handleChange}
-              className="input border border-red-500 grow"
+              className="input bg-gray-100 shadow-md rounded-md placeholder:text-gray-500 mr-3"
               required
             />
           </div>
@@ -142,7 +142,8 @@ const AdminPlayersCreate = () => {
                 name="age"
                 value={formData.age}
                 onChange={handleChange}
-                className="input input-bordered w-15 mr-3 mt-3"
+                placeholder="0"
+                className="input bg-gray-100 shadow-md rounded-md placeholder:text-gray-500 mr-3"
               />
             </div>
             <div className="flex flex-col w-1/6 grow">
@@ -153,7 +154,7 @@ const AdminPlayersCreate = () => {
                 name="height"
                 value={formData.height}
                 onChange={handleChange}
-                className="input input-bordered mr-3 mt-3"
+                className="input bg-gray-100 shadow-md rounded-md placeholder:text-gray-500 mr-3"
               />
             </div>
             <div className="flex flex-col w-1/6 grow">
@@ -164,7 +165,7 @@ const AdminPlayersCreate = () => {
                 name="weight"
                 value={formData.weight}
                 onChange={handleChange}
-                className="input input-bordered mt-3"
+                className="input bg-gray-100 shadow-md rounded-md placeholder:text-gray-500 mr-3"
               />
             </div>
           </div>
@@ -180,7 +181,7 @@ const AdminPlayersCreate = () => {
               name="gender"
               value="Male"
               onChange={handleChange}
-              className="radio radio-success"
+              className="radio radio-success checked:bg-gray-200"
               checked={formData.gender === "Male"}
             />
             <label className="font-bold mr-8 ml-2 align-super">Male</label>
@@ -213,7 +214,7 @@ const AdminPlayersCreate = () => {
           <label className="font-bold">Nationality</label>
           <div className="flex justify-start mt-3">
             <select
-              className="input input-bordered w-full"
+              className="input input bg-gray-100 shadow-md rounded-md placeholder:text-gray-500 mr-3 w-full"
               type="text"
               name="nationality"
               value={formData.nationality}
@@ -234,8 +235,10 @@ const AdminPlayersCreate = () => {
         <div className=" mx-3 mt-6">
           <div className="collapse bg-base-100 rounded-lg">
             <input type="checkbox" />
-            <div className="collapse-title text-xl font-medium">Advanced</div>
-            <div className="collapse-content">
+            <div className="collapse-title text-xl font-medium bg-gray-100 placeholder:text-gray-500 mr-3">
+              Advanced
+            </div>
+            <div className="collapse-content bg-gray-100 shadow-md placeholder:text-gray-500 mr-3">
               {/* Handedness */}
 
               <div className="mt-6 mx-3">
@@ -346,7 +349,7 @@ const AdminPlayersCreate = () => {
                   name="coach"
                   value={formData.coach}
                   onChange={handleChange}
-                  className="input input-bordered w-full"
+                  className="input border-gray-300 bg-gray-100 shadow-md rounded-md placeholder:text-gray-500 mr-3 w-full"
                 />
               </div>
 
@@ -362,7 +365,7 @@ const AdminPlayersCreate = () => {
                     name="experienceLevel"
                     value="1"
                     onChange={handleChange}
-                    className="bg-green-500 mask mask-star-2 mask-half-1"
+                    className="bg-gray-500 mask mask-star-2 mask-half-1"
                     checked={formData.experienceLevel === "1"}
                   />
                   <input
@@ -370,7 +373,7 @@ const AdminPlayersCreate = () => {
                     name="experienceLevel"
                     value="2"
                     onChange={handleChange}
-                    className="bg-green-500 mask mask-star-2 mask-half-2"
+                    className="bg-gray-500 mask mask-star-2 mask-half-2"
                     checked={formData.experienceLevel === "2"}
                   />
                   <input
@@ -378,7 +381,7 @@ const AdminPlayersCreate = () => {
                     name="experienceLevel"
                     value="3"
                     onChange={handleChange}
-                    className="bg-green-500 mask mask-star-2 mask-half-1"
+                    className="bg-gray-500 mask mask-star-2 mask-half-1"
                     checked={formData.experienceLevel === "3"}
                   />
                   <input
@@ -386,7 +389,7 @@ const AdminPlayersCreate = () => {
                     name="experienceLevel"
                     value="4"
                     onChange={handleChange}
-                    className="bg-green-500 mask mask-star-2 mask-half-2"
+                    className="bg-gray-500 mask mask-star-2 mask-half-2"
                     checked={formData.experienceLevel === "4"}
                   />
                   <input
@@ -394,7 +397,7 @@ const AdminPlayersCreate = () => {
                     name="experienceLevel"
                     value="5"
                     onChange={handleChange}
-                    className="bg-green-500 mask mask-star-2 mask-half-1"
+                    className="bg-gray-500 mask mask-star-2 mask-half-1"
                     checked={formData.experienceLevel === "5"}
                   />
                   <input
@@ -402,7 +405,7 @@ const AdminPlayersCreate = () => {
                     name="experienceLevel"
                     value="6"
                     onChange={handleChange}
-                    className="bg-green-500 mask mask-star-2 mask-half-2"
+                    className="bg-gray-500 mask mask-star-2 mask-half-2"
                     checked={formData.experienceLevel === "6"}
                   />
                   <input
@@ -410,7 +413,7 @@ const AdminPlayersCreate = () => {
                     name="experienceLevel"
                     value="7"
                     onChange={handleChange}
-                    className="bg-green-500 mask mask-star-2 mask-half-1"
+                    className="bg-gray-500 mask mask-star-2 mask-half-1"
                     checked={formData.experienceLevel === "7"}
                   />
                   <input
@@ -418,7 +421,7 @@ const AdminPlayersCreate = () => {
                     name="experienceLevel"
                     value="8"
                     onChange={handleChange}
-                    className="bg-green-500 mask mask-star-2 mask-half-2"
+                    className="bg-gray-500 mask mask-star-2 mask-half-2"
                     checked={formData.experienceLevel === "8"}
                   />
                   <input
@@ -426,7 +429,7 @@ const AdminPlayersCreate = () => {
                     name="experienceLevel"
                     value="9"
                     onChange={handleChange}
-                    className="bg-green-500 mask mask-star-2 mask-half-1"
+                    className="bg-gray-500 mask mask-star-2 mask-half-1"
                     checked={formData.experienceLevel === "9"}
                   />
                   <input
@@ -434,7 +437,7 @@ const AdminPlayersCreate = () => {
                     name="experienceLevel"
                     value="10"
                     onChange={handleChange}
-                    className="bg-green-500 mask mask-star-2 mask-half-2"
+                    className="bg-gray-500 mask mask-star-2 mask-half-2"
                     checked={formData.experienceLevel === "10"}
                   />
                 </div>
