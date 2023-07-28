@@ -23,14 +23,10 @@ const AddLeague = ({ playerId }) => {
   //   uploadedFileURL ||
   //   "https://www.usaclicosenza.it/wp-content/uploads/2021/04/Padel-League-Logo.jpeg";
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    // const uploadedLogoURL = await FileUpload.handleSendClick();
-    // if (uploadedLogoURL) {
-    //   setLeagueLogo(uploadedLogoURL);
-    // }
-
+    console.log("Uploaded File URL:", uploadedFileURL);
     const body = {
       name,
       location,

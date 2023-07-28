@@ -80,16 +80,9 @@ const CreateGame = () => {
         score: formData.score,
         winner: formData.winner,
         teams: formData.teams,
-
-      });
-
-      console.log(gameRes.data);
-
-
         matchType: formData.matchType,
         leagues: formData.leagues,
       });
-
 
       // Reset the form
       setFormData({
@@ -240,7 +233,7 @@ const CreateGame = () => {
           existingCourts={existingCourts}
         />
         {/* Players - Team 1 */}{" "}
-        <label className="font-bold ml-3">Players team 1:</label>
+        <label className="font-bold ml-3 mt-6">Players team 1:</label>
         <AddPlayersToTeam
           formData={formData}
           setFormData={setFormData}

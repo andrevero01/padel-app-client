@@ -5,6 +5,7 @@ import Footer from "./components/Footer.jsx";
 import AuthProviderWrapper from "./context/auth.context";
 import LeaguesProviderWrapper from "./context/leagues.context";
 import FileUploadProviderWrapper from "./context/fileUpload.context";
+import ThemeContextProviderWrapper from "./context/darkTheme.context";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,8 +18,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
+        {/* <ThemeContextProviderWrapper> */}
         <AuthProviderWrapper>
-
           <FileUploadProviderWrapper>
             <LeaguesProviderWrapper>
               <Navbar />
@@ -26,8 +27,8 @@ export default function RootLayout({ children }) {
               <Footer />
             </LeaguesProviderWrapper>
           </FileUploadProviderWrapper>
-
         </AuthProviderWrapper>
+        {/* </ThemeContextProviderWrapper> */}
       </body>
     </html>
   );

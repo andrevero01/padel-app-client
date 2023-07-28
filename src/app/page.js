@@ -1,8 +1,11 @@
 import ScrollToTopButton from "./components/ScrollToTop.jsx";
 import Carousel from "./components/Carousel.jsx";
 import PlayersMainpage from "./components/PlayersMainpage.jsx";
+import ThemeToggle from "./components/ToggleTheme.js";
 //import CreatePlayer from "./createPlayer/page.jsx";
 import TeamsMainPage from "./components/TeamsMainPage.jsx";
+import { useContext } from "react";
+import { ThemeContext } from "./context/darkTheme.context.js";
 
 export default function Home() {
   const carouselImages = [
@@ -14,6 +17,7 @@ export default function Home() {
   ];
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
+      {/* <ThemeToggle /> */}
       <div className="px-24 py-10">
         <h1 className="text-center mb-4">Welcome to our homepage</h1>
         <p>

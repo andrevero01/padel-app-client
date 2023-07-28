@@ -27,8 +27,9 @@ export default function LeagueDetailsPage() {
     return <div>Loading...</div>;
   }
 
-  const sortedTeams = leagueDetails.teams.slice().sort((a, b) => b.wins - a.wins);
-
+  const sortedTeams = leagueDetails.teams
+    .slice()
+    .sort((a, b) => b.wins - a.wins);
 
   return (
     <div>
@@ -40,8 +41,8 @@ export default function LeagueDetailsPage() {
           src={leagueDetails.leagueLogo}
           alt={leagueDetails.name + " Logo"}
         />
-        </div>
-        <h2 className="mt-8 text-xl font-semibold">Teams</h2>
+      </div>
+      <h2 className="mt-8 text-xl font-semibold">Teams</h2>
       <table className="min-w-full">
         <thead>
           <tr>
