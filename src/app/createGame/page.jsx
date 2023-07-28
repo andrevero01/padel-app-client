@@ -64,12 +64,12 @@ const CreateGame = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
+  
     // Check if the "leagues" field is being changed
     if (name === "leagues") {
       // If the value is an empty object, set "leagues" to null
       const leaguesValue = JSON.stringify(value) === "{}" ? null : value;
-
+  
       setFormData((prevFormData) => ({
         ...prevFormData,
         leagues: leaguesValue,
@@ -82,9 +82,11 @@ const CreateGame = () => {
       }));
     }
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const leaguesValue = formData.matchType === "League Game" ? formData.leagues : null;
 
     try {
       const gameRes = await axios.post("http://localhost:5005/api/games", {
@@ -94,7 +96,7 @@ const CreateGame = () => {
         winner: formData.winner,
         teams: formData.teams,
         matchType: formData.matchType,
-        leagues: formData.leagues,
+        leagues: leaguesValue,
       });
 
       // Reset the form
@@ -121,7 +123,7 @@ const CreateGame = () => {
         },
       });
     } catch (error) {
-      console.error("Error response:", error.response);
+      console.error("Server error data:", error.response.data);
     }
   };
 
