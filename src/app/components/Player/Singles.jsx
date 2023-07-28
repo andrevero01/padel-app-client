@@ -35,11 +35,11 @@ function Singles({ playerData }) {
             );
 
             return (
-              <div key={game._id} className="bg-gray-100 shadow-lg w-full">
+              <div key={game._id} className="bg-gray-100 shadow-lg w-full min-h-93">
                 {/* Players */}
                 <div className="flex flex-col divide-y divide-yellow-100 text-xs">
-                  <div className="flex mb-1">
-                    <div className="flex flex-col justify-center ml-3 mr-6 px-2 mb-1 mt-1 w-1/3">
+                  <div className="flex ">
+                    <div className="flex flex-col justify-center ml-3 mr-6 px-2  mt-1 w-1/3">
                       <p className={`${textClass}`}>
                         {userPlayer.firstName} {userPlayer.lastName.charAt(0)}.
                       </p>
@@ -56,21 +56,18 @@ function Singles({ playerData }) {
                       ) : null}
                     </div>
                     <div className="flex justify-center items-center mr-3">
-                                   <p className="text-accent px-2 py-1 m-2 bg-gray-200">
-
+                      <p className="text-accent px-2 py-1 m-2 bg-gray-200">
                         {userTeam.score.sets}
                       </p>
-                                   <p className="text-accent px-2 py-1 m-2 bg-gray-200">
-
+                      <p className="text-accent px-2 py-1 m-2 bg-gray-200">
                         {userTeam.score.games}
                       </p>
-                                   <p className="text-accent px-2 py-1 m-2 bg-gray-200">
-
+                      <p className="text-accent px-2 py-1 m-2 bg-gray-200">
                         {userTeam.score.points}
                       </p>
                     </div>
                   </div>
-                  <div className="flex mb-1">
+                  <div className="flex ">
                     <div className="flex flex-col justify-center ml-3 mt-1 mr-6 px-2 mb-2 w-1/3">
                       {opposingTeam.players.map((player) => (
                         <Link
@@ -84,16 +81,13 @@ function Singles({ playerData }) {
                       ))}
                     </div>
                     <div className="flex justify-center items-center mr-3">
-                                   <p className="text-accent px-2 py-1 m-2 bg-gray-200">
-
+                      <p className="text-accent px-2 py-1 m-2 bg-gray-200">
                         {opposingTeam.score.sets}
                       </p>
-                                   <p className="text-accent px-2 py-1 m-2 bg-gray-200">
-
+                      <p className="text-accent px-2 py-1 m-2 bg-gray-200">
                         {opposingTeam.score.games}
                       </p>
-                                   <p className="text-accent px-2 py-1 m-2 bg-gray-200">
-
+                      <p className="text-accent px-2 py-1 m-2 bg-gray-200">
                         {opposingTeam.score.points}
                       </p>
                     </div>

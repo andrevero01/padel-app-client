@@ -75,7 +75,7 @@ const AdminPlayersCreate = () => {
   };
 
   return (
-    <div className="py-4 flex flex-col bg-white mb-14">
+    <div className="py-4 flex flex-col bg-white mb-14 text-neutral">
       <h1 className="text-2xl font-bold mb-4 mx-3">Create Player</h1>
       <form onSubmit={handleSubmit}>
         {/* Name */}
