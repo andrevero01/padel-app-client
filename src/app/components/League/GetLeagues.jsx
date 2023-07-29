@@ -30,10 +30,8 @@ const GetLeagues = () => {
 
   return (
     <div className="drawer drawer-end ">
-      <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
       <div className="mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-30 lg:gap-16 drawer-content">
-
-
+        <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
         {leagues.map((league) => (
           <div
             key={league._id}
@@ -109,7 +107,7 @@ const GetLeagues = () => {
       {/* Login sidebar */}
       <div className="drawer-side">
         <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
-        <ul className="menu p-4 w-200 h-full bg-base-200 text-base">
+        <ul className="menu p-4 w-200 h-full bg-neutral bg-opacity-90 text-white">
           {/* Sidebar content here */}
           <li>{<LeagueLogin />}</li>
         </ul>

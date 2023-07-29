@@ -15,14 +15,6 @@ const LeagueLogin = () => {
   const { storedToken, authenticatePlayer, player, isLoggedIn } =
     useContext(AuthContext);
 
-  // useEffect(() => {
-  //   if (isLoggedIn) {
-  //     router.push("/leagues");
-  //   }
-  // }, [isLoggedIn]);
-  // if (isLoggedIn) {
-  // }
-
   useEffect(() => {
     router.prefetch("/leagues");
   }, [router]);
@@ -54,14 +46,16 @@ const LeagueLogin = () => {
   return (
     <div className="h-screen">
       <form onSubmit={handleSubmit}>
-        <div className="flex flex-col justify-between items-center mt-8 mb-4 gap-5">
-          <h2>Please log in to your account first</h2>
+        <div className="flex flex-col justify-between items-center p-10 gap-5 ">
+          <h2 className="font-semibold m-6">
+            Please log in to your account first
+          </h2>
           <div className="flex flex-col  mr-2">
-            <label className="text-md font-medium mb-2 text-neutral">
+            <label className="text-md font-medium mb-2 text-grey-100">
               Email:
             </label>
             <input
-              className="input input-bordered input-primary w-full shadow-md rounded-md mb-2"
+              className="input input-bordered input-white w-full shadow-md rounded-md mb-2"
               type="text"
               id="email"
               value={email}
@@ -70,11 +64,11 @@ const LeagueLogin = () => {
           </div>
 
           <div className="flex flex-col mr-2">
-            <label className="text-md font-medium mb-2 text-neutral">
+            <label className="text-md font-medium mb-2  text-grey-100">
               Password:
             </label>
             <input
-              className="input input-bordered input-primary w-full shadow-md rounded-md mb-2"
+              className="input input-bordered input-secondary w-full shadow-md rounded-md mb-2"
               type="password"
               id="password"
               value={password}
@@ -90,7 +84,7 @@ const LeagueLogin = () => {
           {errorMessage && <p className="error-message">{errorMessage}</p>}
           <p>Don't have an account yet?</p>
           <Link
-            className="bg-secondary hover:bg-primary font-bold py-2 px-4 rounded mb-4 w-1/8 text-white"
+            className="bg-info hover:bg-primary font-bold py-2 px-4 rounded mb-4 w-1/8 text-white"
             href="/createPlayer"
           >
             Sign Up

@@ -13,7 +13,7 @@ const LeagueDetailsModal = ({ league, onClose }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-30 text-neutral">
-      <div className="relative bg-gray-100 p-10 rounded shadow w-4/5 md:w-1/2 lg:w-1/2">
+      <div className="relative bg-white p-10 rounded shadow w-4/5 md:w-1/2 lg:w-1/2">
         <div className="w-20 mx-auto mb-4">
           <img
             src={league.leagueLogo}
