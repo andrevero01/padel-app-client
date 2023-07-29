@@ -1,11 +1,16 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const withMT = require("@material-tailwind/react/utils/withMT");
+
+module.exports = withMT({
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    fontFamily: {
+      body: ["League Spartan", "roboto"],
+    },
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -14,5 +19,9 @@ module.exports = {
       },
     },
   },
-  plugins: [require("daisyui")],
-};
+  plugins: [require("daisyui"), require("@tailwindcss/forms")],
+  daisyui: {
+    themes: ["forest", "lemonade", "cupcake", "emerald"],
+    // themes: ["lemonade", "forest", "cupcake", "emerald"],
+  },
+});

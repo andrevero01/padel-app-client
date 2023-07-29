@@ -1,5 +1,10 @@
-import './globals.css'
-import { Inter } from 'next/font/google'
+import "./globals.css";
+import { Inter } from "next/font/google";
+import Navbar from "./components/Navbar.jsx";
+import Footer from "./components/Footer.jsx";
+import AuthProviderWrapper from "./context/auth.context";
+import LeaguesProviderWrapper from "./context/leagues.context";
+import FileUploadProviderWrapper from "./context/fileUpload.context";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -11,7 +16,17 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <AuthProviderWrapper>
+          <FileUploadProviderWrapper>
+            <LeaguesProviderWrapper>
+              <Navbar />
+              {children}
+              <Footer />
+            </LeaguesProviderWrapper>
+          </FileUploadProviderWrapper>
+        </AuthProviderWrapper>
+      </body>
     </html>
   )
 }
