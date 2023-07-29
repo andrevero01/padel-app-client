@@ -10,10 +10,10 @@ const AddLeagues = ({ formData, onChange, existingLeagues, playerData }) => {
   );
 
   return (
-    <div className="ml-3 mt-6 flex flex-col">
+    <div className="ml-3 mt-6 flex flex-col ">
       <label className="font-bold mb-3">Select a League:</label>
       <select
-        className="select input bg-gray-100 shadow-md rounded-md placeholder:text-gray-500 mr-3"
+        className="select input shadow-md rounded-md placeholder:text-gray-500 mr-3"
         name="leagues"
         onChange={onChange}
         value={formData.leagues}
