@@ -19,9 +19,9 @@ const AddLeague = ({ playerId }) => {
   const [message, setMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  // const leagueLogoUrl =
-  //   uploadedFileURL ||
-  //   "https://www.usaclicosenza.it/wp-content/uploads/2021/04/Padel-League-Logo.jpeg";
+  const leagueLogoUrl =
+    uploadedFileURL ||
+    "https://www.usaclicosenza.it/wp-content/uploads/2021/04/Padel-League-Logo.jpeg";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -109,9 +109,7 @@ const AddLeague = ({ playerId }) => {
               League schedule:
             </label>
             <input
-
               className="input bg-gray-100 w-full shadow-md rounded-md mb-2 placeholder:text-gray-500 "
-
               type="text"
               placeholder="Tuesdays and Thursdays"
               name="schedule"

@@ -6,7 +6,6 @@ import racket from "../../../public/racket.png";
 import trophy from "../../../public/trophy.png";
 import team from "../../../public/team.png";
 import cogs from "../../../public/cogs.png";
-import Sidebar from "@/app/components/Sidebar";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import { useRouter } from "next/navigation";
@@ -63,8 +62,6 @@ const Page = () => {
     <div className="flex justify-center items-center w-full bg-white md:bg-base-100 lg:bg-base-100">
       <div className="flex justify-center items-center bg-white rounded-lg w-full md:w-full lg:w-5/6 my-12">
         <div className="flex justify-evenly w-full h-full text-neutral">
-          <Sidebar />
-
           <div className="md:mb-10 h-full grow">
             {/* Buttons */}
 
@@ -108,7 +105,6 @@ const Page = () => {
                   Find a Team
                 </button>
               </Link>
-
             </div>
 
             {/* Profile Picture */}
@@ -144,7 +140,9 @@ const Page = () => {
                   <p>Played Games</p>
                 </div>
                 <div className="w-2/5 md:max-w-xs py-3 text-center text-slate-500">
-                  <p className="text-primary">{playerData.leagues.length || 0} </p>
+                  <p className="text-primary">
+                    {playerData.leagues.length || 0}{" "}
+                  </p>
                   <p>Active Leagues</p>
                 </div>
                 <div className="w-2/5 md:max-w-xs py-3 text-center text-slate-500">
@@ -163,7 +161,6 @@ const Page = () => {
             {/* <Suspense fallback={<div>Loading...</div>}>
           <TeamMates playerData={playerData} />
         </Suspense> */}
-
 
             {/* Winning Streak Counter */}
             {!isLoading && winningStreak > 0 && (
@@ -196,9 +193,7 @@ const Page = () => {
                 <MixedDoubles playerData={playerData} />
               </Suspense>
             </div>
-
           </div>
-          <Sidebar />
         </div>
       </div>
     </div>
