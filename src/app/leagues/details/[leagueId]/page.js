@@ -59,8 +59,8 @@ export default function LeagueDetailsPage() {
     .sort((a, b) => b.wins - a.wins);
 
   return (
-    <div className="flex justify-center w-full items-center text-neutral">
-      <div className="bg-white rounded-lg w-full md:w-5/6">
+    <div className="flex justify-center w-full items-center text-neutral h-screen">
+      <div className="bg-gray-100 rounded-lg w-full md:w-5/6">
         <div className="text-center mt-4">
           <h1 className="text-2xl font-semibold">{leagueDetails.name}</h1>
           <p className="mt-2 text-gray-600">City: {leagueDetails.location}</p>
@@ -83,7 +83,9 @@ export default function LeagueDetailsPage() {
                 <td className="border px-2 py-2 text-left border-none">
                   {player.firstName} {player.lastName}
                 </td>
-                <td className="border px-4 py-2 border-none">{player.wins || 0}</td>
+                <td className="border px-4 py-2 border-none">
+                  {player.wins || 0}
+                </td>
               </tr>
             ))}
           </tbody>
