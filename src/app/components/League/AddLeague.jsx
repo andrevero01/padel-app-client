@@ -80,7 +80,7 @@ const AddLeague = ({ playerId }) => {
               League name:
             </label>
             <input
-              className="input placeholder:text-gray-500 bg-gray-100 w-full shadow-md rounded-md mb-2"
+              className="input placeholder:text-gray-500 bg-gray-100 w-full shadow-md rounded-md mb-2 grow"
               placeholder="Best League"
               type="text"
               name="name"
@@ -93,7 +93,7 @@ const AddLeague = ({ playerId }) => {
               League location:
             </label>
             <input
-              className="input bg-gray-100 w-full shadow-md rounded-md mb-2 placeholder:text-gray-500"
+              className="input bg-gray-100 w-full shadow-md rounded-md mb-2 placeholder:text-gray-500 grow"
               placeholder="Somewhere on earth"
               type="text"
               name="location"
@@ -104,12 +104,12 @@ const AddLeague = ({ playerId }) => {
         </div>
         {/* Schedule and logo container */}
         <div className="flex flex-col md:flex-row justify-center items-center md:justify-between lg:justify-between mb-4 gap-5">
-          <div className="flex flex-col w-full mr-2 text-neutral items-center md:items-start">
+          <div className="flex flex-col w-full mr-2 text-neutral items-center md:items-start md:grow">
             <label className="text-md font-medium my-2 text-neutral text-center md:text-left">
               League schedule:
             </label>
             <input
-              className="input bg-gray-100  w-full shadow-md rounded-md mb-2 placeholder:text-gray-500 "
+              className="input bg-gray-100 w-full shadow-md rounded-md mb-2 placeholder:text-gray-500 "
               type="text"
               placeholder="Tuesdays and Thursdays"
               name="schedule"
@@ -117,7 +117,7 @@ const AddLeague = ({ playerId }) => {
               value={schedule}
             />
           </div>
-          <div className="flex flex-col w-1/2 mr-2 text-neutral items-center md:items-start ">
+          <div className="flex flex-col w-full md:grow mr-2 text-neutral items-center md:items-start grow">
             <label className="text-md font-medium my-2 text-neutral text-center md:text-left">
               League logo:
             </label>
@@ -133,9 +133,9 @@ const AddLeague = ({ playerId }) => {
           </div>
         </div>
         {/* Deadline and fee container */}
-        <div className="flex flex-col md:flex-row justify-center items-center md:justify-between lg:justify-between mb-4 gap-5">
-          <div className="flex flex-col w-full mr-2 text-neutral items-center md:items-start">
-            <label className="text-md font-medium my-2 text-neutral text-center md:text-left">
+        <div className="flex flex-col md:flex-row justify-center items-center mb-4 gap-5">
+          <div className="flex flex-col text-neutral w-full grow">
+            <label className="text-md font-medium my-2 text-neutral text-center md:text-start">
               Open for registration:
             </label>
 
@@ -151,36 +151,37 @@ const AddLeague = ({ playerId }) => {
               <option value="false">No</option>
             </select>
           </div>
-
-          <div className="flex flex-col w-full md:w-1/2 lg:w-1/2 mr-2 text-neutral items-center md:items-start">
-            <label className="text-md font-medium my-2 text-neutral text-center md:text-left">
-              Registration deadline:
-            </label>
-            <input
-              className="input bg-gray-100 w-full  shadow-md rounded-md mb-2 placeholder:text-gray-500"
-              type="date"
-              name="registrationDeadline"
-              onChange={(e) => setRegistrationDeadline(e.target.value)}
-              value={registrationDeadline}
-            />
-          </div>
-          <div className="flex flex-col w-full md:w-1/2 lg:w-1/2 mr-2 text-neutral items-center md:items-start ">
-            <label className="text-md font-medium my-2 text-neutral text-center md:text-left">
-              Registration fee (EUR):
-            </label>
-            <input
-              className="input bg-gray-100 w-full shadow-md rounded-md mb-2 placeholder:text-gray-500"
-              type="number"
-              placeholder="15"
-              name="registrationFee"
-              onChange={(e) => setRegistrationfee(e.target.value)}
-              value={registrationFee}
-            />
+          <div className="flex flex-col md:flex-row w-full grow">
+            <div className="flex flex-col w-full mr-2 text-neutral grow">
+              <label className="text-md font-medium my-2 text-neutral text-center md:text-start">
+                Registration deadline:
+              </label>
+              <input
+                className="input bg-gray-100 w-full shadow-md rounded-md mb-2 placeholder:text-gray-500"
+                type="date"
+                name="registrationDeadline"
+                onChange={(e) => setRegistrationDeadline(e.target.value)}
+                value={registrationDeadline}
+              />
+            </div>
+            <div className="flex flex-col mr-2 text-neutral items-center w-full grow">
+              <label className="text-md font-medium my-2 text-neutral text-start grow">
+                <span>Registration </span>Fee (EUR):
+              </label>
+              <input
+                className="input bg-gray-100 w-full shadow-md rounded-md mb-2 placeholder:text-gray-500 grow"
+                type="number"
+                placeholder="15"
+                name="registrationFee"
+                onChange={(e) => setRegistrationfee(e.target.value)}
+                value={registrationFee}
+              />
+            </div>
           </div>
         </div>
         <div className="flex flex-col items-center">
           <button
-            className="btn btn-primary m-2 w-1/2 md:w-1/5 lg:w-1/5   font-bold py-2 px-4  my-4 text-white"
+            className="btn btn-primary m-2 w-1/2 md:w-1/5 lg:w-1/5 font-bold py-2 px-4 my-4 text-white"
             type="submit"
           >
             Create League

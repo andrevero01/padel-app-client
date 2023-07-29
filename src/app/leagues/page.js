@@ -18,7 +18,7 @@ export default function leaguesPage() {
     <div className="flex flex-col items-center bg-gray-100">
       {isLoggedIn && (
         <div className="flex-col w-full md:w-4/5 bg-white p-12 rounded-lg shadow-lg mt-10">
-          <h3 className="text-primary-focus text-lg font-bold mb-6">
+          <h3 className="text-primary-focus text-lg font-bold mb-6 ">
             Add a New League
           </h3>
           <AddLeague playerId={playerData._id} />
