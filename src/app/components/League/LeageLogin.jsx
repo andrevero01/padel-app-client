@@ -44,10 +44,10 @@ const LeagueLogin = () => {
   };
 
   return (
-    <div className="h-screen">
+    <div className="h-screen text-lg">
       <form onSubmit={handleSubmit}>
         <div className="flex flex-col justify-between items-center p-10 gap-5 ">
-          <h2 className="font-semibold m-6">
+          <h2 className="font-semibold ">
             Please log in to your account first
           </h2>
           <div className="flex flex-col  mr-2">

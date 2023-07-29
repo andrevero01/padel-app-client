@@ -1,7 +1,7 @@
 "use client";
 import ScrollToTopButton from "./components/ScrollToTop.jsx";
 import PlayersMainpage from "./components/PlayersMainpage.jsx";
-import ThemeToggle from "./components/ToggleTheme.js";
+
 import { useState, useEffect } from "react";
 import CourtsMainpage from "./components/CourtsMainpage.jsx";
 import TeamsMainPage from "./components/TeamsMainPage.jsx";
