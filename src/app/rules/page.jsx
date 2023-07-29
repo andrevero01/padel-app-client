@@ -58,7 +58,7 @@ function Rules() {
                 />
               </div>
               <p
-                className="text-center mt-2"
+                className="text-center mt-2 text-neutral"
                 dangerouslySetInnerHTML={{ __html: slide.text }}
               ></p>
             </div>

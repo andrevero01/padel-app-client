@@ -31,38 +31,36 @@ const GetLeagues = () => {
   return (
     <div className="drawer drawer-end ">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
-      <div className="mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-30 lg:gap-16 drawer-content">
-
-
+      <div className="mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-30 lg:gap-16 drawer-content ">
         {leagues.map((league) => (
           <div
             key={league._id}
-            className="card card-compact w-52 lg:w-72 bg-base-100 shadow-xl mx-10 mb-5"
+            className="card card-compact w-52 lg:w-72 bg-base-100 shadow-xl mx-10 mb-5 "
           >
             <figure className="w-52 h-52 lg:w-72 lg:h-72 bg-white">
               <img src={league.leagueLogo} alt="League logo" />
             </figure>
-            <div className="card-body bg-gray-900">
+            <div className="card-body bg-gray-900 ">
               <h2 className="card-title text-primary">{league.name}</h2>
-              <div className="flex justify-around">
-                <span className="text-md font-medium">
+              <div className="flex justify-between ">
+                <span className="text-base font-medium">
                   📍 {league.location}
                 </span>
                 <span>|</span>
-                <span className="text-md font-medium">
+                <span className="text-base font-medium">
                   {league.registrationOpen === true
                     ? "Open for registration"
                     : "Closed"}
                 </span>
               </div>
-              <div className="flex justify-around">
+              <div className="flex justify-around text-base">
                 <span>Deadline: {league.registrationDeadline}</span>
                 <span className="text-info font-bold">
                   € {league.registrationFee}{" "}
                 </span>
               </div>
             </div>
-            <div className="flex flex-col items-center bg-gray-900 rounded-b-2xl">
+            <div className="flex flex-col items-center bg-gray-900 rounded-b-2xl text-base">
               {/* Get league details */}
               <button
                 onClick={() => handleOpenModal(league)}
@@ -90,7 +88,7 @@ const GetLeagues = () => {
               )}
             </div>
             {isLoggedIn && playerData._id == league.createdBy && (
-              <div className="card-actions flex justify-center mt-2 bg-gray-900 rounded-b-2xl">
+              <div className="card-actions flex justify-center mt-2 bg-gray-900 rounded-b-2xl text-base">
                 {/* Delete league / Edit league */}
                 <DeleteLeague leagueId={league._id} />
                 <Link
@@ -109,7 +107,7 @@ const GetLeagues = () => {
       {/* Login sidebar */}
       <div className="drawer-side">
         <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
-        <ul className="menu p-4 w-200 h-full bg-base-200 text-base">
+        <ul className="menu p-4 w-200 h-full bg-neutral bg-opacity-90 text-white">
           {/* Sidebar content here */}
           <li>{<LeagueLogin />}</li>
         </ul>

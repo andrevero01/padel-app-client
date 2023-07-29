@@ -74,7 +74,7 @@ const AddLeague = ({ playerId }) => {
       {/* Create new league form */}
       <form onSubmit={handleSubmit}>
         {/* Name and location container */}
-        <div className="flex flex-col md:flex-row justify-center items-center md:justify-between lg:justify-between mb-4 gap-5">
+        <div className="flex flex-col md:flex-row justify-center items-center md:justify-between lg:justify-between mb-4 gap-5 ">
           <div className="flex flex-col w-full mr-2 text-neutral items-center md:items-start">
             <label className="text-md w-full font-medium mb-2 text-neutral text-center md:text-left">
               League name:
@@ -109,7 +109,9 @@ const AddLeague = ({ playerId }) => {
               League schedule:
             </label>
             <input
+
               className="input bg-gray-100 w-full shadow-md rounded-md mb-2 placeholder:text-gray-500 "
+
               type="text"
               placeholder="Tuesdays and Thursdays"
               name="schedule"
@@ -123,7 +125,7 @@ const AddLeague = ({ playerId }) => {
             </label>
             {/* <FileUpload /> */}
             <input
-              className="input bg-gray-100 placeholder:text-gray-500 w-full shadow-md rounded-md mb-2 "
+              className="input bg-gray-100  w-full shadow-md rounded-md mb-2 placeholder:text-gray-500 "
               type="string"
               placeholder="Add your URL here"
               name="leagueLogo"
