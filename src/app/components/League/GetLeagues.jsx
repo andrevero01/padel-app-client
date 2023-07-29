@@ -42,7 +42,7 @@ const GetLeagues = () => {
             </figure>
             <div className="card-body bg-gray-900 ">
               <h2 className="card-title text-primary">{league.name}</h2>
-              <div className="flex justify-around ">
+              <div className="flex justify-between ">
                 <span className="text-base font-medium">
                   📍 {league.location}
                 </span>
