@@ -61,7 +61,7 @@ const Page = () => {
 
   return (
     <div className="flex justify-center items-center w-full bg-white md:bg-base-100 lg:bg-base-100">
-      <div className="flex justify-center items-center bg-white rounded-lg w-full md:w-5/6 my-12">
+      <div className="flex justify-center items-center bg-white rounded-lg w-full md:w-full lg:w-5/6 my-12">
         <div className="flex justify-evenly w-full h-full text-neutral">
           <Sidebar />
 

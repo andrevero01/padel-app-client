@@ -31,11 +31,10 @@ const ScrollToTopButton = () => {
   return (
     <div className="mt-10 mb-5 flex justify-end">
       <button
-        className="btn rounded-full"
+        className="btn rounded-full bg-base-100"
         onClick={scrollToTop}
         style={{ display: isVisible ? "inline-block" : "none" }}
       >
-        <div>⬆️</div>
         <div>Back to top</div>
       </button>
     </div>
