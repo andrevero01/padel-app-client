@@ -21,7 +21,7 @@ module.exports = withMT({
   },
   plugins: [require("daisyui"), require("@tailwindcss/forms")],
   daisyui: {
-    themes: ["forest", "emerald", "cupcake", "lemonade"],
+    themes: ["emerald", "forest", "cupcake", "lemonade"],
     // themes: ["lemonade", "forest", "cupcake", "emerald"],
   },
 });

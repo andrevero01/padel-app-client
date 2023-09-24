@@ -21,7 +21,7 @@ export default function leaguesPage() {
   return (
     <div className="flex flex-col items-center bg-gray-100">
       <div className="mt-10 mx-10 bg-white shadow-lg p-10 ">
-        <h2 className="text-neutral text-xl font-bold mb-6">
+        <h2 className="text-primary-focus text-2xl font-bold mb-6">
           Current active leagues
         </h2>
         <GetLeagues />

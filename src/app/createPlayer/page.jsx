@@ -78,12 +78,14 @@ const AdminPlayersCreate = () => {
     <div className="h-screen bg-gray-100">
       <div className="h-screen flex flex-col items-center pt-10 bg-white mx-20 text-neutral rounded-lg">
         <form onSubmit={handleSubmit}>
-          <h1 className="text-2xl font-bold m-6 mx-3">Create Player</h1>
+          <h1 className="text-2xl text-primary-focus font-bold m-6 mx-3">
+            Create Player
+          </h1>
           {/* Name */}
 
           <div className="flex flex-col lg:flex-row justify-center items-center mx-3">
             <div className="flex flex-col w-full">
-              <label className="font-bold mb-3">Email</label>
+              <label className="font-semibold mb-3">Email</label>
               <input
                 type="text"
                 placeholder="Your email"
@@ -95,7 +97,7 @@ const AdminPlayersCreate = () => {
               />
             </div>
             <div className="flex flex-col w-full">
-              <label className="font-bold mb-3">Password</label>
+              <label className="font-semibold mb-3">Password</label>
               <input
                 type="text"
                 placeholder="New password"
@@ -107,7 +109,7 @@ const AdminPlayersCreate = () => {
               />
             </div>
             <div className="flex flex-col w-full">
-              <label className="font-bold mb-3">First Name</label>
+              <label className="font-semibold mb-3">First Name</label>
               <input
                 type="text"
                 placeholder="Jane"
@@ -119,7 +121,7 @@ const AdminPlayersCreate = () => {
               />
             </div>
             <div className="flex flex-col w-full">
-              <label className="font-bold mb-3">Last Name</label>
+              <label className="font-semibold mb-3">Last Name</label>
               <input
                 type="text"
                 placeholder="Smith"
@@ -137,7 +139,7 @@ const AdminPlayersCreate = () => {
           <div className="mt-6 mx-3">
             <div className="flex justify-start mt-3">
               <div className="flex flex-col w-1/6 grow">
-                <label className="font-bold">Age</label>
+                <label className="font-semibold">Age</label>
                 <input
                   type="number"
                   name="age"
@@ -148,7 +150,7 @@ const AdminPlayersCreate = () => {
                 />
               </div>
               <div className="flex flex-col w-1/6 grow">
-                <label className="font-bold">Height</label>
+                <label className="font-semibold">Height</label>
                 <input
                   placeholder="Cm"
                   type="number"
@@ -159,7 +161,7 @@ const AdminPlayersCreate = () => {
                 />
               </div>
               <div className="flex flex-col w-1/6 grow">
-                <label className="font-bold">Weight</label>
+                <label className="font-semibold">Weight</label>
                 <input
                   placeholder="Kg"
                   type="number"
@@ -175,7 +177,7 @@ const AdminPlayersCreate = () => {
           {/* Gender */}
 
           <div className="mt-6 mx-3">
-            <label className="font-bold">Gender</label>
+            <label className="font-semibold">Gender</label>
             <div className="flex justify-start mt-3">
               <input
                 type="radio"
@@ -185,7 +187,9 @@ const AdminPlayersCreate = () => {
                 className="radio radio-success checked:bg-gray-200"
                 checked={formData.gender === "Male"}
               />
-              <label className="font-bold mr-8 ml-2 align-super">Male</label>
+              <label className="font-semibold mr-8 ml-2 align-super">
+                Male
+              </label>
               <input
                 type="radio"
                 name="gender"
@@ -194,7 +198,9 @@ const AdminPlayersCreate = () => {
                 className="radio radio-success"
                 checked={formData.gender === "Female"}
               />
-              <label className="font-bold mr-8 ml-2 align-super">Female</label>
+              <label className="font-semibold mr-8 ml-2 align-super">
+                Female
+              </label>
               <input
                 type="radio"
                 name="gender"
@@ -203,7 +209,7 @@ const AdminPlayersCreate = () => {
                 className="radio radio-success"
                 checked={formData.gender === "Prefer not to say"}
               />
-              <label className="font-bold mr-8 ml-2 align-super">
+              <label className="font-semibold mr-8 ml-2 align-super">
                 Non-specific
               </label>
             </div>
@@ -212,7 +218,7 @@ const AdminPlayersCreate = () => {
           {/* Nationality */}
 
           <div className="mt-6 mx-3">
-            <label className="font-bold">Nationality</label>
+            <label className="font-semibold">Nationality</label>
             <div className="flex justify-start mt-3">
               <select
                 className="input bg-gray-100 shadow-md rounded-md placeholder:text-gray-500 mr-3 w-full"
@@ -243,7 +249,7 @@ const AdminPlayersCreate = () => {
                 {/* Handedness */}
 
                 <div className="mt-6 mx-3">
-                  <label className="font-bold">Handedness</label>
+                  <label className="font-semibold">Handedness</label>
                   <div className="flex justify-start mt-3">
                     <input
                       type="radio"
@@ -253,7 +259,7 @@ const AdminPlayersCreate = () => {
                       className="radio radio-success"
                       checked={formData.dominantHand === "Right"}
                     />
-                    <label className="font-bold mr-8 ml-2 align-super">
+                    <label className="font-semibold mr-8 ml-2 align-super">
                       Right
                     </label>
                     <input
@@ -264,7 +270,7 @@ const AdminPlayersCreate = () => {
                       className="radio radio-success"
                       checked={formData.dominantHand === "Left"}
                     />
-                    <label className="font-bold mr-8 ml-2 align-super">
+                    <label className="font-semibold mr-8 ml-2 align-super">
                       Left
                     </label>
                     <input
@@ -275,7 +281,7 @@ const AdminPlayersCreate = () => {
                       className="radio radio-success"
                       checked={formData.dominantHand === "Ambidextrous"}
                     />
-                    <label className="font-bold mr-8 ml-2 align-super">
+                    <label className="font-semibold mr-8 ml-2 align-super">
                       Ambidextreous
                     </label>
                   </div>
@@ -284,7 +290,7 @@ const AdminPlayersCreate = () => {
                 {/* Backhand */}
 
                 <div className="mt-6 mx-3">
-                  <label className="font-bold">Backhand Style</label>
+                  <label className="font-semibold">Backhand Style</label>
                   <div className="flex justify-start mt-3">
                     <input
                       type="radio"
@@ -294,7 +300,7 @@ const AdminPlayersCreate = () => {
                       className="radio radio-success"
                       checked={formData.backhandType === "One-handed backhand"}
                     />
-                    <label className="font-bold mr-8 ml-2 align-super">
+                    <label className="font-semibold mr-8 ml-2 align-super">
                       One-handed
                     </label>
                     <input
@@ -305,7 +311,7 @@ const AdminPlayersCreate = () => {
                       className="radio radio-success"
                       checked={formData.backhandType === "Two-handed backhand"}
                     />
-                    <label className="font-bold mr-8 ml-2 align-super">
+                    <label className="font-semibold mr-8 ml-2 align-super">
                       Two-handed
                     </label>
                   </div>
@@ -314,7 +320,7 @@ const AdminPlayersCreate = () => {
                 {/* Playing Style */}
 
                 <div className="mt-7 mx-3">
-                  <label className="font-bold">Play Style</label>
+                  <label className="font-semibold">Play Style</label>
                   <div className="flex justify-start mt-3">
                     <input
                       type="radio"
@@ -324,7 +330,7 @@ const AdminPlayersCreate = () => {
                       className="radio radio-success"
                       checked={formData.playingStyle === "Offensive"}
                     />
-                    <label className="font-bold mr-8 ml-2 align-super">
+                    <label className="font-semibold mr-8 ml-2 align-super">
                       Offensive
                     </label>
                     <input
@@ -335,7 +341,7 @@ const AdminPlayersCreate = () => {
                       className="radio radio-success"
                       checked={formData.playingStyle === "Control"}
                     />
-                    <label className="font-bold mr-8 ml-2 align-super">
+                    <label className="font-semibold mr-8 ml-2 align-super">
                       Control
                     </label>
                   </div>
@@ -344,7 +350,7 @@ const AdminPlayersCreate = () => {
                 {/* Coach */}
 
                 <div className="flex flex-col justify-start mt-6 mx-3">
-                  <label className="font-bold align-super">Coach</label>
+                  <label className="font-semibold align-super">Coach</label>
                   <input
                     type="string"
                     name="coach"
@@ -357,7 +363,7 @@ const AdminPlayersCreate = () => {
                 {/* Experience Level */}
 
                 <div className="flex flex-col justify-center items-center mt-6 mx-3">
-                  <label className="text-lg font-bold align-super">
+                  <label className="text-lg font-semibold align-super">
                     Experience
                   </label>
                   <div className="rating rating-lg rating-half mt-3 mb-3">
