@@ -7,7 +7,7 @@ import Link from "next/link";
 import { AuthContext } from "../context/auth.context";
 import { useEffect } from "react";
 
-export default function loginPage() {
+const GalleryLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
@@ -16,17 +16,15 @@ export default function loginPage() {
     useContext(AuthContext);
 
   useEffect(() => {
-    if (isLoggedIn) {
-      router.push("/player");
-    }
-  }, [isLoggedIn]);
-  if (isLoggedIn) {
-  }
-
-  useEffect(() => {
-    // Prefetch the dashboard page
-    router.prefetch("/player");
+    router.prefetch("/gallery");
   }, [router]);
+
+  // const handleLoginClick = () => {
+  //   const drawerCheckbox = document.getElementById("login-drawer");
+  //   if (drawerCheckbox && drawerCheckbox.checked) {
+  //     drawerCheckbox.checked = false;
+  //   }
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,7 +39,7 @@ export default function loginPage() {
         console.log("JWT token", response.data.authToken);
         storedToken(response.data.authToken);
         authenticatePlayer();
-        router.push("/player");
+        router.push("/gallery");
       })
       .catch((error) => {
         const errorDescription = error.message;
@@ -53,21 +51,18 @@ export default function loginPage() {
   };
 
   return (
-    <div className="h-screen flex justify-center items-center bg-gray-100">
-      <form onSubmit={handleSubmit} className="w-4/5 ">
-        <div
-          className=" box-border flex flex-col items-center m-10 gap-10 bg-white shadow-sm md:mx-20  p-5 "
-          style={{ minHeight: "800px" }}
-        >
-          <h2 className="mt-6 text-neutral text-xl font-bold">Welcome back!</h2>
-
-          <div className="flex flex-col ">
-            <label className="text-md font-medium mb-2 text-neutral">
+    <div className="h-screen text-lg">
+      <form onSubmit={handleSubmit}>
+        <div className="flex flex-col justify-between items-center p-10 gap-5 ">
+          <h2 className="font-semibold ">
+            Please log in to your account first
+          </h2>
+          <div className="flex flex-col  mr-2">
+            <label className="text-md font-medium mb-2 text-grey-100">
               Email:
             </label>
             <input
-              className="input bg-gray-100 shadow-md rounded-md text-neutral"
-              placeholder="Email@gmail.com"
+              className="input input-bordered input-white w-full shadow-md rounded-md mb-2"
               type="text"
               id="email"
               value={email}
@@ -75,13 +70,12 @@ export default function loginPage() {
             />
           </div>
 
-          <div className="flex flex-col ">
-            <label className="text-md font-medium mb-2 text-neutral">
+          <div className="flex flex-col mr-2">
+            <label className="text-md font-medium mb-2  text-grey-100">
               Password:
             </label>
             <input
-              className="input bg-gray-100 shadow-md rounded-md text-neutral"
-              placeholder="**********"
+              className="input input-bordered input-secondary w-full shadow-md rounded-md mb-2"
               type="password"
               id="password"
               value={password}
@@ -89,25 +83,24 @@ export default function loginPage() {
             />
           </div>
           <button
-            className="btn btn-primary hover:bg-primary-focus font-bold py-2 px-10 rounded mt-3 text-white shadow-lg"
+            className="bg-primary hover:bg-secondary font-bold py-2 px-4 rounded my-4 w-1/2 text-white "
             type="submit"
+            // onClick={handleLoginClick}
           >
             Login
           </button>
-
           {errorMessage && <p className="error-message">{errorMessage}</p>}
-          <div className="flex flex-col ">
-            <p>Don't have an account yet?</p>
-            <button
-              className="btn btn-info font-bold py-2 px-8 text-center rounded mt-5 mb-10 text-white shadow-lg"
-              href="/createPlayer"
-            >
-              {" "}
-              Sign Up
-            </button>
-          </div>
+          <p>Don't have an account yet?</p>
+          <Link
+            className="bg-info hover:bg-primary font-bold py-2 px-4 rounded mb-4 w-1/8 text-white"
+            href="/createPlayer"
+          >
+            Sign Up
+          </Link>
         </div>
       </form>
     </div>
   );
-}
+};
+
+export default GalleryLogin;

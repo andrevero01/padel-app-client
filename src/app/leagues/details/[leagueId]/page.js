@@ -60,7 +60,7 @@ export default function LeagueDetailsPage() {
 
   return (
     <div className="flex justify-center w-full items-center text-neutral h-screen">
-      <div className="bg-gray-100 rounded-lg w-full md:w-5/6 m-5">
+      <div className="h-screen bg-gray-100 rounded-lg w-full mt-10 mb-10 box-border md:w-5/6 m-5 ">
         <div className="text-center mt-4">
           <h1 className="text-2xl font-semibold">{leagueDetails.name}</h1>
           <p className="mt-2 text-gray-600">City: {leagueDetails.location}</p>

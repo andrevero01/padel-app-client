@@ -19,6 +19,13 @@ const LeagueLogin = () => {
     router.prefetch("/leagues");
   }, [router]);
 
+  const handleLoginClick = () => {
+    const drawerCheckbox = document.getElementById("my-drawer-4");
+    if (drawerCheckbox && drawerCheckbox.checked) {
+      drawerCheckbox.checked = false;
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const body = {
@@ -76,8 +83,9 @@ const LeagueLogin = () => {
             />
           </div>
           <button
-            className="bg-primary hover:bg-secondary font-bold py-2 px-4 rounded my-4 w-1/2 text-white"
+            className="bg-primary hover:bg-secondary font-bold py-2 px-4 rounded my-4 w-1/2 text-white "
             type="submit"
+            onClick={handleLoginClick}
           >
             Login
           </button>

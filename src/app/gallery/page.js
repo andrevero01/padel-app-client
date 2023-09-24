@@ -6,11 +6,14 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../styles.css";
 import { useContext } from "react";
+import { AuthContext } from "../context/auth.context.js";
 import { FileUploadContext } from "../context/fileUpload.context";
+import GalleryLogin from "../components/GalleryLogin";
 
 export default function DisplayImages() {
   const { uploadedFile, setUploadedFile, uploadedFileURL, setUploadedFileURL } =
     useContext(FileUploadContext);
+  const { isLoggedIn, player, logOutPlayer } = useContext(AuthContext);
   const [images, setImages] = useState([]);
   const [message, setMessage] = useState();
 
@@ -78,12 +81,11 @@ export default function DisplayImages() {
   };
 
   return (
-    <div className="bg-gray-100 flex justify-center h-full">
-      <div className=" bg-white shadow-lg p-10 w-full md:w-3/4">
-        <h1 className="text-2xl text-primary-focus font-bold mb-10 text-center">
+    <div className="bg-gray-100 flex justify-center h-full ">
+      <div className=" bg-white shadow-lg p-10 w-full md:w-3/4 mt-10 ">
+        <h1 className="text-2xl text-neutral font-bold mb-10 text-center">
           Check out our gallery
         </h1>
-
         <Slider {...settings}>
           {images.map((imageName, index) => (
             <div key={index} className="h-96 md:h-80 lg:h-96">
@@ -104,24 +106,51 @@ export default function DisplayImages() {
             </div>
           ))}
         </Slider>
-        <div className="flex flex-col items-center  ">
-          <h3 className="text-lg mt-20  text-center font-semibold text-gray-800">
-            Have some nice photos to add?
-          </h3>
-          <div className=" shadow-lg rounded-lg p-6 flex flex-col justify-center items-center">
-            <p className="text-gray-600 mb-2">Upload file:</p>
-            <input
-              type="file"
-              className="mb-4 p-2 border border-gray-300 rounded-lg w-full"
-              onChange={handleFileChange}
-            />
-            <input
-              type="button"
-              className="btn btn-primary 1/2 md:w-1/4 lg:w-1/4 text-white"
-              onClick={handleSendClick}
-              value={"Send"}
-            />
-            {message && <p className="text-green-600 mt-2">{message}</p>}
+        <div className="drawer drawer-end ">
+          <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
+          <div className=" drawer-content">
+            <h3>Have some nice photos to add?</h3>
+
+            {isLoggedIn ? (
+              <div className="flex flex-col items-center  ">
+                <div className=" shadow-lg rounded-lg p-6 flex flex-col justify-center items-center">
+                  <p className="text-gray-600 mb-2">Upload file:</p>
+                  <input
+                    type="file"
+                    className="mb-4 p-2 border border-gray-300 rounded-lg w-full"
+                    onChange={handleFileChange}
+                  />
+                  <input
+                    type="button"
+                    className="btn btn-primary 1/2 md:w-1/4 lg:w-1/4 text-white"
+                    onClick={handleSendClick}
+                    value={"Send"}
+                  />
+                  {message && <p className="text-green-600 mt-2">{message}</p>}
+                </div>
+              </div>
+            ) : (
+              <label
+                htmlFor="my-drawer-4"
+                className="drawer-button btn btn-outline btn-success  w-2/3 text-white mb-4 ml-2"
+              >
+                Please log in first
+              </label>
+            )}
+            {/* Login sidebar */}
+            <div className="drawer-side">
+              <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
+              <ul className="menu p-4 w-200 h-full bg-neutral bg-opacity-90 text-white">
+                {/* Sidebar content here */}
+                {/* <li>{<GalleryLogin />}</li> */}
+                <li>
+                  <a>Sidebar Item 1</a>
+                </li>
+                <li>
+                  <a>Sidebar Item 2</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

@@ -74,7 +74,7 @@ export default function leagueDetailsPage() {
 
   return (
     <div className="flex flex-col items-center  bg-gray-100 h-screen">
-      <div className="flex-col w-2/3 bg-white p-12 rounded-lg shadow-lg mt-10">
+      <div className="flex-col w-2/3 bg-white p-12 rounded-lg mt-10">
         <form onSubmit={handleSubmit}>
           {/* Name and location container */}
           <div className="flex justify-between mb-4 gap-5">

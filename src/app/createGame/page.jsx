@@ -6,7 +6,6 @@ import axios from "axios";
 import AddPlayersToTeam from "../components/AddPlayersToTeam";
 import AddCourt from "../components/AddCourt";
 import AddLeagues from "../components/AddLeagues";
-import Sidebar from "../components/Sidebar";
 
 const CreateGame = () => {
   const { playerData, getPlayerData } = useContext(AuthContext);
@@ -201,7 +200,7 @@ const CreateGame = () => {
     formData.matchType === "League Game" && leaguesFetched;
 
   return (
-    <div className="flex justify-center items-center mt-12 text-neutral">
+    <div className=" h-screen flex justify-center items-center  text-neutral bg-gray-100">
       <div className="py-4 flex flex-col bg-white rounded-lg mb-14 md:w-2/3 w-full">
         <h1 className="text-2xl font-bold mb-4 mx-3">Register Game</h1>
 
@@ -224,7 +223,6 @@ const CreateGame = () => {
           name="matchType"
           value={formData.matchType}
           onChange={handleChange}
-          
         >
           {" "}
           <option value="Singles">Singles</option>
@@ -242,7 +240,6 @@ const CreateGame = () => {
             existingLeagues={existingLeagues}
             playerData={playerData}
             disabled={!leaguesFetched}
-        
           />
         )}
 

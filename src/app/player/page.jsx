@@ -65,7 +65,7 @@ const Page = () => {
           <div className="md:mb-10 h-full grow">
             {/* Buttons */}
 
-            <div className="flex justify-between md:justify-center mx-3">
+            <div className="flex justify-between gap-10 md:justify-center mx-3">
               <Link
                 href="/createGame"
                 className="bg-primary shadow-lg hover:text-accent-focus w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0 mr-3"
@@ -92,7 +92,7 @@ const Page = () => {
                   Find a League
                 </button>
               </Link>
-              <Link
+              {/* <Link
                 href="/teams"
                 className="bg-primary shadow-lg hover:text-accent-focus w-2/5 md:w-40 rounded-lg py-3 my-5 max-w-100 flex flex-col justify-center items-center md:grow-0 ml-3"
               >
@@ -104,7 +104,7 @@ const Page = () => {
                   />
                   Find a Team
                 </button>
-              </Link>
+              </Link> */}
             </div>
 
             {/* Profile Picture */}

@@ -2,7 +2,8 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="footer items-center p-4 bg-neutral text-neutral-content hidden lg:block">
+    <footer className="footer items-center p-4 bg-neutral text-neutral-content hidden lg:block ">
+      {/* <footer className="footer items-center p-4 bg-neutral text-neutral-content hidden lg:block"> */}
       <div className="items-center flex-col">
         <p>Created by: Andrea, Gereon & Karli</p>
         <p>The Padel App © 2023 - All right reserved.</p>
